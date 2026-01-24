@@ -45,7 +45,7 @@ max_y_value = 0
 for i, v in enumerate(values):
     src = f"{name}_{str(v)}"
     directory_test_case_results = f"test_results/{src}" #f"test_results/{target}/{src}"
-    with open(directory_test_case_results+"/sim3D_output.txt", "r") as f:
+    with open(directory_test_case_results+"/plot3D_output.txt", "r") as f:
         lines = f.readlines()[1:]  # Skip header
         data_matrix = np.zeros((len(lines), 9))  # t, x, y, z, vx, vy, vz, angle_with_pos_x, angle_with_pos_z
         for i, line in enumerate(lines):
@@ -84,7 +84,7 @@ max_y_value = 0
 for idx, v in enumerate(sorted(values)):
     src = f"{name}_{str(v)}"
     directory_test_case_results = f"test_results/{src}"
-    with open(directory_test_case_results+"/sim3D_output.txt", "r") as f:
+    with open(directory_test_case_results+"/plot3D_output.txt", "r") as f:
         lines = f.readlines()[1:]  # Skip header
         data_matrix = np.zeros((len(lines), 9))  # t, x, y, z, vx, vy, vz, angle_with_pos_x, angle_with_pos_z
         for j, line in enumerate(lines):
@@ -116,7 +116,7 @@ colours = plt.cm.viridis(np.linspace(0, 1, len(values)))
 for idx, v in enumerate(sorted(values)):
     src = f"{name}_{str(v)}"
     directory_test_case_results = f"test_results/{src}"
-    with open(directory_test_case_results+"/sim3D_output.txt", "r") as f:
+    with open(directory_test_case_results+"/plot3D_output.txt", "r") as f:
         lines = f.readlines()[1:]  # Skip header
         data_matrix = np.zeros((len(lines), 9))  # t, x, y, z, vx, vy, vz, angle_with_pos_x, angle_with_pos_z
         for j, line in enumerate(lines):
@@ -153,7 +153,7 @@ min_z_value = None
 for v in sorted(values):
     src = f"{name}_{str(v)}"
     directory_test_case_results = f"test_results/{src}"
-    with open(directory_test_case_results+"/sim3D_output.txt", "r") as f:
+    with open(directory_test_case_results+"/plot3D_output.txt", "r") as f:
         lines = f.readlines()[1:]  # Skip header
         data_matrix = np.zeros((len(lines), 9))
         for j, line in enumerate(lines):

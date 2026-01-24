@@ -1,7 +1,7 @@
 import math
 
 class TestCase:
-    def __init__(self, dt=0.01, g=9.80, rho=1.225, k_d=0.5, initial_speed=18.5, elevation_angle=math.radians(10), horizontal_angle=math.radians(90), spin_rate=56*math.pi, spin_axis_angle={'with_x_axis': math.radians(-60), "with_y_axis": math.radians(0), "with_z_axis": math.radians(10)}, description=""):  # 90+40, 90-5 ; 35, 15 ; 90,0 makes hard left after bounce ;
+    def __init__(self, dt=0.01, g=9.80, rho=1.225, k_d=0.5, initial_speed=18.5, elevation_angle=math.radians(10), horizontal_angle=math.radians(0), spin_rate=56*math.pi, spin_axis_angle_up=math.radians(10), spin_axis_angle_side=math.radians(60), description=""): 
         self.dt = dt
         self.g = g
         self.rho = rho
@@ -10,30 +10,28 @@ class TestCase:
         self.elevation_angle = elevation_angle
         self.horizontal_angle = horizontal_angle
         self.spin_rate = spin_rate
-        self.spin_axis_angle = spin_axis_angle  # use spherical coordinates to get 3 components of spin from the 2 angles and magnitude
+        self.spin_axis_angle_up = spin_axis_angle_up 
+        self.spin_axis_angle_side = spin_axis_angle_side        
         self.description = description
 
     def __repr__(self):
-        spin_angle_from_x = self.spin_axis_angle["with_x_axis"]
-        spin_angle_from_y = self.spin_axis_angle["with_y_axis"]
-        spin_angle_from_z = self.spin_axis_angle["with_z_axis"]
-        return f"TestCase(dt={self.dt}, g={self.g}, rho={self.rho}, k_d={self.k_d}, initial_speed={self.initial_speed}, elevation_angle={self.elevation_angle}, horizontal_angle={self.horizontal_angle}, spin_rate={self.spin_rate}, spin_axis_angle=({spin_angle_from_x},{spin_angle_from_y},{spin_angle_from_z}), description='{self.description}')"
+        return f"TestCase(dt={self.dt}, g={self.g}, rho={self.rho}, k_d={self.k_d}, initial_speed={self.initial_speed}, elevation={self.elevation_angle},horizontal={self.horizontal_angle}, spin_rate={self.spin_rate}, spin_axis_angle_zy={self.spin_axis_angle_up}, spin_axis_angle_zx={self.spin_axis_angle_side}, description='{self.description}')"
 
     def write_to_file(self):
         with open("test_cases.txt", "a") as f:
-            spin_angle_from_x = self.spin_axis_angle["with_x_axis"]
-            spin_angle_from_y = self.spin_axis_angle["with_y_axis"]
-            spin_angle_from_z = self.spin_axis_angle["with_z_axis"]
-            f.write(f"{self.dt};{self.g};{self.rho};{self.k_d};{self.initial_speed};{self.elevation_angle};{self.horizontal_angle};{self.spin_rate};({spin_angle_from_x}:{spin_angle_from_y}:{spin_angle_from_z});{self.description}\n")
+            f.write(f"{self.dt};{self.g};{self.rho};{self.k_d};{self.initial_speed};{self.elevation_angle};{self.horizontal_angle};{self.spin_rate};{self.spin_axis_angle_up};{self.spin_axis_angle_side};{self.description}\n")
 
 
 with open("test_cases.txt", "w") as f:
-    f.write("dt;g;k_d;initial_speed;elevation_angle;horizontal_angle;spin_rate;description\n")
+    f.write("dt;g;k_d;initial_speed;elevation_angle;horizontal_angle;spin_rate;spin_angle;description\n")
 
 
 # TODO: add leg spin cases - these are all off-spin only
-default = TestCase(description="Default off spin")
-default.write_to_file()
+default_off = TestCase(description="Default off spin")
+default_off.write_to_file()
+
+default_leg = TestCase(spin_axis_angle_side=math.radians(360-45), description="Default leg spin")
+default_leg.write_to_file()
 
 no_spin = TestCase(spin_rate=0, description="No spin")
 no_spin.write_to_file()
@@ -150,3 +148,5 @@ angle135.write_to_file()
 # extras for fun
 high_back_spin = TestCase(spin_rate=-500, description="High back spin")
 high_back_spin.write_to_file()
+
+print("Generated all test cases.")
