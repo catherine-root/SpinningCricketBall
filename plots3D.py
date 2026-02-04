@@ -57,21 +57,22 @@ initial_x = 0 # TODO: future possible offset in display: initial_x = -bowler_rel
 x, y, z = initial_x, bowler_release_height, bowler_release_distance  # start above ground, back from origin at popping crease
 # x = along pitch, y = height, z = across pitch
 
+# Status booleans
 completed_bounce = False  # there will be one bounce
-
-# Window size
-width, height = 800, 600
 stop_simulation = False
 
 def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
+    
 
     # Physics update
     v = [vx, vy, vz]
     speed = math.sqrt(vx**2 + vy**2 + vz**2)
 
-    angular_velocity = (omega[0]**2 + omega[1]**2)**0.5
-    spin_rate = radius_of_ball * angular_velocity / (speed + 1e-6)  # to avoid division by zero
-    c_l = k_l * spin_rate * 80 # cheat additional factor to increase visibility of curved path
+    #angular_velocity = (omega[0]**2 + omega[1]**2)**0.5
+    #spin_rate = radius_of_ball * angular_velocity / (speed + 1e-6)  # to avoid division by zero
+    #c_l = k_l * spin_rate * 8 # cheat additional factor to increase visibility of curved path
+    
+    c_l = k_l * radius_of_ball * spin_rate / (speed + 1e-8)  # to avoid division by zero - this scaling is important
     c_d = k_d  # constant depending on ball properties
 
     # Drag
@@ -79,29 +80,29 @@ def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
 
     # Lift
     #Fl = 0.5 * rho * speed**2 * A * c_l  # in Paper 2 & 3
-    Fl_magnitude = (4/3) * 4 * math.pi * radius_of_ball**3 * rho * c_l * spin_rate*speed  # from NASA page on lift - Kutta-Joukowski theorem
-    perp_spinaxis_and_speed = np.cross(v, omega)
-    Fl = Fl_magnitude * (perp_spinaxis_and_speed / np.linalg.norm(perp_spinaxis_and_speed))
+    #Fl_magnitude = (4/3) * 4 * math.pi * radius_of_ball**3 * rho * c_l * spin_rate*speed  # from NASA page on lift - Kutta-Joukowski theorem
+    #perp_spinaxis_and_speed = np.cross(v, omega)
+    #Fl = Fl_magnitude * (perp_spinaxis_and_speed / np.linalg.norm(perp_spinaxis_and_speed))
+
+    Fl = (4/3) * 4 * math.pi * radius_of_ball**3 * rho * c_l * np.cross(omega, v)  # vector form of lift force
+    Fl_magnitude = np.linalg.norm(Fl)
 
     #angle_of_lift_force_x = np.arccos(np.dot(np.cross(omega, v), [1,0,0]) / (np.linalg.norm(np.cross(omega, v)) * np.linalg.norm([1,0,0]) + 1e-8))  # avoid division by zero
     #angle_of_lift_force_y = np.arccos(np.dot(np.cross(omega, v), [0,1,0]) / (np.linalg.norm(np.cross(omega, v)) * np.linalg.norm([0,1,0]) + 1e-8))  # avoid division by zero
 
     # Accelerations
-
-    # note angle on which lift acts is different
-    '''ax = (-Fd * math.cos(horizontal_angle) * math.cos(elevation_angle) - Fl * math.sin(angle_of_lift_force_x) * math.cos(angle_of_lift_force_y)) / m
-    ay = (-m*g - Fd * math.sin(elevation_angle) + Fl * math.sin(angle_of_lift_force_y)) / m
-    az = (-Fd * math.sin(horizontal_angle) * math.cos(elevation_angle) - Fl * math.cos(angle_of_lift_force_x) * math.cos(angle_of_lift_force_y)) / m
-    '''
-    ax = (Fd * math.sin(horizontal_angle) * math.cos(elevation_angle) + Fl[0]) / m
+    ax = (-Fd * math.sin(horizontal_angle) * math.cos(elevation_angle) + Fl[2]) / m
     ay = (-m*g - Fd * math.sin(elevation_angle) + Fl[1]) / m
-    az = (Fd * math.cos(horizontal_angle) * math.cos(elevation_angle) + Fl[2]) / m
+    az = (-Fd * math.cos(horizontal_angle) * math.cos(elevation_angle) + Fl[0]) / m
     with open(directory_test_case_results+"/plot3D_debug.txt", "a") as f_debug:
         f_debug.write(f"t={t:.3f},horizontal_angle={horizontal_angle:.5f},elevation_angle={elevation_angle:.5f}\n")
         f_debug.write(f"t={t:.3f},horizontal_angle={math.degrees(horizontal_angle):.5f},elevation_angle={elevation_angle:.5f}\n")
         f_debug.write(f"ax={ax:.3f},sin(ha)={math.sin(horizontal_angle):.5f},cos(ea)={math.cos(elevation_angle):.5f},liftX={Fl[0]:.5f}\n")
         f_debug.write(f"ay={ay:.3f},sin(ea)={math.sin(elevation_angle):.5f},cos(ea)={math.cos(elevation_angle):.5f},liftY={Fl[1]:.5f}\n")
         f_debug.write(f"az={az:.3f},cos(ha)={math.cos(horizontal_angle):.5f},cos(ea)={math.cos(elevation_angle):.5f},liftZ={Fl[2]:.5f}\n")
+        f_debug.write(f"omega={omega[0]:.5f},{omega[1]:.5f},{omega[2]:.5f},mag(omega)={np.linalg.norm(omega):.5f},spin_rate={spin_rate}\n")
+        f_debug.write(f"v={vx:.3f},{vy:.3f},{vz:.3f},speed={speed:.3f},\n")
+        f_debug.write(f"c_l={c_l}, c_d={c_d}, spin_rate={spin_rate}\n")
 
 
     #ax = (-Fd * math.cos(horizontal_angle) * math.cos(elevation_angle) - Fl * math.sin(horizontal_angle) * math.cos(elevation_angle)) / m
@@ -119,9 +120,12 @@ def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
         f_forces.write(f"{t:.3f},{ax:.5f},{ay:.5f},{az:.5f},{Fd:.5f},{Fl_magnitude:.5f},{Fl[0]:.5f},{Fl[1]:.5f},{Fl[2]:.5f}\n")
 
     # Integrate
-    vx += ax * dt
+    '''vx += ax * dt
     vy += ay * dt
-    vz += az * dt
+    vz += az * dt'''
+    vx += (1/2) * ax * dt
+    vy += (1/2) * ay * dt
+    vz += (1/2) * az * dt
 
     # Update horizontal_angle
     horizontal_angle = -math.atan2(vx, vz) 
@@ -151,6 +155,11 @@ def bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle):
     omega_old = omega.copy()
     #omega = np.array(omega)*(2/7)+np.array([vz, vx])*(5/(7*radius_of_ball))  #assuming ball is solid sphere
     omega = np.array(omega)*(2/7)+np.array([vz, vy, vx])*(5/(7*radius_of_ball))  #assuming ball is solid sphere
+
+    speed_vector = np.array([vx, vy, vz])
+    ball_ground_normal = np.cross(speed_vector, [0,1,0]) * -1  # ground normal is up y axis
+    unit_ball_ground_normal = ball_ground_normal / (np.linalg.norm(ball_ground_normal) + 1e-8)  # avoid division by zero
+    omega = np.array(omega)*(2/7)+np.cross(unit_ball_ground_normal, speed_vector)*(5/(7*radius_of_ball))  #assuming ball is solid sphere
 
     # TODO: is there a change in spin axis angle upon bounce? - yes compute from mag of components
 
@@ -271,6 +280,7 @@ def plot_main():
     ax.set_zlim(0, max(y_values)*1.1)
     ax.set_ylim(-pitch_length/2, pitch_length/2) # TODO: pitch length is double what it should be - see calculations
     ax.set_xlabel("x (m)")
+    ax.invert_xaxis()
     ax.set_ylabel("z (m)")
     ax.set_zlabel("y (m)")
     ax.set_title("3D Ball Trajectory")
@@ -294,6 +304,7 @@ def plot_main():
     x_mid = (x_values.max() + x_values.min()) / 2
     z_mid = (z_values.max() + z_values.min()) / 2
     ax.set_xlim(-pitch_width/2, pitch_width/2)
+    ax.invert_xaxis()
     ax.set_zlim(0, max(y_values)*1.1)
     ax.set_ylim(-pitch_length/2, pitch_length/2 + 5) # TODO: pitch length is double what it should be - see calculations
     plt.savefig(directory_test_case_results+"/sim3D_trajectory_dots.png")
@@ -310,6 +321,7 @@ def plot_main():
     ax.set_zlim(0, max(y_values)*1.1)
     ax.set_ylim(-pitch_length/2, pitch_length/2 + 5) # TODO: pitch length is double what it should be - see calculations
     ax.set_xlabel("x (m)")
+    ax.invert_xaxis()
     ax.set_ylabel("z (m)")
     ax.set_zlabel("y (m)")
     ax.set_title("3D Ball Trajectory")
@@ -327,6 +339,7 @@ def plot_main():
     ax.set_ylim(-pitch_width/2, pitch_width/2)
     ax.set_xlim(-pitch_length/2, pitch_length/2 + 5)  # z along pitch length
     ax.set_aspect('equal', adjustable='box')
+    #ax.set_aspect('auto')
     plt.savefig(directory_test_case_results+"/plot2D_trajectory_line_topdown.png")
     plt.close()
 
@@ -363,16 +376,21 @@ if __name__ == "__main__":
             elevation_angle = float(params[5])  # zy
             horizontal_angle = float(params[6])  #zx
             motion_angle_from_y = math.radians(90) - elevation_angle
-            initial_speed_vector = [initial_speed*math.sin(motion_angle_from_y)*math.sin(horizontal_angle), initial_speed*math.cos(motion_angle_from_y), initial_speed*math.sin(motion_angle_from_y)*math.cos(horizontal_angle)] # w_x, w_y, w_z
+            initial_speed_vector = [initial_speed*math.sin(motion_angle_from_y)*math.sin(horizontal_angle), initial_speed*math.cos(motion_angle_from_y), initial_speed*math.sin(motion_angle_from_y)*math.cos(horizontal_angle)] # v_x, v_y, v_z
+            #initial_speed_vector = [initial_speed*math.sin(motion_angle_from_y)*math.cos(horizontal_angle), initial_speed*math.cos(motion_angle_from_y), initial_speed*math.sin(motion_angle_from_y)*math.sin(horizontal_angle)] # v_x, v_y, v_z
             #seam_facing_angle = float(params[7])  # currently unused
+            global spin_rate
             spin_rate = float(params[7])
             spin_axis_angle_up = float(params[8])
             spin_axis_angle_side = float(params[9])
+            initial_speed_vector = [initial_speed_vector[0], initial_speed_vector[1], -1*np.sign(spin_axis_angle_side)*initial_speed_vector[2]]  # v_x, v_y, v_z
+            #initial_speed_vector = [initial_speed_vector[0], initial_speed_vector[1], initial_speed_vector[2]]  # v_x, v_y, v_z
             #spin_axis_angle = np.array(params[8].strip("(").strip(")").split(":"), dtype=float) # zy, zx # TODO: check the angles are the right way around below
             #OLD initial_omega = [spin_rate*math.sin(spin_axis_angle[0]), spin_rate*math.cos(spin_axis_angle[1])*math.cos(spin_axis_angle[0]), spin_rate*math.cos(spin_axis_angle[2])*math.sin(spin_axis_angle[0])]
             spin_axis_angle_from_y = math.radians(90) - spin_axis_angle_up
             spin_axis_angle = [spin_axis_angle_up, spin_axis_angle_side]
-            initial_omega = [spin_rate*math.sin(spin_axis_angle_from_y)*math.sin(spin_axis_angle[1]), spin_rate*math.cos(spin_axis_angle_from_y), spin_rate*math.sin(spin_axis_angle_from_y)*math.cos(spin_axis_angle[1])] # w_x, w_y, w_z
+            #initial_omega = [spin_rate*math.sin(spin_axis_angle_from_y)*math.sin(spin_axis_angle[1]), spin_rate*math.cos(spin_axis_angle_from_y), spin_rate*math.sin(spin_axis_angle_from_y)*math.cos(spin_axis_angle[1])] # w_x, w_y, w_z
+            initial_omega = [spin_rate*math.sin(spin_axis_angle_from_y)*math.cos(spin_axis_angle[1]), spin_rate*math.cos(spin_axis_angle_from_y), spin_rate*math.sin(spin_axis_angle_from_y)*math.sin(spin_axis_angle[1])] # w_x, w_y, w_z
             # using spherical coordinates to get 3 components of spin from the 2 angles and magnitude
             omega = initial_omega
 
@@ -386,7 +404,7 @@ if __name__ == "__main__":
                 print(f"  Drag coefficient (k_d): {k_d}")
                 print(f"  Initial speed: {initial_speed}")
                 print(f"  Elevation angle: {elevation_angle}")
-                print(f"  Horizontal angle: {horizontal_angle}")
+                print(f"  Horizontal angle: {horizontal_angle:.5f}")
                 print(f"  Initial speed vector: {initial_speed_vector}")
                 print(f"  Initial angular velocity (spin rate): {spin_rate}")
                 print(f"  Spin axis angle up: {spin_axis_angle_up}")
@@ -418,7 +436,7 @@ if __name__ == "__main__":
             if os.path.exists(directory_test_case_results+"/plot3D_output.txt"):
                 os.remove(directory_test_case_results+"/plot3D_output.txt")
             with open(directory_test_case_results+"/plot3D_output.txt", "w") as f:
-                f.write(f"t,x,y,z,vx,vy,vz\n")
+                f.write(f"t,x,y,z,vx,vy,vz,horizontal_angle,elevation_angle\n")
             if os.path.exists(directory_test_case_results+"/plot3D_forces.txt"):
                 os.remove(directory_test_case_results+"/plot3D_forces.txt")
             with open(directory_test_case_results+"/plot3D_forces.txt", "w") as f:
@@ -435,7 +453,7 @@ if __name__ == "__main__":
                 f.write(f"  Drag coefficient (k_d): {k_d}\n")
                 f.write(f"  Initial speed: {initial_speed}\n")
                 f.write(f"  Elevation angle: {elevation_angle}\n")
-                f.write(f"  Horizontal angle: {horizontal_angle}\n")
+                f.write(f"  Horizontal angle: {horizontal_angle:.7f}\n")
                 f.write(f"  Initial speed vector: {initial_speed_vector}\n")
                 f.write(f"  Initial angular velocity (spin rate): {spin_rate}\n")
                 f.write(f"  Spin axis angle up: {spin_axis_angle_up}\n")
