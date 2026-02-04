@@ -1,7 +1,7 @@
 import math
 
 class TestCase:
-    def __init__(self, dt=0.01, g=9.80, rho=1.225, k_d=0.5, initial_speed=18.5, elevation_angle=math.radians(10), horizontal_angle=math.radians(0), spin_rate=56*math.pi, spin_axis_angle_up=math.radians(10), spin_axis_angle_side=math.radians(60), description=""): 
+    def __init__(self, dt=0.01, g=9.80, rho=1.225, k_d=0.5, initial_speed=18.5, elevation_angle=math.radians(10), horizontal_angle=math.radians(0), spin_rate=56*math.pi, spin_axis_angle_up=math.radians(10), spin_axis_angle_side=math.radians(60), description=""):  # default spin_axis_angle_side should be 60
         self.dt = dt
         self.g = g
         self.rho = rho
@@ -30,7 +30,7 @@ with open("test_cases.txt", "w") as f:
 default_off = TestCase(description="Default off spin")
 default_off.write_to_file()
 
-default_leg = TestCase(spin_axis_angle_side=math.radians(360-45), description="Default leg spin")
+default_leg = TestCase(spin_axis_angle_side=math.radians(-60), description="Default leg spin")  #should be -45
 default_leg.write_to_file()
 
 no_spin = TestCase(spin_rate=0, description="No spin")

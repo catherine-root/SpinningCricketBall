@@ -2,10 +2,10 @@ import sys
 import threading
 import subprocess
 
-def run_script(case_no):
-    script_name = f"trial.py" + " "  + str(case_no)
+def run_script(case_no, viewpoint):
+    script_name = f"../src/sim3D.py"
     print(f"Starting {script_name}...")
-    subprocess.run(["python3", script_name])
+    subprocess.run(["python3", script_name, str(case_no), viewpoint])
     print(f"Finished {script_name}")
 
 with open("../test/test_cases.txt", "r") as test_cases_file:
@@ -13,11 +13,12 @@ with open("../test/test_cases.txt", "r") as test_cases_file:
     number_of_test_cases = len(lines)
 
     threads = []
-    for case_no, line in enumerate(lines):
-        print(f"Running simulation for test case {case_no} of {number_of_test_cases}: {line.split(';')[-1].strip()}")
-        t = threading.Thread(target=run_script, args=(case_no,))
-        t.start()
-        threads.append(t)
+    for case_no, line in enumerate(lines):  # TODO: WARNING SPOT TEMPORARY LIMITATION HERE
+        for viewpoint in ["sideon", "bowler", "diagonal", "top-down"]:
+            print(f"Running simulation for test case {case_no} of {number_of_test_cases} from {viewpoint}: {line.split(';')[-1].strip()}")
+            t = threading.Thread(target=run_script, args=(case_no,viewpoint,))
+            t.start()
+            threads.append(t)
 
 # Wait for all threads to finish
 for t in threads:

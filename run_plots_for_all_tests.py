@@ -79,30 +79,7 @@ print("All collation plots finished.")
 
 sys.exit(0)
 
-'''
-import sys
-from multiprocessing import Pool
-import subprocess
-import numpy as np
-import os
-
-def run_script(case_no):
-    script_path = "../src/trial.py"
-    print(f"Starting {script_path} {case_no}...")
-    subprocess.run(["python3", script_path, str(case_no)])
-    print(f"Finished {script_path} {case_no}")
-
-if __name__ == "__main__":
-    with open("../test/test_cases.txt", "r") as test_cases_file:
-        lines = test_cases_file.readlines()[1:]  # Skip header line
-    number_of_test_cases = len(lines)
-    case_numbers = np.arange(0, number_of_test_cases)
-    with Pool() as pool:
-        pool.map(run_script, case_numbers)
-
-
-sys.exit(0)
-'''
+# TODO: write file to summarise results
 
 
 
