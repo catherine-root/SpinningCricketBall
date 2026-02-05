@@ -65,6 +65,7 @@ for i, v in enumerate(values):
 
 ax.legend(title='Values', bbox_to_anchor=(1.05, 1), loc='upper left') 
 ax.set_xlim(-pitch_width/2, pitch_width/2)
+ax.invert_xaxis()
 ax.set_zlim(0, max_y_value*1.1)
 ax.set_ylim(-pitch_length, pitch_length) # TODO: pitch length is double what it should be - see calculations
 plt.savefig(target+f"/plot3D_trajectory_line_{name}s_{''.join([str(v) for v in values])}.png")
