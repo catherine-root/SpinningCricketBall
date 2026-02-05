@@ -106,7 +106,7 @@ def display():
     data_line_index += 1
 
     x = float(x)
-    display_x = -x
+    display_x = x
     y = float(y)
     z = float(z)
 
