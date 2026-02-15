@@ -42,6 +42,7 @@ def run_collate_plots_script(name, values):
     print(f"Finished {script_name} {name}")
 
 test_results_dir = "../test/test_results"
+global directory_names
 directory_names = [d for d in os.listdir(test_results_dir) if os.path.isdir(os.path.join(test_results_dir, d))]
 
 # Split potential values from test names
@@ -77,9 +78,80 @@ for t in threads:
 
 print("All collation plots finished.")
 
+
+
+# Summary file for batch of test cases
+
+def get_extrema():
+    extrema_dict = {}
+    #print(directory_names)
+    print(directory_names_tuples)
+    directory_names = [d for d in os.listdir(test_results_dir) if os.path.isdir(os.path.join(test_results_dir, d))]
+
+    for name in directory_names:
+        directory_test_case_results = f"test_results/{name}"
+        for filename in ["plot3D_output.txt", "plot3D_forces.txt"]:
+            full_file_path = directory_test_case_results+"/"+filename
+            if os.path.exists(full_file_path):  # catch collate_plot created directories
+                with open(full_file_path, "r") as f:
+                    file_contents = f.readlines()
+                    header = file_contents[0].strip().split(',') 
+                    lines = file_contents[1:]  # Skip header
+                    data_matrix = np.zeros((len(lines), 9))  # t,x,y,z,vx,vy,vz,horizontal_angle,elevation_angle
+                    for i, line in enumerate(lines):
+                        data_matrix[i] = np.array(line.strip().split(','), dtype=float)
+
+                    # read first line of output file and forces file to get index of column to extract for each parameter
+                    for idx, parameter in enumerate(header):
+                        extrema_dict[parameter] = [min(data_matrix[:,idx]), max(data_matrix[:,idx])]
+
+    return extrema_dict
+
+def pad_string(s, desired_length, where="end"):
+    alt = 1
+    while len(s) < desired_length:
+        if where == "end":
+            s += " "
+        else:  # where == "both"
+            if alt == 1:
+                s = " " + s
+            else:  # alt = -1
+                s = s + " "
+            alt *= -1
+    return s
+
+def write_extrema(filename, extrema):
+    with open(filename, "a") as f:
+        f.write("\nParameter  |   Minimum  |  Maximum\n")
+        f.write("-------------------------------------\n")
+        for p in extrema.keys():
+            f.write(f"{pad_string(p, len('horizontal_angle')+1, 'end')}|{pad_string(str(extrema[p][0]), 10, 'both')}|{pad_string(str(extrema[p][1]), 10, 'both')}\n")
+        f.write("\n\n\n")
+
+
+import datetime
+timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+summary_filename = "plot3D_summary"+timestamp+".txt"
+if os.path.exists("test_results/"+summary_filename):
+    os.remove("test_results/"+summary_filename)
+with open("test_results/"+summary_filename, "w") as f:
+    f.write(f"Summary of batch of test results from: {timestamp}\n\n")
+
+    # read all test cases
+
+    # write default parameters for this batch = test case 1 (or 0) parameters
+
+    # find out which ones did of did not bounce
+
+    # which ones went too far to the side of the pitch
+
+    # maximums and minimums for some parameters: x, y, z, vx, vy, vz, ax, ay, az, angles, etc
+    extrema_dictionary = get_extrema()
+    write_extrema("test_results/"+summary_filename, extrema_dictionary)
+
+print("Summary file created.")
+
+
+
+
 sys.exit(0)
-
-# TODO: write file to summarise results
-
-
-

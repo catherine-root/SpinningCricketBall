@@ -1,7 +1,7 @@
 import math
 
 class TestCase:
-    def __init__(self, dt=0.01, g=9.80, rho=1.225, k_d=0.5, initial_speed=18.5, elevation_angle=math.radians(10), horizontal_angle=math.radians(0), spin_rate=56*math.pi, spin_axis_angle_up=math.radians(10), spin_axis_angle_side=math.radians(60), description=""):  # default spin_axis_angle_side should be 60
+    def __init__(self, dt=0.01, g=9.80, rho=1.225, k_d=0.5, initial_speed=18.5, elevation_angle=math.radians(6), horizontal_angle=math.radians(0), spin_rate=56*math.pi, spin_axis_angle_up=math.radians(10), spin_axis_angle_side=math.radians(60), description=""):  # default spin_axis_angle_side should be 60
         self.dt = dt
         self.g = g
         self.rho = rho
@@ -20,11 +20,8 @@ class TestCase:
     def write_to_file(self):
         with open("test_cases.txt", "a") as f:
             f.write(f"{self.dt};{self.g};{self.rho};{self.k_d};{self.initial_speed};{self.elevation_angle};{self.horizontal_angle};{self.spin_rate};{self.spin_axis_angle_up};{self.spin_axis_angle_side};{self.description}\n")
-
-
 with open("test_cases.txt", "w") as f:
-    f.write("dt;g;k_d;initial_speed;elevation_angle;horizontal_angle;spin_rate;spin_angle;description\n")
-
+    f.write("dt;g;k_d;initial_speed;elevation_angle;horizontal_angle;spin_rate;spin_angle_up;spin_angle_side;description\n")
 
 # TODO: add leg spin cases - these are all off-spin only
 default_off = TestCase(description="Default off spin")
@@ -46,6 +43,8 @@ no_drag.write_to_file() # also do big
 no_elevation = TestCase(elevation_angle=0, description="No elevation angle")
 no_elevation.write_to_file()
 
+# Spin vector (backspin = spin around x-axis, pointing left-right)
+# assume clockwise round x (top spin rate), clockwise round y (), clockwise round z ??????????
 # Non-pro stats from https://researchers.mq.edu.au/en/publications/measuring-spin-characteristics-of-a-cricket-ball/
 # for later comparison with each other
 spin_rate = 20
