@@ -9,32 +9,45 @@ import imageio.v2 as imageio
 from mpl_toolkits.mplot3d import Axes3D
 import os
 
-### Constants from plots3D.py
-# Ball
-circumference_of_ball = 0.225  # meters
-diameter_of_ball = circumference_of_ball / (2*math.pi)  # meters OR diameter_of_ball = circumference_of_ball / (2*math.pi)  # meters
-radius_of_ball = diameter_of_ball / 2
-A = math.pi * radius_of_ball**2  # cross-sectional area of ball (m^2)
-# Field and Pitch dimensions
-ground_size = 140  # diameter
-pitch_width = 3.05
-pitch_length = 22.56  # TODO: pitch length is double what is should be - see calculations = -pitch_length instead of -pitch_length/2
-pitchstart_to_bowlingcrease = 1.22
-bowlingcrease_to_poppingcrease = 1.22
-poppingcrease_to_otherpoppingcrease = 17.68
-pitchstart_to_poppingcrease = pitchstart_to_bowlingcrease + bowlingcrease_to_poppingcrease
-height_of_stumps = 0.72
-diameter_of_stumps = 0.04
-bowler_stumps_distance = -pitch_length/2 + pitchstart_to_bowlingcrease
-batter_stumps_distance = pitch_length/2 - pitchstart_to_bowlingcrease
-# Bowler dimensions
-bowler_height = 1.8  # Get reference for average height of a male spin bowler = approx 1.8 metres
-release_height_above_bowler_head = 0.5  # approximate height of arm above head at release
-bowler_release_height = bowler_height + release_height_above_bowler_head
-half_bowler_stride = 0.3  # approximate half stride length to find distance between popping crease and x position of bowler's hand
-bowler_release_distance = -pitch_length/2 + pitchstart_to_poppingcrease - half_bowler_stride
-bowler_preferred_distance_from_centerline = 0.3 
-bowler_release_x = 0.0 + bowler_preferred_distance_from_centerline  # for right-handed bowler and batsman
+### START Retrieve constants from file (repeated in sim3D.py) ###
+constants = {}
+with open("../src/constants.txt", "r") as f:
+    for line in f:
+        key, value = line.strip().split("=")
+        constants[key] = float(value)
+
+k_l = constants['k_l']
+m = constants['m']
+circumference_of_ball = constants['circumference_of_ball']
+diameter_of_ball = constants['diameter_of_ball']
+radius_of_ball = constants['radius_of_ball']
+A = constants['A']
+ground_size = constants['ground_size']
+pitch_width = constants['pitch_width']
+pitch_length = constants['pitch_length']
+pitchstart_to_bowlingcrease = constants['pitchstart_to_bowlingcrease']
+bowlingcrease_to_poppingcrease = constants['bowlingcrease_to_poppingcrease']
+poppingcrease_to_otherpoppingcrease = constants['poppingcrease_to_otherpoppingcrease']
+pitchstart_to_poppingcrease = constants['pitchstart_to_poppingcrease']
+height_of_stumps = constants['height_of_stumps']
+diameter_of_stumps = constants['diameter_of_stumps']
+bowler_stumps_distance = constants['bowler_stumps_distance']
+batter_stumps_distance = constants['batter_stumps_distance']
+bowler_release_height = constants['bowler_release_height']
+half_bowler_stride = constants['half_bowler_stride']
+bowler_release_distance = constants['bowler_release_distance']
+bowler_preferred_distance_from_centerline = constants['bowler_preferred_distance_from_centerline']
+bowler_release_x = constants['bowler_release_x']
+
+g = constants['g']
+dt = constants['dt']
+t = constants['initial_t']
+max_time = constants['max_time']
+initial_x = constants['initial_x']
+x = constants['x']
+y = constants['y']
+z = constants['z']
+### END Retrieve constants from file ### (repeated in sim3D.py)
 
 # Storing positions for flight trail of ball
 past_x_values = []
@@ -44,39 +57,6 @@ past_z_values = []
 # Window size
 width, height = 800, 600
 images = []
-stop_simulation = False
-
-'''# Constants
-g = 9.81
-dt = 0.02
-k_d = 0.05   # drag coefficient
-k_m = 0.02   # Magnus coefficient
-
-# Initial velocity
-vx, vy, vz = 15, 15, 5
-
-# Spin vector (backspin = spin around x-axis, pointing left-right)
-omega = (0, 0, 50)  # rad/s
-
-# Physics parameters
-g = 9.81
-dt = 0.02
-t = 0.0
-
-# Initial position
-x, y, z = 0.0, 1.0, 0.0
-
-# Initial velocity (shoot at 45° in x-y plane, with z component too)
-speed = 15.0
-angle_xy = math.radians(45)   # horizontal angle
-angle_up = math.radians(30)   # elevation angle
-
-vx = speed * math.cos(angle_up) * math.cos(angle_xy)
-vy = speed * math.sin(angle_up)
-vz = speed * math.cos(angle_up) * math.sin(angle_xy)'''
-
-# Window size
-width, height = 800, 600
 
 def init():
     glEnable(GL_DEPTH_TEST)
@@ -92,7 +72,7 @@ def init():
 
 def display():
     global x, y, z, vx, vy, vz, t, viewpoint
-    global stop_simulation, images
+    global images
     global data, data_line_index
 
     #with open(directory_test_case_results+"/plot3D_output.txt", "r") as f:
@@ -275,7 +255,7 @@ if __name__ == "__main__":
         case = 1
 
     global directory_test_case_results
-    stop_simulation = False
+    
     # Iterate over all test cases
     with open("../test/test_cases.txt", "r") as test_cases_file:
         lines = test_cases_file.readlines()[case:case+1]  # Skip header line OR CHANGE TO ACCESS OTHER TEST CASES FOR NOW
@@ -291,12 +271,9 @@ if __name__ == "__main__":
             horizontal_angle = float(params[6])  #zx
             motion_angle_from_y = math.radians(90) - elevation_angle
             initial_speed_vector = [initial_speed*math.sin(motion_angle_from_y)*math.sin(horizontal_angle), initial_speed*math.cos(motion_angle_from_y), initial_speed*math.sin(motion_angle_from_y)*math.cos(horizontal_angle)] # v_x, v_y, v_z
-            #seam_facing_angle = float(params[7])  # currently unused
             spin_rate = float(params[7])
             spin_axis_angle_up = float(params[8])
             spin_axis_angle_side = float(params[9])
-            #spin_axis_angle = np.array(params[8].strip("(").strip(")").split(":"), dtype=float) # zy, zx # TODO: check the angles are the right way around below
-            #OLD initial_omega = [spin_rate*math.sin(spin_axis_angle[0]), spin_rate*math.cos(spin_axis_angle[1])*math.cos(spin_axis_angle[0]), spin_rate*math.cos(spin_axis_angle[2])*math.sin(spin_axis_angle[0])]
             spin_axis_angle_from_y = math.radians(90) - spin_axis_angle_up
             spin_axis_angle = [spin_axis_angle_up, spin_axis_angle_side]
             initial_omega = [spin_rate*math.sin(spin_axis_angle_from_y)*math.sin(spin_axis_angle[1]), spin_rate*math.cos(spin_axis_angle_from_y), spin_rate*math.sin(spin_axis_angle_from_y)*math.cos(spin_axis_angle[1])] # w_x, w_y, w_z

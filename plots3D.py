@@ -3,75 +3,54 @@ import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 import os
 
-# Constants which will never be varied between test cases
-k_l = 0.25   # Magnus coefficient
-m = 0.156    # mass of ball (kg)
-#The ball, when new, shall weigh not less than 5.5 ounces/155.9 g, nor more than 5.75 ounces/163 g, 
-#and shall measure not less than 8.81 in/22.4 cm, nor more than 9 in/22.9 cm in circumference.
-circumference_of_ball = 0.225  # meters
-diameter_of_ball = circumference_of_ball / (2*math.pi)  # meters OR diameter_of_ball = circumference_of_ball / (2*math.pi)  # meters
-radius_of_ball = diameter_of_ball / 2
-A = math.pi * radius_of_ball**2  # cross-sectional area of ball (m^2)
+### START Retrieve constants from file (repeated in sim3D.py) ###
+constants = {}
+with open("../src/constants.txt", "r") as f:
+    for line in f:
+        key, value = line.strip().split("=")
+        constants[key] = float(value)
 
-# Field and Pitch dimensions
-ground_size = 140  # diameter
-pitch_width = 3.05
-pitch_length = 22.56  # TODO: pitch length is double what is should be - see calculations = -pitch_length instead of -pitch_length/2
-pitchstart_to_bowlingcrease = 1.22
-bowlingcrease_to_poppingcrease = 1.22
-poppingcrease_to_otherpoppingcrease = 17.68
-pitchstart_to_poppingcrease = pitchstart_to_bowlingcrease + bowlingcrease_to_poppingcrease
-height_of_stumps = 0.72
-diameter_of_stumps = 0.04
-bowler_stumps_distance = -pitch_length/2 + pitchstart_to_bowlingcrease
-batter_stumps_distance = pitch_length/2 + 5 - pitchstart_to_bowlingcrease
+k_l = constants['k_l']
+m = constants['m']
+circumference_of_ball = constants['circumference_of_ball']
+diameter_of_ball = constants['diameter_of_ball']
+radius_of_ball = constants['radius_of_ball']
+A = constants['A']
+ground_size = constants['ground_size']
+pitch_width = constants['pitch_width']
+pitch_length = constants['pitch_length']
+pitchstart_to_bowlingcrease = constants['pitchstart_to_bowlingcrease']
+bowlingcrease_to_poppingcrease = constants['bowlingcrease_to_poppingcrease']
+poppingcrease_to_otherpoppingcrease = constants['poppingcrease_to_otherpoppingcrease']
+pitchstart_to_poppingcrease = constants['pitchstart_to_poppingcrease']
+height_of_stumps = constants['height_of_stumps']
+diameter_of_stumps = constants['diameter_of_stumps']
+bowler_stumps_distance = constants['bowler_stumps_distance']
+batter_stumps_distance = constants['batter_stumps_distance']
+bowler_release_height = constants['bowler_release_height']
+half_bowler_stride = constants['half_bowler_stride']
+bowler_release_distance = constants['bowler_release_distance']
+bowler_preferred_distance_from_centerline = constants['bowler_preferred_distance_from_centerline']
+bowler_release_x = constants['bowler_release_x']
 
-# Bowler dimensions
-bowler_height = 1.8  # Get reference for average height of a male spin bowler = approx 1.8 metres
-release_height_above_bowler_head = 0.5  # approximate height of arm above head at release
-bowler_release_height = bowler_height + release_height_above_bowler_head
-half_bowler_stride = 0.3  # approximate half stride length to find distance between popping crease and x position of bowler's hand
-bowler_release_distance = -pitch_length/2 + pitchstart_to_poppingcrease - half_bowler_stride
-bowler_preferred_distance_from_centerline = 0.3 
-bowler_release_x = 0.0 + bowler_preferred_distance_from_centerline  # for right-handed bowler and batsman
+g = constants['g']
+dt = constants['dt']
+t = constants['initial_t']
+max_time = constants['max_time']
+initial_x = constants['initial_x']
+x = constants['x']
+y = constants['y']
+z = constants['z']
+### END Retrieve constants from file ### (repeated in sim3D.py)
 
-# Storing positions for flight of ball
-past_x_values = []
-past_y_values = []
-past_z_values = []
-
-# Initial velocity
-#vx, vy, vz = 0, 5, 15
-
-# Spin vector (backspin = spin around x-axis, pointing left-right)
-# assume clockwise round x (top spin rate), clockwise round y (), clockwise round z
-
-# Physics parameters
-g = 9.81
-dt = 0.01
-t = 0.0
-max_time = 5  # seconds
-
-# Initial position
-initial_x = 0 # TODO: future possible offset in display: initial_x = -bowler_release_x  # due to display requirements
-x, y, z = initial_x, bowler_release_height, bowler_release_distance  # start above ground, back from origin at popping crease
-# x = along pitch, y = height, z = across pitch
-
-# Status booleans
-completed_bounce = False  # there will be one bounce
-stop_simulation = False
 
 def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
     
-
-    # Physics update
+    # Velocity vector and speed
     v = [vx, vy, vz]
     speed = math.sqrt(vx**2 + vy**2 + vz**2)
-
-    #angular_velocity = (omega[0]**2 + omega[1]**2)**0.5
-    #spin_rate = radius_of_ball * angular_velocity / (speed + 1e-6)  # to avoid division by zero
-    #c_l = k_l * spin_rate * 8 # cheat additional factor to increase visibility of curved path
     
+    # Coefficients
     c_l = k_l * radius_of_ball * spin_rate / (speed + 1e-8)  # to avoid division by zero - this scaling is important
     c_d = k_d  # constant depending on ball properties
 
@@ -79,21 +58,15 @@ def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
     Fd = 0.5 * rho * speed**2 * A * c_d  # in Paper 2 & 3
 
     # Lift
-    #Fl = 0.5 * rho * speed**2 * A * c_l  # in Paper 2 & 3
-    #Fl_magnitude = (4/3) * 4 * math.pi * radius_of_ball**3 * rho * c_l * spin_rate*speed  # from NASA page on lift - Kutta-Joukowski theorem
-    #perp_spinaxis_and_speed = np.cross(v, omega)
-    #Fl = Fl_magnitude * (perp_spinaxis_and_speed / np.linalg.norm(perp_spinaxis_and_speed))
-
     Fl = (4/3) * 4 * math.pi * radius_of_ball**3 * rho * c_l * np.cross(omega, v)  # vector form of lift force
     Fl_magnitude = np.linalg.norm(Fl)
-
-    #angle_of_lift_force_x = np.arccos(np.dot(np.cross(omega, v), [1,0,0]) / (np.linalg.norm(np.cross(omega, v)) * np.linalg.norm([1,0,0]) + 1e-8))  # avoid division by zero
-    #angle_of_lift_force_y = np.arccos(np.dot(np.cross(omega, v), [0,1,0]) / (np.linalg.norm(np.cross(omega, v)) * np.linalg.norm([0,1,0]) + 1e-8))  # avoid division by zero
 
     # Accelerations
     ax = (-Fd * math.sin(horizontal_angle) * math.cos(elevation_angle) + Fl[0]) / m
     ay = (-m*g - Fd * math.sin(elevation_angle) + Fl[1]) / m
     az = (-Fd * math.cos(horizontal_angle) * math.cos(elevation_angle) + Fl[2]) / m
+
+    # Debug
     with open(directory_test_case_results+"/plot3D_debug.txt", "a") as f_debug:
         f_debug.write("\n\nIn flight:\n")
         f_debug.write(f"t={t:.3f},horizontal_angle={horizontal_angle:.5f},elevation_angle={elevation_angle:.5f}\n")
@@ -106,16 +79,6 @@ def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
         f_debug.write(f"c_l={c_l}, c_d={c_d}, spin_rate={spin_rate}\n")
 
 
-    #ax = (-Fd * math.cos(horizontal_angle) * math.cos(elevation_angle) - Fl * math.sin(horizontal_angle) * math.cos(elevation_angle)) / m
-    #ay = (-m*g - Fd * math.sin(elevation_angle) + Fl * math.sin(elevation_angle)) / m
-    #az = (-Fd * math.sin(horizontal_angle) * math.cos(elevation_angle) - Fl * math.cos(horizontal_angle) * math.cos(elevation_angle)) / m
-    '''#2D model
-    ax = 0
-    ay = (-m*g - Fd * math.sin(elevation_angle) + Fl * math.cos(elevation_angle)) / m
-    az = (-Fd * math.cos(elevation_angle) - Fl * math.sin(elevation_angle)) / m
-    '''
-    # only need one angle for projection onto y axis
-
     # Write accelerations and forces to a new file
     with open(directory_test_case_results+"/plot3D_forces.txt", "a") as f_forces:
         f_forces.write(f"{t:.3f},{ax:.5f},{ay:.5f},{az:.5f},{Fd:.5f},{Fl_magnitude:.5f},{Fl[0]:.5f},{Fl[1]:.5f},{Fl[2]:.5f}\n")
@@ -124,9 +87,6 @@ def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
     vx += ax * dt
     vy += ay * dt
     vz += az * dt
-    '''vx += (1/2) * ax * dt
-    vy += (1/2) * ay * dt
-    vz += (1/2) * az * dt'''
 
     # Update horizontal_angle
     horizontal_angle = -math.atan2(vx, vz) 
@@ -136,88 +96,52 @@ def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
 
 def bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle):
 
-    friction_coefficient = 0.35  # from average in https://www.researchgate.net/publication/225873716_Predicting_the_playing_character_of_cricket_pitches
-    dh = 0.1  # TODO : some small distance tbd
-    k = 0.55  # TODO : find coefficient of restitution between ball and ground
-
-    print("Bouncing...")
-    
-    '''bounce_dt = dt # TODO: function
-    # Note this is 2D
-    vx_new = vx
-    vy_new = k**0.5 * vy *-1
-    vz_new = np.sign(omega[0])*(friction_coefficient * (vy + vy_new) + friction_coefficient*g*bounce_dt) + (vz + radius_of_ball*omega[0])
-    horizontal_angle = horizontal_angle #math.atan2(vz, vx) 
-    elevation_angle = math.atan2(vy, vz)'''
-
+    # Coefficients
+    k = 0.65  # Coefficient of restitution
     e_number = 1  # perfectly_elastic
-    bounce_dt = 2*e_number*math.sqrt(2*dh/g)
-    # This is 3D
-    omega_old = omega.copy()
-    #omega = np.array(omega)*(2/7)+np.array([vz, vx])*(5/(7*radius_of_ball))  #assuming ball is solid sphere
-    #omega = np.array(omega)*(2/7)+np.array([vz, vy, vx])*(5/(7*radius_of_ball))  #assuming ball is solid sphere
 
-    speed_vector = np.array([vx, vy, vz])
-    ball_ground_normal = np.cross(speed_vector, [0,-1,0]) #* -1  # ground normal is up y axis
-    unit_ball_ground_normal = ball_ground_normal / (np.linalg.norm(ball_ground_normal) + 1e-8)  # avoid division by zero
-    #omega = np.array(omega)*(2/7)+np.cross(unit_ball_ground_normal, speed_vector)*(5/(7*radius_of_ball))  #assuming ball is solid sphere
-    omega = np.array(omega)*(2/7)+np.array([vz, vy, vx])*(5/(7*radius_of_ball))
+    # Bounce dt
+    dh = 0.1  # TODO : some small distance tbd
+    bounce_dt = 2*e_number*math.sqrt(2*dh/g)
+    
+    # Bounce equations / Physics updates
+    vy_new = k * vy *-1
+    vx_new = -1*(radius_of_ball*omega[2] + vx)
+    vz_new = radius_of_ball*omega[0] + vz
+
+    omega_new = np.array(omega)*(2/7)+np.array([vz, vy, vx])*(5/(7*radius_of_ball))  #assuming ball is solid sphere
+
+    horizontal_angle_new = math.atan2(vx_new, vz_new)
+    elevation_angle_new = math.atan2(vy_new, vz_new)
+
+
+    # Debug
     with open(directory_test_case_results+"/plot3D_debug.txt", "a") as f_debug:
         f_debug.write("\n\nBounce function.\n")
-        f_debug.write(f"t={t:.3f},horizontal_angle={horizontal_angle:.5f},elevation_angle={elevation_angle:.5f}\n")
-        f_debug.write(f"t={t:.3f},horizontal_angle={math.degrees(horizontal_angle):.5f},elevation_angle={elevation_angle:.5f}\n")
-        f_debug.write(f"omega_old={omega_old[0]:.5f},{omega_old[1]:.5f},{omega_old[2]:.5f},mag(omega_old)={np.linalg.norm(omega_old):.5f}\n")
+        f_debug.write(f"t={t:.3f},horizontal_angle={horizontal_angle:.5f},elevation_angle={elevation_angle:.5f} radians\n")
+        f_debug.write(f"t={t:.3f},horizontal_angle={math.degrees(horizontal_angle):.5f},elevation_angle={math.degrees(elevation_angle):.5f} degrees\n")
+        f_debug.write(f"t={t:.3f},horizontal_angle_new={horizontal_angle_new:.5f},elevation_angle_new={elevation_angle_new:.5f} radians\n")
+        f_debug.write(f"t={t:.3f},horizontal_angle_new={math.degrees(horizontal_angle_new):.5f},elevation_angle_new={math.degrees(elevation_angle_new):.5f} degrees\n")
         f_debug.write(f"omega={omega[0]:.5f},{omega[1]:.5f},{omega[2]:.5f},mag(omega)={np.linalg.norm(omega):.5f}\n")
-        om_scaled = np.array(omega_old)*(2/7)
+        f_debug.write(f"omega_new={omega_new[0]:.5f},{omega_new[1]:.5f},{omega_new[2]:.5f},mag(omega_new)={np.linalg.norm(omega_new):.5f}\n")
+        om_scaled = np.array(omega)*(2/7)
         f_debug.write(f"omega_scaled={om_scaled[0]:.5f},{om_scaled[1]:.5f},{om_scaled[2]:.5f},mag(omega_scaled)={np.linalg.norm(om_scaled):.5f}\n")
+        speed_vector = np.array([vx, vy, vz])
         f_debug.write(f"speed_vector={speed_vector[0]:.5f},{speed_vector[1]:.5f},{speed_vector[2]:.5f}\n")
-        f_debug.write(f"unit_ball_ground_normal={unit_ball_ground_normal[0]:.5f},{unit_ball_ground_normal[1]:.5f},{unit_ball_ground_normal[2]:.5f}\n")
-        cro = np.cross(unit_ball_ground_normal, speed_vector)
-        f_debug.write(f"cross(unit_ball_ground_normal, speed_vector)={cro[0]:.5f},{cro[1]:.5f},{cro[2]:.5f}\n")
-        cro_scaled = cro*(5/(7*radius_of_ball))
-        f_debug.write(f"cross()*5/7r={cro_scaled[0]:.5f},{cro_scaled[1]:.5f},{cro_scaled[2]:.5f}\n")
+
     # TODO: is there a change in spin axis angle upon bounce? - yes compute from mag of components
 
-
-    vy_new = k**0.5 * vy *-1
-    vx_new = -1*(radius_of_ball*omega_old[2] + vx)
-    vz_new = radius_of_ball*omega_old[0] + vz
-    # abs for now
-
-    angle_x_old = horizontal_angle
-    angle_z_old = elevation_angle
-
-    horizontal_angle = math.atan2(vx_new, vz_new)#-math.radians(90)  # fudge factor
-    elevation_angle = math.atan2(vy_new, vz_new)
-
-
-    with open(directory_test_case_results+"/plot3D_debug.txt", "a") as f_debug:
-        f_debug.write("After bounce calculations:\n")
-        f_debug.write(f"t={t:.3f},horizontal_angle={horizontal_angle:.5f},elevation_angle={elevation_angle:.5f}\n")
-        f_debug.write(f"t={t:.3f},horizontal_angle={math.degrees(horizontal_angle):.5f},elevation_angle={elevation_angle:.5f}\n")
-        f_debug.write(f"omega={omega[0]:.5f},{omega[1]:.5f},{omega[2]:.5f},mag(omega)={np.linalg.norm(omega):.5f}\n")
-        f_debug.write(f"omega_old={omega_old[0]:.5f},{omega_old[1]:.5f},{omega_old[2]:.5f},mag(omega_old)={np.linalg.norm(omega_old):.5f}\n")
-        f_debug.write(f"vx_new={vx_new:.5f},{vy_new:.5f},{vz_new:.5f}\n")
-        f_debug.write(f"unit_ball_ground_normal={unit_ball_ground_normal[0]:.5f},{unit_ball_ground_normal[1]:.5f},{unit_ball_ground_normal[2]:.5f}\n")
-
-    print(horizontal_angle - angle_x_old, elevation_angle - angle_z_old)
-
-    print(omega[0] - omega_old[0], omega[1] - omega_old[1])
-
-    return omega, vx_new, vy_new, vz_new, horizontal_angle, elevation_angle, bounce_dt
+    return omega_new, vx_new, vy_new, vz_new, horizontal_angle_new, elevation_angle_new, bounce_dt
 
 def main():
     global x, y, z, vx, vy, vz, elevation_angle, horizontal_angle, omega, t
     global completed_bounce
-    global past_x_values, past_y_values, past_z_values
     global radius_of_ball
 
     #print("In plots3D.py in main()")
     # --- Store position and time for plots ---
     with open(directory_test_case_results+"/plot3D_output.txt", "a") as f:
         f.write(f"{t:.3f},{x:.3f},{y:.3f},{z:.3f},{vx:.3f},{vy:.3f},{vz:.3f},{elevation_angle:.3f},{horizontal_angle:.3f}\n")
-
-    t += dt
 
     # TODO : bounce or not
     # TODO : bounce equations
@@ -238,19 +162,16 @@ def main():
         plot_main()
 
     elif y < 0+radius_of_ball and not completed_bounce:  # stop at ground - scaled up ball will look as if it is in the ground a bit more
-        #y = 0+scaled_radius_of_ball
 
-        # "Instant" bounce
-        # x,y,z remain the same
-        # only update directions and speeds (of spin + of ball trajectory)
         omega, vx, vy, vz, horizontal_angle, elevation_angle, bounce_dt = bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle)
         completed_bounce = True
-        t = t - dt + bounce_dt  # to correct for different dt for bounce step
-
+        
+        # TODO: x,y,z remain the same? Roll?
         x += vx * dt
         y += vy * dt
         z += vz * dt
 
+        t += bounce_dt
         main()
     
     else:
@@ -260,11 +181,11 @@ def main():
         y += vy * dt
         z += vz * dt
 
+        t += dt
         main()
     
 
 def plot_main():
-    # remember to get/store plot data from directory_test_case_results
     import matplotlib.pyplot as plt
 
     #print("In plots3D.py in plot_main()")
@@ -308,14 +229,12 @@ def plot_main():
     ax.set_ylabel("z (m)")
     ax.set_zlabel("y (m)")
     ax.set_title("3D Ball Trajectory")
-    plt.savefig(directory_test_case_results+"/sim3D_trajectory_line.png")
+    plt.savefig(directory_test_case_results+"/plot3D_trajectory_line.png")
     plt.close()
 
     fig = plt.figure(figsize=(12, 8))
     ax = fig.add_subplot(111, projection='3d')
     ax.scatter(x_values, z_values, np.zeros(len(y_values)), color='grey', s=1)
-    #ax.scatter(x_values, np.zeros(len(z_values)), y_values, color='grey', s=1)
-    #ax.scatter(np.zeros(len(x_values)), z_values, y_values, color='grey', s=1)
     ax.scatter(x_values, z_values, y_values, color='red', s=10)  # y_values represent height, bigger dots
     ax.set_xlabel("x (m)")
     ax.set_ylabel("z (m)")
@@ -331,15 +250,13 @@ def plot_main():
     ax.invert_xaxis()
     ax.set_zlim(0, max(y_values)*1.1)
     ax.set_ylim(-pitch_length/2, pitch_length/2 + 5) # TODO: pitch length is double what it should be - see calculations
-    plt.savefig(directory_test_case_results+"/sim3D_trajectory_dots.png")
+    plt.savefig(directory_test_case_results+"/plot3D_trajectory_dots.png")
     plt.close()
 
     modulo_dots = 10
     fig = plt.figure(figsize=(12, 8))
     ax = fig.add_subplot(111, projection='3d')
     ax.scatter(x_values[::modulo_dots], z_values[::modulo_dots], np.zeros(len(y_values[::modulo_dots])), color='grey', s=1)
-    #ax.scatter(x_values[::modulo_dots], np.zeros(len(z_values[::modulo_dots])), y_values[::modulo_dots], color='grey', s=1)
-    #ax.scatter(np.zeros(len(x_values[::modulo_dots])), z_values[::modulo_dots], y_values[::modulo_dots], color='grey', s=1)
     ax.scatter(x_values[::modulo_dots], z_values[::modulo_dots], y_values[::modulo_dots], color='red', s=10)  # y_values represent height, bigger dots
     ax.set_xlim(-pitch_width/2, pitch_width/2)
     ax.set_zlim(0, max(y_values)*1.1)
@@ -349,7 +266,7 @@ def plot_main():
     ax.set_ylabel("z (m)")
     ax.set_zlabel("y (m)")
     ax.set_title("3D Ball Trajectory")
-    plt.savefig(directory_test_case_results+"/sim3D_trajectory_fewer_dots.png")
+    plt.savefig(directory_test_case_results+"/plot3D_trajectory_fewer_dots.png")
     plt.close()
 
     # Top down, i.e. bird's eye view
@@ -363,7 +280,6 @@ def plot_main():
     ax.set_ylim(-pitch_width/2, pitch_width/2)
     ax.set_xlim(-pitch_length/2, pitch_length/2 + 5)  # z along pitch length
     ax.set_aspect('equal', adjustable='box')
-    #ax.set_aspect('auto')
     plt.savefig(directory_test_case_results+"/plot2D_trajectory_line_topdown.png")
     plt.close()
 
@@ -376,6 +292,9 @@ if __name__ == "__main__":
     global case
     case = int(sys.argv[1])
 
+    global debug_mode
+    debug_mode = int(sys.argv[2])
+
     if case == 0:
         print("0 is an invalid case number. Running case 1 instead.")
         case = 1
@@ -386,7 +305,11 @@ if __name__ == "__main__":
     viewpoint = "sideon"  # other options: "bowler", "diagonal", "top-down"
 
     global directory_test_case_results
+
+    # Status booleans
+    completed_bounce = False  # there will be one bounce
     stop_simulation = False
+
     # Iterate over all test cases
     with open("../test/test_cases.txt", "r") as test_cases_file:
         lines = test_cases_file.readlines()[case:case+1]  # Skip header line OR CHANGE TO ACCESS OTHER TEST CASES FOR NOW
@@ -399,23 +322,14 @@ if __name__ == "__main__":
             initial_speed = float(params[4])
             elevation_angle = float(params[5])  # zy
             horizontal_angle = float(params[6])  #zx
-            motion_angle_from_y = math.radians(90) - elevation_angle
-            initial_speed_vector = [initial_speed*math.sin(motion_angle_from_y)*math.sin(horizontal_angle), initial_speed*math.cos(motion_angle_from_y), initial_speed*math.sin(motion_angle_from_y)*math.cos(horizontal_angle)] # v_x, v_y, v_z
-            #initial_speed_vector = [initial_speed*math.sin(motion_angle_from_y)*math.cos(horizontal_angle), initial_speed*math.cos(motion_angle_from_y), initial_speed*math.sin(motion_angle_from_y)*math.sin(horizontal_angle)] # v_x, v_y, v_z
-            #seam_facing_angle = float(params[7])  # currently unused
+            initial_speed_vector = [initial_speed*math.cos(elevation_angle)*math.sin(horizontal_angle), initial_speed*math.sin(elevation_angle), initial_speed*math.cos(elevation_angle)*math.cos(horizontal_angle)] # v_x, v_y, v_z
             global spin_rate
             spin_rate = float(params[7])
             spin_axis_angle_up = float(params[8])
             spin_axis_angle_side = float(params[9])
-            #initial_speed_vector = [initial_speed_vector[0], initial_speed_vector[1], -1*np.sign(spin_axis_angle_side)*initial_speed_vector[2]]  # v_x, v_y, v_z
             initial_speed_vector = [initial_speed_vector[0], initial_speed_vector[1], initial_speed_vector[2]]  # v_x, v_y, v_z
-            #spin_axis_angle = np.array(params[8].strip("(").strip(")").split(":"), dtype=float) # zy, zx # TODO: check the angles are the right way around below
-            #OLD initial_omega = [spin_rate*math.sin(spin_axis_angle[0]), spin_rate*math.cos(spin_axis_angle[1])*math.cos(spin_axis_angle[0]), spin_rate*math.cos(spin_axis_angle[2])*math.sin(spin_axis_angle[0])]
-            spin_axis_angle_from_y = math.radians(90) - spin_axis_angle_up
             spin_axis_angle = [spin_axis_angle_up, spin_axis_angle_side]
-            #initial_omega = [spin_rate*math.sin(spin_axis_angle_from_y)*math.sin(spin_axis_angle[1]), spin_rate*math.cos(spin_axis_angle_from_y), spin_rate*math.sin(spin_axis_angle_from_y)*math.cos(spin_axis_angle[1])] # w_x, w_y, w_z
-            initial_omega = [spin_rate*math.sin(spin_axis_angle_from_y)*math.cos(spin_axis_angle[1]), spin_rate*math.cos(spin_axis_angle_from_y), spin_rate*math.sin(spin_axis_angle_from_y)*math.sin(spin_axis_angle[1])] # w_x, w_y, w_z
-            initial_omega = [spin_rate*math.sin(spin_axis_angle_from_y)*math.cos(spin_axis_angle[1]), 0, spin_rate*math.sin(spin_axis_angle_from_y)*math.sin(spin_axis_angle[1])] # w_x, w_y, w_z            
+            initial_omega = [spin_rate*math.cos(spin_axis_angle_up)*math.cos(spin_axis_angle[1]), 0, spin_rate*math.cos(spin_axis_angle_up)*math.sin(spin_axis_angle[1])] # w_x, w_y, w_z            
             # using spherical coordinates to get 3 components of spin from the 2 angles and magnitude
             omega = initial_omega
 
@@ -447,9 +361,6 @@ if __name__ == "__main__":
             x, y, z = initial_x, bowler_release_height, bowler_release_distance
             t = 0.0
             completed_bounce = False
-            past_x_values = []
-            past_y_values = []
-            past_z_values = []
 
 
             directory_name_for_test_case = description.replace(" ", "_").replace(",", "").replace("(", "").replace(")", "")
