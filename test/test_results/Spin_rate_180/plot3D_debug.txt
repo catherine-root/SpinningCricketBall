@@ -1,0 +1,995 @@
+DEBUG STARTED
+Testing case: Spin rate 180
+Simulation Parameters:
+  Time step (dt): 0.01
+  Gravity (g): 9.8
+  Air density (rho): 1.225
+  Drag coefficient (k_d): 0.5
+  Initial speed: 18.5
+  Elevation angle: 0.10471975511965978
+  Horizontal angle: 0.0000000
+  Initial speed vector: [0.0, 1.9337765704515892, 18.398655064313054]
+  Initial angular velocity (spin rate): 180.0
+  Spin axis angle up: 0.17453292519943295
+  Spin axis angle side: 1.0471975511965976
+  Initial angular velocity (omega): [88.63269777109873, 0, 153.51633575143975]
+  Description: Spin rate 180
+
+
+In flight:
+t=0.000,horizontal_angle=0.00000,elevation_angle=0.10472
+t=0.000,horizontal_angle=0.00000,elevation_angle=0.10472
+ax=-0.010,sin(ha)=0.00000,cos(ea)=0.99452,liftX=-0.00152
+ay=-9.924,sin(ea)=0.10453,cos(ea)=0.99452,liftY=-0.00837
+az=-0.667,cos(ha)=1.00000,cos(ea)=0.99452,liftZ=0.00088
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.000,1.934,18.399,speed=18.500,
+c_l=0.043552535079307834, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.010,horizontal_angle=0.00001,elevation_angle=0.09942
+t=0.010,horizontal_angle=0.00030,elevation_angle=0.09942
+ax=-0.009,sin(ha)=0.00001,cos(ea)=0.99506,liftX=-0.00145
+ay=-9.921,sin(ea)=0.09925,cos(ea)=0.99506,liftY=-0.00837
+az=-0.667,cos(ha)=1.00000,cos(ea)=0.99506,liftZ=0.00084
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.000,1.835,18.392,speed=18.483,
+c_l=0.043592005583875874, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.020,horizontal_angle=0.00001,elevation_angle=0.09411
+t=0.020,horizontal_angle=0.00059,elevation_angle=0.09411
+ax=-0.009,sin(ha)=0.00001,cos(ea)=0.99558,liftX=-0.00137
+ay=-9.917,sin(ea)=0.09397,cos(ea)=0.99558,liftY=-0.00838
+az=-0.666,cos(ha)=1.00000,cos(ea)=0.99558,liftZ=0.00079
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.000,1.735,18.385,speed=18.467,
+c_l=0.043630296248594554, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.030,horizontal_angle=0.00002,elevation_angle=0.08879
+t=0.030,horizontal_angle=0.00087,elevation_angle=0.08879
+ax=-0.008,sin(ha)=0.00002,cos(ea)=0.99606,liftX=-0.00129
+ay=-9.913,sin(ea)=0.08867,cos(ea)=0.99606,liftY=-0.00838
+az=-0.666,cos(ha)=1.00000,cos(ea)=0.99606,liftZ=0.00075
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.000,1.636,18.379,speed=18.451,
+c_l=0.043667399270035455, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.040,horizontal_angle=0.00002,elevation_angle=0.08347
+t=0.040,horizontal_angle=0.00113,elevation_angle=0.08347
+ax=-0.008,sin(ha)=0.00002,cos(ea)=0.99652,liftX=-0.00121
+ay=-9.910,sin(ea)=0.08337,cos(ea)=0.99652,liftY=-0.00838
+az=-0.665,cos(ha)=1.00000,cos(ea)=0.99652,liftZ=0.00070
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.000,1.537,18.372,speed=18.436,
+c_l=0.04370330711472667, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.050,horizontal_angle=0.00002,elevation_angle=0.07814
+t=0.050,horizontal_angle=0.00137,elevation_angle=0.07814
+ax=-0.007,sin(ha)=0.00002,cos(ea)=0.99695,liftX=-0.00114
+ay=-9.906,sin(ea)=0.07806,cos(ea)=0.99695,liftY=-0.00839
+az=-0.665,cos(ha)=1.00000,cos(ea)=0.99695,liftZ=0.00066
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.000,1.438,18.365,speed=18.422,
+c_l=0.04373801252420064, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.060,horizontal_angle=0.00003,elevation_angle=0.07280
+t=0.060,horizontal_angle=0.00160,elevation_angle=0.07280
+ax=-0.007,sin(ha)=0.00003,cos(ea)=0.99735,liftX=-0.00106
+ay=-9.903,sin(ea)=0.07273,cos(ea)=0.99735,liftY=-0.00839
+az=-0.664,cos(ha)=1.00000,cos(ea)=0.99735,liftZ=0.00061
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,1.339,18.359,speed=18.407,
+c_l=0.043771508519879786, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.070,horizontal_angle=0.00003,elevation_angle=0.06746
+t=0.070,horizontal_angle=0.00181,elevation_angle=0.06746
+ax=-0.006,sin(ha)=0.00003,cos(ea)=0.99773,liftX=-0.00098
+ay=-9.899,sin(ea)=0.06740,cos(ea)=0.99773,liftY=-0.00839
+az=-0.664,cos(ha)=1.00000,cos(ea)=0.99773,liftZ=0.00057
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,1.240,18.352,speed=18.394,
+c_l=0.04380378840779344, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.080,horizontal_angle=0.00004,elevation_angle=0.06211
+t=0.080,horizontal_angle=0.00201,elevation_angle=0.06211
+ax=-0.006,sin(ha)=0.00004,cos(ea)=0.99807,liftX=-0.00090
+ay=-9.895,sin(ea)=0.06207,cos(ea)=0.99807,liftY=-0.00840
+az=-0.663,cos(ha)=1.00000,cos(ea)=0.99807,liftZ=0.00052
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,1.141,18.345,speed=18.381,
+c_l=0.04383484578311999, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.090,horizontal_angle=0.00004,elevation_angle=0.05675
+t=0.090,horizontal_angle=0.00219,elevation_angle=0.05675
+ax=-0.005,sin(ha)=0.00004,cos(ea)=0.99839,liftX=-0.00083
+ay=-9.892,sin(ea)=0.05672,cos(ea)=0.99839,liftY=-0.00840
+az=-0.663,cos(ha)=1.00000,cos(ea)=0.99839,liftZ=0.00048
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,1.042,18.339,speed=18.368,
+c_l=0.04386467453454823, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.100,horizontal_angle=0.00004,elevation_angle=0.05139
+t=0.100,horizontal_angle=0.00236,elevation_angle=0.05139
+ax=-0.005,sin(ha)=0.00004,cos(ea)=0.99868,liftX=-0.00075
+ay=-9.888,sin(ea)=0.05137,cos(ea)=0.99868,liftY=-0.00840
+az=-0.663,cos(ha)=1.00000,cos(ea)=0.99868,liftZ=0.00043
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,0.943,18.332,speed=18.356,
+c_l=0.043893268848452016, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.110,horizontal_angle=0.00004,elevation_angle=0.04603
+t=0.110,horizontal_angle=0.00251,elevation_angle=0.04603
+ax=-0.004,sin(ha)=0.00004,cos(ea)=0.99894,liftX=-0.00067
+ay=-9.884,sin(ea)=0.04601,cos(ea)=0.99894,liftY=-0.00841
+az=-0.662,cos(ha)=1.00000,cos(ea)=0.99894,liftZ=0.00039
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,0.844,18.326,speed=18.345,
+c_l=0.04392062321287271, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.120,horizontal_angle=0.00005,elevation_angle=0.04066
+t=0.120,horizontal_angle=0.00265,elevation_angle=0.04066
+ax=-0.004,sin(ha)=0.00005,cos(ea)=0.99917,liftX=-0.00059
+ay=-9.881,sin(ea)=0.04065,cos(ea)=0.99917,liftY=-0.00841
+az=-0.662,cos(ha)=1.00000,cos(ea)=0.99917,liftZ=0.00034
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,0.745,18.319,speed=18.334,
+c_l=0.043946732421304126, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.130,horizontal_angle=0.00005,elevation_angle=0.03529
+t=0.130,horizontal_angle=0.00277,elevation_angle=0.03529
+ax=-0.003,sin(ha)=0.00005,cos(ea)=0.99938,liftX=-0.00051
+ay=-9.877,sin(ea)=0.03528,cos(ea)=0.99938,liftY=-0.00841
+az=-0.662,cos(ha)=1.00000,cos(ea)=0.99938,liftZ=0.00030
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,0.646,18.312,speed=18.324,
+c_l=0.043971591576274706, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.140,horizontal_angle=0.00005,elevation_angle=0.02991
+t=0.140,horizontal_angle=0.00287,elevation_angle=0.02991
+ax=-0.003,sin(ha)=0.00005,cos(ea)=0.99955,liftX=-0.00044
+ay=-9.874,sin(ea)=0.02990,cos(ea)=0.99955,liftY=-0.00841
+az=-0.661,cos(ha)=1.00000,cos(ea)=0.99955,liftZ=0.00025
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,0.548,18.306,speed=18.314,
+c_l=0.04399519609272219, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.150,horizontal_angle=0.00005,elevation_angle=0.02453
+t=0.150,horizontal_angle=0.00296,elevation_angle=0.02453
+ax=-0.002,sin(ha)=0.00005,cos(ea)=0.99970,liftX=-0.00036
+ay=-9.870,sin(ea)=0.02453,cos(ea)=0.99970,liftY=-0.00841
+az=-0.661,cos(ha)=1.00000,cos(ea)=0.99970,liftZ=0.00021
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,0.449,18.299,speed=18.305,
+c_l=0.044017541701156265, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.160,horizontal_angle=0.00005,elevation_angle=0.01914
+t=0.160,horizontal_angle=0.00304,elevation_angle=0.01914
+ax=-0.002,sin(ha)=0.00005,cos(ea)=0.99982,liftX=-0.00028
+ay=-9.867,sin(ea)=0.01914,cos(ea)=0.99982,liftY=-0.00841
+az=-0.661,cos(ha)=1.00000,cos(ea)=0.99982,liftZ=0.00016
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,0.350,18.292,speed=18.296,
+c_l=0.044038624450604545, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.170,horizontal_angle=0.00005,elevation_angle=0.01376
+t=0.170,horizontal_angle=0.00310,elevation_angle=0.01376
+ax=-0.001,sin(ha)=0.00005,cos(ea)=0.99991,liftX=-0.00020
+ay=-9.863,sin(ea)=0.01376,cos(ea)=0.99991,liftY=-0.00841
+az=-0.660,cos(ha)=1.00000,cos(ea)=0.99991,liftZ=0.00012
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,0.252,18.286,speed=18.288,
+c_l=0.04405844071133837, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.180,horizontal_angle=0.00005,elevation_angle=0.00837
+t=0.180,horizontal_angle=0.00314,elevation_angle=0.00837
+ax=-0.001,sin(ha)=0.00005,cos(ea)=0.99997,liftX=-0.00012
+ay=-9.859,sin(ea)=0.00837,cos(ea)=0.99997,liftY=-0.00841
+az=-0.660,cos(ha)=1.00000,cos(ea)=0.99997,liftZ=0.00007
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,0.153,18.279,speed=18.280,
+c_l=0.044076987177374106, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.190,horizontal_angle=0.00006,elevation_angle=0.00297
+t=0.190,horizontal_angle=0.00316,elevation_angle=0.00297
+ax=-0.000,sin(ha)=0.00006,cos(ea)=1.00000,liftX=-0.00004
+ay=-9.856,sin(ea)=0.00297,cos(ea)=1.00000,liftY=-0.00841
+az=-0.660,cos(ha)=1.00000,cos(ea)=1.00000,liftZ=0.00003
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,0.054,18.273,speed=18.273,
+c_l=0.044094260868747084, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.200,horizontal_angle=0.00006,elevation_angle=-0.00242
+t=0.200,horizontal_angle=0.00318,elevation_angle=-0.00242
+ax=0.000,sin(ha)=0.00006,cos(ea)=1.00000,liftX=0.00004
+ay=-9.852,sin(ea)=-0.00242,cos(ea)=1.00000,liftY=-0.00841
+az=-0.660,cos(ha)=1.00000,cos(ea)=1.00000,liftZ=-0.00002
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-0.044,18.266,speed=18.266,
+c_l=0.044110259133554534, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.210,horizontal_angle=0.00006,elevation_angle=-0.00782
+t=0.210,horizontal_angle=0.00317,elevation_angle=-0.00782
+ax=0.001,sin(ha)=0.00006,cos(ea)=0.99997,liftX=0.00011
+ay=-9.849,sin(ea)=-0.00782,cos(ea)=0.99997,liftY=-0.00841
+az=-0.660,cos(ha)=1.00000,cos(ea)=0.99997,liftZ=-0.00007
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-0.143,18.259,speed=18.260,
+c_l=0.044124979649765056, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.220,horizontal_angle=0.00005,elevation_angle=-0.01322
+t=0.220,horizontal_angle=0.00315,elevation_angle=-0.01322
+ax=0.001,sin(ha)=0.00005,cos(ea)=0.99991,liftX=0.00019
+ay=-9.845,sin(ea)=-0.01321,cos(ea)=0.99991,liftY=-0.00841
+az=-0.660,cos(ha)=1.00000,cos(ea)=0.99991,liftZ=-0.00011
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-0.241,18.253,speed=18.254,
+c_l=0.04413842042679207, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.230,horizontal_angle=0.00005,elevation_angle=-0.01861
+t=0.230,horizontal_angle=0.00311,elevation_angle=-0.01861
+ax=0.002,sin(ha)=0.00005,cos(ea)=0.99983,liftX=0.00027
+ay=-9.842,sin(ea)=-0.01861,cos(ea)=0.99983,liftY=-0.00841
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99983,liftZ=-0.00016
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-0.340,18.246,speed=18.249,
+c_l=0.044150579806828974, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.240,horizontal_angle=0.00005,elevation_angle=-0.02401
+t=0.240,horizontal_angle=0.00306,elevation_angle=-0.02401
+ax=0.002,sin(ha)=0.00005,cos(ea)=0.99971,liftX=0.00035
+ay=-9.838,sin(ea)=-0.02401,cos(ea)=0.99971,liftY=-0.00841
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99971,liftZ=-0.00020
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-0.438,18.240,speed=18.245,
+c_l=0.044161456465944285, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.250,horizontal_angle=0.00005,elevation_angle=-0.02942
+t=0.250,horizontal_angle=0.00299,elevation_angle=-0.02942
+ax=0.003,sin(ha)=0.00005,cos(ea)=0.99957,liftX=0.00043
+ay=-9.835,sin(ea)=-0.02941,cos(ea)=0.99957,liftY=-0.00841
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99957,liftZ=-0.00025
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-0.536,18.233,speed=18.241,
+c_l=0.04417104941493533, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.260,horizontal_angle=0.00005,elevation_angle=-0.03482
+t=0.260,horizontal_angle=0.00291,elevation_angle=-0.03482
+ax=0.003,sin(ha)=0.00005,cos(ea)=0.99939,liftX=0.00051
+ay=-9.831,sin(ea)=-0.03481,cos(ea)=0.99939,liftY=-0.00841
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99939,liftZ=-0.00029
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-0.635,18.226,speed=18.238,
+c_l=0.04417935799993923, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.270,horizontal_angle=0.00005,elevation_angle=-0.04022
+t=0.270,horizontal_angle=0.00281,elevation_angle=-0.04022
+ax=0.004,sin(ha)=0.00005,cos(ea)=0.99919,liftX=0.00059
+ay=-9.827,sin(ea)=-0.04021,cos(ea)=0.99919,liftY=-0.00841
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99919,liftZ=-0.00034
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-0.733,18.220,speed=18.235,
+c_l=0.044186381902800415, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.280,horizontal_angle=0.00005,elevation_angle=-0.04562
+t=0.280,horizontal_angle=0.00269,elevation_angle=-0.04562
+ax=0.004,sin(ha)=0.00005,cos(ea)=0.99896,liftX=0.00066
+ay=-9.824,sin(ea)=-0.04560,cos(ea)=0.99896,liftY=-0.00841
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99896,liftZ=-0.00038
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-0.831,18.213,speed=18.232,
+c_l=0.04419212114119436, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.290,horizontal_angle=0.00004,elevation_angle=-0.05102
+t=0.290,horizontal_angle=0.00256,elevation_angle=-0.05102
+ax=0.005,sin(ha)=0.00004,cos(ea)=0.99870,liftX=0.00074
+ay=-9.820,sin(ea)=-0.05099,cos(ea)=0.99870,liftY=-0.00840
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99870,liftZ=-0.00043
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-0.930,18.207,speed=18.230,
+c_l=0.04419657606850718, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.300,horizontal_angle=0.00004,elevation_angle=-0.05642
+t=0.300,horizontal_angle=0.00241,elevation_angle=-0.05642
+ax=0.005,sin(ha)=0.00004,cos(ea)=0.99841,liftX=0.00082
+ay=-9.817,sin(ea)=-0.05639,cos(ea)=0.99841,liftY=-0.00840
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99841,liftZ=-0.00047
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-1.028,18.200,speed=18.229,
+c_l=0.044199747373471605, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.310,horizontal_angle=0.00004,elevation_angle=-0.06181
+t=0.310,horizontal_angle=0.00225,elevation_angle=-0.06181
+ax=0.006,sin(ha)=0.00004,cos(ea)=0.99809,liftX=0.00090
+ay=-9.813,sin(ea)=-0.06177,cos(ea)=0.99809,liftY=-0.00840
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99809,liftZ=-0.00052
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-1.126,18.194,speed=18.228,
+c_l=0.04420163607955967, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.320,horizontal_angle=0.00004,elevation_angle=-0.06721
+t=0.320,horizontal_angle=0.00207,elevation_angle=-0.06721
+ax=0.006,sin(ha)=0.00004,cos(ea)=0.99774,liftX=0.00098
+ay=-9.810,sin(ea)=-0.06716,cos(ea)=0.99774,liftY=-0.00840
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99774,liftZ=-0.00057
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-1.224,18.187,speed=18.228,
+c_l=0.04420224354413336, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.330,horizontal_angle=0.00003,elevation_angle=-0.07260
+t=0.330,horizontal_angle=0.00187,elevation_angle=-0.07260
+ax=0.007,sin(ha)=0.00003,cos(ea)=0.99737,liftX=0.00106
+ay=-9.806,sin(ea)=-0.07254,cos(ea)=0.99737,liftY=-0.00839
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99737,liftZ=-0.00061
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-1.322,18.180,speed=18.228,
+c_l=0.04420157145735416, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.340,horizontal_angle=0.00003,elevation_angle=-0.07799
+t=0.340,horizontal_angle=0.00166,elevation_angle=-0.07799
+ax=0.007,sin(ha)=0.00003,cos(ea)=0.99696,liftX=0.00114
+ay=-9.803,sin(ea)=-0.07791,cos(ea)=0.99696,liftY=-0.00839
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99696,liftZ=-0.00066
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.001,-1.420,18.174,speed=18.229,
+c_l=0.044199621840853354, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.350,horizontal_angle=0.00002,elevation_angle=-0.08338
+t=0.350,horizontal_angle=0.00143,elevation_angle=-0.08338
+ax=0.008,sin(ha)=0.00002,cos(ea)=0.99653,liftX=0.00121
+ay=-9.799,sin(ea)=-0.08329,cos(ea)=0.99653,liftY=-0.00838
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99653,liftZ=-0.00070
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.000,-1.518,18.167,speed=18.230,
+c_l=0.04419639704616501, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.360,horizontal_angle=0.00002,elevation_angle=-0.08877
+t=0.360,horizontal_angle=0.00119,elevation_angle=-0.08877
+ax=0.008,sin(ha)=0.00002,cos(ea)=0.99606,liftX=0.00129
+ay=-9.795,sin(ea)=-0.08865,cos(ea)=0.99606,liftY=-0.00838
+az=-0.659,cos(ha)=1.00000,cos(ea)=0.99606,liftZ=-0.00075
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.000,-1.616,18.161,speed=18.232,
+c_l=0.04419189975292377, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.370,horizontal_angle=0.00002,elevation_angle=-0.09415
+t=0.370,horizontal_angle=0.00093,elevation_angle=-0.09415
+ax=0.009,sin(ha)=0.00002,cos(ea)=0.99557,liftX=0.00137
+ay=-9.792,sin(ea)=-0.09401,cos(ea)=0.99557,liftY=-0.00838
+az=-0.660,cos(ha)=1.00000,cos(ea)=0.99557,liftZ=-0.00079
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.000,-1.714,18.154,speed=18.235,
+c_l=0.044186132966830396, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.380,horizontal_angle=0.00001,elevation_angle=-0.09953
+t=0.380,horizontal_angle=0.00065,elevation_angle=-0.09953
+ax=0.009,sin(ha)=0.00001,cos(ea)=0.99505,liftX=0.00145
+ay=-9.788,sin(ea)=-0.09937,cos(ea)=0.99505,liftY=-0.00837
+az=-0.660,cos(ha)=1.00000,cos(ea)=0.99505,liftZ=-0.00084
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.000,-1.812,18.147,speed=18.238,
+c_l=0.0441791000173875, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.390,horizontal_angle=0.00001,elevation_angle=-0.10491
+t=0.390,horizontal_angle=0.00036,elevation_angle=-0.10491
+ax=0.010,sin(ha)=0.00001,cos(ea)=0.99450,liftX=0.00153
+ay=-9.785,sin(ea)=-0.10471,cos(ea)=0.99450,liftY=-0.00837
+az=-0.660,cos(ha)=1.00000,cos(ea)=0.99450,liftZ=-0.00088
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.000,-1.910,18.141,speed=18.241,
+c_l=0.044170804555409296, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.400,horizontal_angle=0.00000,elevation_angle=-0.11028
+t=0.400,horizontal_angle=0.00005,elevation_angle=-0.11028
+ax=0.010,sin(ha)=0.00000,cos(ea)=0.99393,liftX=0.00160
+ay=-9.781,sin(ea)=-0.11005,cos(ea)=0.99393,liftY=-0.00836
+az=-0.660,cos(ha)=1.00000,cos(ea)=0.99393,liftZ=-0.00093
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=-0.000,-2.008,18.134,speed=18.245,
+c_l=0.04416125055030841, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.410,horizontal_angle=-0.00000,elevation_angle=-0.11564
+t=0.410,horizontal_angle=-0.00028,elevation_angle=-0.11564
+ax=0.011,sin(ha)=-0.00000,cos(ea)=0.99332,liftX=0.00168
+ay=-9.778,sin(ea)=-0.11539,cos(ea)=0.99332,liftY=-0.00836
+az=-0.660,cos(ha)=1.00000,cos(ea)=0.99332,liftZ=-0.00097
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.000,-2.106,18.128,speed=18.249,
+c_l=0.044150442287163916, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.420,horizontal_angle=-0.00001,elevation_angle=-0.12101
+t=0.420,horizontal_angle=-0.00062,elevation_angle=-0.12101
+ax=0.011,sin(ha)=-0.00001,cos(ea)=0.99269,liftX=0.00176
+ay=-9.774,sin(ea)=-0.12071,cos(ea)=0.99269,liftY=-0.00835
+az=-0.661,cos(ha)=1.00000,cos(ea)=0.99269,liftZ=-0.00102
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.000,-2.204,18.121,speed=18.254,
+c_l=0.04413838436357462, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.430,horizontal_angle=-0.00002,elevation_angle=-0.12636
+t=0.430,horizontal_angle=-0.00097,elevation_angle=-0.12636
+ax=0.012,sin(ha)=-0.00002,cos(ea)=0.99203,liftX=0.00184
+ay=-9.770,sin(ea)=-0.12603,cos(ea)=0.99203,liftY=-0.00835
+az=-0.661,cos(ha)=1.00000,cos(ea)=0.99203,liftZ=-0.00106
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.000,-2.301,18.114,speed=18.260,
+c_l=0.044125081686301956, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.440,horizontal_angle=-0.00002,elevation_angle=-0.13172
+t=0.440,horizontal_angle=-0.00135,elevation_angle=-0.13172
+ax=0.012,sin(ha)=-0.00002,cos(ea)=0.99134,liftX=0.00191
+ay=-9.767,sin(ea)=-0.13134,cos(ea)=0.99134,liftY=-0.00834
+az=-0.661,cos(ha)=1.00000,cos(ea)=0.99134,liftZ=-0.00111
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.000,-2.399,18.108,speed=18.266,
+c_l=0.04411053946770732, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.450,horizontal_angle=-0.00003,elevation_angle=-0.13706
+t=0.450,horizontal_angle=-0.00174,elevation_angle=-0.13706
+ax=0.013,sin(ha)=-0.00003,cos(ea)=0.99062,liftX=0.00199
+ay=-9.763,sin(ea)=-0.13663,cos(ea)=0.99062,liftY=-0.00833
+az=-0.661,cos(ha)=1.00000,cos(ea)=0.99062,liftZ=-0.00115
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.001,-2.497,18.101,speed=18.273,
+c_l=0.04409476322198864, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.460,horizontal_angle=-0.00004,elevation_angle=-0.14240
+t=0.460,horizontal_angle=-0.00214,elevation_angle=-0.14240
+ax=0.013,sin(ha)=-0.00004,cos(ea)=0.98988,liftX=0.00207
+ay=-9.760,sin(ea)=-0.14192,cos(ea)=0.98988,liftY=-0.00833
+az=-0.662,cos(ha)=1.00000,cos(ea)=0.98988,liftZ=-0.00119
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.001,-2.594,18.095,speed=18.280,
+c_l=0.044077758761221435, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.470,horizontal_angle=-0.00004,elevation_angle=-0.14774
+t=0.470,horizontal_angle=-0.00256,elevation_angle=-0.14774
+ax=0.014,sin(ha)=-0.00004,cos(ea)=0.98911,liftX=0.00215
+ay=-9.756,sin(ea)=-0.14720,cos(ea)=0.98911,liftY=-0.00832
+az=-0.662,cos(ha)=1.00000,cos(ea)=0.98911,liftZ=-0.00124
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.001,-2.692,18.088,speed=18.287,
+c_l=0.0440595321912098, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.480,horizontal_angle=-0.00005,elevation_angle=-0.15306
+t=0.480,horizontal_angle=-0.00300,elevation_angle=-0.15306
+ax=0.014,sin(ha)=-0.00005,cos(ea)=0.98831,liftX=0.00222
+ay=-9.752,sin(ea)=-0.15247,cos(ea)=0.98831,liftY=-0.00831
+az=-0.662,cos(ha)=1.00000,cos(ea)=0.98831,liftZ=-0.00128
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.001,-2.789,18.081,speed=18.295,
+c_l=0.044040089907152934, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.490,horizontal_angle=-0.00006,elevation_angle=-0.15839
+t=0.490,horizontal_angle=-0.00346,elevation_angle=-0.15839
+ax=0.015,sin(ha)=-0.00006,cos(ea)=0.98748,liftX=0.00230
+ay=-9.749,sin(ea)=-0.15772,cos(ea)=0.98748,liftY=-0.00831
+az=-0.663,cos(ha)=1.00000,cos(ea)=0.98748,liftZ=-0.00133
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.001,-2.887,18.075,speed=18.304,
+c_l=0.044019438589133056, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.500,horizontal_angle=-0.00007,elevation_angle=-0.16370
+t=0.500,horizontal_angle=-0.00393,elevation_angle=-0.16370
+ax=0.015,sin(ha)=-0.00007,cos(ea)=0.98663,liftX=0.00237
+ay=-9.745,sin(ea)=-0.16297,cos(ea)=0.98663,liftY=-0.00830
+az=-0.663,cos(ha)=1.00000,cos(ea)=0.98663,liftZ=-0.00137
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.001,-2.984,18.068,speed=18.313,
+c_l=0.043997585197430765, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.510,horizontal_angle=-0.00008,elevation_angle=-0.16901
+t=0.510,horizontal_angle=-0.00441,elevation_angle=-0.16901
+ax=0.016,sin(ha)=-0.00008,cos(ea)=0.98575,liftX=0.00245
+ay=-9.742,sin(ea)=-0.16820,cos(ea)=0.98575,liftY=-0.00829
+az=-0.663,cos(ha)=1.00000,cos(ea)=0.98575,liftZ=-0.00142
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.001,-3.082,18.061,speed=18.322,
+c_l=0.04397453696767412, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.520,horizontal_angle=-0.00009,elevation_angle=-0.17430
+t=0.520,horizontal_angle=-0.00491,elevation_angle=-0.17430
+ax=0.016,sin(ha)=-0.00009,cos(ea)=0.98485,liftX=0.00253
+ay=-9.738,sin(ea)=-0.17342,cos(ea)=0.98485,liftY=-0.00828
+az=-0.664,cos(ha)=1.00000,cos(ea)=0.98485,liftZ=-0.00146
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.002,-3.179,18.055,speed=18.333,
+c_l=0.04395030140582786, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.530,horizontal_angle=-0.00009,elevation_angle=-0.17960
+t=0.530,horizontal_angle=-0.00543,elevation_angle=-0.17960
+ax=0.017,sin(ha)=-0.00009,cos(ea)=0.98392,liftX=0.00260
+ay=-9.734,sin(ea)=-0.17863,cos(ea)=0.98392,liftY=-0.00828
+az=-0.664,cos(ha)=1.00000,cos(ea)=0.98392,liftZ=-0.00150
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.002,-3.277,18.048,speed=18.343,
+c_l=0.04392488628302923, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.540,horizontal_angle=-0.00010,elevation_angle=-0.18488
+t=0.540,horizontal_angle=-0.00596,elevation_angle=-0.18488
+ax=0.017,sin(ha)=-0.00010,cos(ea)=0.98296,liftX=0.00268
+ay=-9.731,sin(ea)=-0.18383,cos(ea)=0.98296,liftY=-0.00827
+az=-0.665,cos(ha)=1.00000,cos(ea)=0.98296,liftZ=-0.00155
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.002,-3.374,18.042,speed=18.354,
+c_l=0.043898299630277124, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.550,horizontal_angle=-0.00011,elevation_angle=-0.19015
+t=0.550,horizontal_angle=-0.00651,elevation_angle=-0.19015
+ax=0.018,sin(ha)=-0.00011,cos(ea)=0.98198,liftX=0.00275
+ay=-9.727,sin(ea)=-0.18901,cos(ea)=0.98198,liftY=-0.00826
+az=-0.665,cos(ha)=1.00000,cos(ea)=0.98198,liftZ=-0.00159
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.002,-3.471,18.035,speed=18.366,
+c_l=0.04387054973298168, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.560,horizontal_angle=-0.00012,elevation_angle=-0.19542
+t=0.560,horizontal_angle=-0.00708,elevation_angle=-0.19542
+ax=0.018,sin(ha)=-0.00012,cos(ea)=0.98097,liftX=0.00283
+ay=-9.723,sin(ea)=-0.19418,cos(ea)=0.98097,liftY=-0.00825
+az=-0.666,cos(ha)=1.00000,cos(ea)=0.98097,liftZ=-0.00163
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.002,-3.569,18.028,speed=18.378,
+c_l=0.04384164512538082, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.570,horizontal_angle=-0.00013,elevation_angle=-0.20068
+t=0.570,horizontal_angle=-0.00766,elevation_angle=-0.20068
+ax=0.019,sin(ha)=-0.00013,cos(ea)=0.97993,liftX=0.00290
+ay=-9.720,sin(ea)=-0.19933,cos(ea)=0.97993,liftY=-0.00824
+az=-0.666,cos(ha)=1.00000,cos(ea)=0.97993,liftZ=-0.00168
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.002,-3.666,18.022,speed=18.391,
+c_l=0.04381159458483115, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.580,horizontal_angle=-0.00014,elevation_angle=-0.20592
+t=0.580,horizontal_angle=-0.00826,elevation_angle=-0.20592
+ax=0.019,sin(ha)=-0.00014,cos(ea)=0.97887,liftX=0.00298
+ay=-9.716,sin(ea)=-0.20447,cos(ea)=0.97887,liftY=-0.00823
+az=-0.667,cos(ha)=1.00000,cos(ea)=0.97887,liftZ=-0.00172
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.003,-3.763,18.015,speed=18.404,
+c_l=0.043780407125980164, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.590,horizontal_angle=-0.00015,elevation_angle=-0.21116
+t=0.590,horizontal_angle=-0.00887,elevation_angle=-0.21116
+ax=0.020,sin(ha)=-0.00015,cos(ea)=0.97779,liftX=0.00305
+ay=-9.712,sin(ea)=-0.20960,cos(ea)=0.97779,liftY=-0.00822
+az=-0.667,cos(ha)=1.00000,cos(ea)=0.97779,liftZ=-0.00176
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.003,-3.860,18.008,speed=18.417,
+c_l=0.043748091994827154, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.600,horizontal_angle=-0.00017,elevation_angle=-0.21639
+t=0.600,horizontal_angle=-0.00950,elevation_angle=-0.21639
+ax=0.020,sin(ha)=-0.00017,cos(ea)=0.97668,liftX=0.00313
+ay=-9.708,sin(ea)=-0.21470,cos(ea)=0.97668,liftY=-0.00822
+az=-0.668,cos(ha)=1.00000,cos(ea)=0.97668,liftZ=-0.00181
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.003,-3.957,18.002,speed=18.431,
+c_l=0.04371465866267991, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.610,horizontal_angle=-0.00018,elevation_angle=-0.22161
+t=0.610,horizontal_angle=-0.01015,elevation_angle=-0.22161
+ax=0.021,sin(ha)=-0.00018,cos(ea)=0.97555,liftX=0.00320
+ay=-9.705,sin(ea)=-0.21980,cos(ea)=0.97555,liftY=-0.00821
+az=-0.668,cos(ha)=1.00000,cos(ea)=0.97555,liftZ=-0.00185
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.003,-4.054,17.995,speed=18.446,
+c_l=0.043680116820014665, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.620,horizontal_angle=-0.00019,elevation_angle=-0.22682
+t=0.620,horizontal_angle=-0.01081,elevation_angle=-0.22682
+ax=0.021,sin(ha)=-0.00019,cos(ea)=0.97439,liftX=0.00328
+ay=-9.701,sin(ea)=-0.22488,cos(ea)=0.97439,liftY=-0.00820
+az=-0.669,cos(ha)=1.00000,cos(ea)=0.97439,liftZ=-0.00189
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.003,-4.151,17.988,speed=18.461,
+c_l=0.043644476370246627, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.630,horizontal_angle=-0.00020,elevation_angle=-0.23201
+t=0.630,horizontal_angle=-0.01149,elevation_angle=-0.23201
+ax=0.022,sin(ha)=-0.00020,cos(ea)=0.97321,liftX=0.00335
+ay=-9.697,sin(ea)=-0.22994,cos(ea)=0.97321,liftY=-0.00819
+az=-0.669,cos(ha)=1.00000,cos(ea)=0.97321,liftZ=-0.00193
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.004,-4.248,17.982,speed=18.477,
+c_l=0.04360774742341838, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.640,horizontal_angle=-0.00021,elevation_angle=-0.23720
+t=0.640,horizontal_angle=-0.01218,elevation_angle=-0.23720
+ax=0.022,sin(ha)=-0.00021,cos(ea)=0.97200,liftX=0.00342
+ay=-9.694,sin(ea)=-0.23498,cos(ea)=0.97200,liftY=-0.00818
+az=-0.670,cos(ha)=1.00000,cos(ea)=0.97200,liftZ=-0.00198
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.004,-4.345,17.975,speed=18.493,
+c_l=0.0435699402898137, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.650,horizontal_angle=-0.00022,elevation_angle=-0.24237
+t=0.650,horizontal_angle=-0.01289,elevation_angle=-0.24237
+ax=0.023,sin(ha)=-0.00022,cos(ea)=0.97077,liftX=0.00350
+ay=-9.690,sin(ea)=-0.24001,cos(ea)=0.97077,liftY=-0.00816
+az=-0.671,cos(ha)=1.00000,cos(ea)=0.97077,liftZ=-0.00202
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.004,-4.442,17.968,speed=18.509,
+c_l=0.04353106547350397, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.660,horizontal_angle=-0.00024,elevation_angle=-0.24754
+t=0.660,horizontal_angle=-0.01362,elevation_angle=-0.24754
+ax=0.023,sin(ha)=-0.00024,cos(ea)=0.96952,liftX=0.00357
+ay=-9.686,sin(ea)=-0.24502,cos(ea)=0.96952,liftY=-0.00815
+az=-0.671,cos(ha)=1.00000,cos(ea)=0.96952,liftZ=-0.00206
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.004,-4.539,17.961,speed=18.526,
+c_l=0.04349113366583472, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.670,horizontal_angle=-0.00025,elevation_angle=-0.25269
+t=0.670,horizontal_angle=-0.01436,elevation_angle=-0.25269
+ax=0.024,sin(ha)=-0.00025,cos(ea)=0.96824,liftX=0.00364
+ay=-9.682,sin(ea)=-0.25001,cos(ea)=0.96824,liftY=-0.00814
+az=-0.672,cos(ha)=1.00000,cos(ea)=0.96824,liftZ=-0.00210
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.004,-4.636,17.955,speed=18.544,
+c_l=0.04345015573885944, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.680,horizontal_angle=-0.00026,elevation_angle=-0.25783
+t=0.680,horizontal_angle=-0.01511,elevation_angle=-0.25783
+ax=0.024,sin(ha)=-0.00026,cos(ea)=0.96694,liftX=0.00372
+ay=-9.678,sin(ea)=-0.25499,cos(ea)=0.96694,liftY=-0.00813
+az=-0.672,cos(ha)=1.00000,cos(ea)=0.96694,liftZ=-0.00215
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.005,-4.733,17.948,speed=18.562,
+c_l=0.04340814273872807, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.690,horizontal_angle=-0.00028,elevation_angle=-0.26296
+t=0.690,horizontal_angle=-0.01588,elevation_angle=-0.26296
+ax=0.024,sin(ha)=-0.00028,cos(ea)=0.96562,liftX=0.00379
+ay=-9.675,sin(ea)=-0.25994,cos(ea)=0.96562,liftY=-0.00812
+az=-0.673,cos(ha)=1.00000,cos(ea)=0.96562,liftZ=-0.00219
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.005,-4.830,17.941,speed=18.580,
+c_l=0.04336510587903734, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.700,horizontal_angle=-0.00029,elevation_angle=-0.26808
+t=0.700,horizontal_angle=-0.01667,elevation_angle=-0.26808
+ax=0.025,sin(ha)=-0.00029,cos(ea)=0.96428,liftX=0.00386
+ay=-9.671,sin(ea)=-0.26488,cos(ea)=0.96428,liftY=-0.00811
+az=-0.674,cos(ha)=1.00000,cos(ea)=0.96428,liftZ=-0.00223
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.005,-4.926,17.935,speed=18.599,
+c_l=0.04332105653415003, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.710,horizontal_angle=-0.00030,elevation_angle=-0.27318
+t=0.710,horizontal_angle=-0.01747,elevation_angle=-0.27318
+ax=0.025,sin(ha)=-0.00030,cos(ea)=0.96292,liftX=0.00393
+ay=-9.667,sin(ea)=-0.26980,cos(ea)=0.96292,liftY=-0.00810
+az=-0.675,cos(ha)=1.00000,cos(ea)=0.96292,liftZ=-0.00227
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.005,-5.023,17.928,speed=18.618,
+c_l=0.04327600623249034, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.720,horizontal_angle=-0.00032,elevation_angle=-0.27828
+t=0.720,horizontal_angle=-0.01829,elevation_angle=-0.27828
+ax=0.026,sin(ha)=-0.00032,cos(ea)=0.96153,liftX=0.00400
+ay=-9.663,sin(ea)=-0.27470,cos(ea)=0.96153,liftY=-0.00809
+az=-0.675,cos(ha)=1.00000,cos(ea)=0.96153,liftZ=-0.00231
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.006,-5.120,17.921,speed=18.638,
+c_l=0.0432299666498222, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.730,horizontal_angle=-0.00033,elevation_angle=-0.28336
+t=0.730,horizontal_angle=-0.01913,elevation_angle=-0.28336
+ax=0.026,sin(ha)=-0.00033,cos(ea)=0.96012,liftX=0.00407
+ay=-9.659,sin(ea)=-0.27958,cos(ea)=0.96012,liftY=-0.00807
+az=-0.676,cos(ha)=1.00000,cos(ea)=0.96012,liftZ=-0.00235
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.006,-5.216,17.914,speed=18.658,
+c_l=0.04318294960251747, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.740,horizontal_angle=-0.00035,elevation_angle=-0.28842
+t=0.740,horizontal_angle=-0.01998,elevation_angle=-0.28842
+ax=0.027,sin(ha)=-0.00035,cos(ea)=0.95869,liftX=0.00415
+ay=-9.655,sin(ea)=-0.28444,cos(ea)=0.95869,liftY=-0.00806
+az=-0.677,cos(ha)=1.00000,cos(ea)=0.95869,liftZ=-0.00239
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.006,-5.313,17.908,speed=18.679,
+c_l=0.04313496704082084, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.750,horizontal_angle=-0.00036,elevation_angle=-0.29347
+t=0.750,horizontal_angle=-0.02084,elevation_angle=-0.29347
+ax=0.027,sin(ha)=-0.00036,cos(ea)=0.95724,liftX=0.00422
+ay=-9.652,sin(ea)=-0.28928,cos(ea)=0.95724,liftY=-0.00805
+az=-0.677,cos(ha)=1.00000,cos(ea)=0.95724,liftZ=-0.00243
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.007,-5.410,17.901,speed=18.700,
+c_l=0.04308603104211787, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.760,horizontal_angle=-0.00038,elevation_angle=-0.29851
+t=0.760,horizontal_angle=-0.02172,elevation_angle=-0.29851
+ax=0.028,sin(ha)=-0.00038,cos(ea)=0.95577,liftX=0.00429
+ay=-9.648,sin(ea)=-0.29410,cos(ea)=0.95577,liftY=-0.00804
+az=-0.678,cos(ha)=1.00000,cos(ea)=0.95577,liftZ=-0.00247
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.007,-5.506,17.894,speed=18.722,
+c_l=0.043036153804212815, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.770,horizontal_angle=-0.00039,elevation_angle=-0.30354
+t=0.770,horizontal_angle=-0.02262,elevation_angle=-0.30354
+ax=0.028,sin(ha)=-0.00039,cos(ea)=0.95428,liftX=0.00436
+ay=-9.644,sin(ea)=-0.29890,cos(ea)=0.95428,liftY=-0.00802
+az=-0.679,cos(ha)=1.00000,cos(ea)=0.95428,liftZ=-0.00251
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.007,-5.603,17.887,speed=18.744,
+c_l=0.0429853476386227, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.780,horizontal_angle=-0.00041,elevation_angle=-0.30855
+t=0.780,horizontal_angle=-0.02353,elevation_angle=-0.30855
+ax=0.029,sin(ha)=-0.00041,cos(ea)=0.95277,liftX=0.00443
+ay=-9.640,sin(ea)=-0.30368,cos(ea)=0.95277,liftY=-0.00801
+az=-0.680,cos(ha)=1.00000,cos(ea)=0.95277,liftZ=-0.00256
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.007,-5.699,17.880,speed=18.767,
+c_l=0.042933624963893566, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.790,horizontal_angle=-0.00043,elevation_angle=-0.31355
+t=0.790,horizontal_angle=-0.02446,elevation_angle=-0.31355
+ax=0.029,sin(ha)=-0.00043,cos(ea)=0.95124,liftX=0.00449
+ay=-9.636,sin(ea)=-0.30844,cos(ea)=0.95124,liftY=-0.00800
+az=-0.681,cos(ha)=1.00000,cos(ea)=0.95124,liftZ=-0.00260
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.008,-5.795,17.874,speed=18.790,
+c_l=0.04288099829894523, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.800,horizontal_angle=-0.00044,elevation_angle=-0.31853
+t=0.800,horizontal_angle=-0.02540,elevation_angle=-0.31853
+ax=0.030,sin(ha)=-0.00044,cos(ea)=0.94970,liftX=0.00456
+ay=-9.632,sin(ea)=-0.31317,cos(ea)=0.94970,liftY=-0.00798
+az=-0.681,cos(ha)=1.00000,cos(ea)=0.94970,liftZ=-0.00263
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.008,-5.892,17.867,speed=18.813,
+c_l=0.042827480256450313, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.810,horizontal_angle=-0.00046,elevation_angle=-0.32350
+t=0.810,horizontal_angle=-0.02636,elevation_angle=-0.32350
+ax=0.030,sin(ha)=-0.00046,cos(ea)=0.94813,liftX=0.00463
+ay=-9.628,sin(ea)=-0.31789,cos(ea)=0.94813,liftY=-0.00797
+az=-0.682,cos(ha)=1.00000,cos(ea)=0.94813,liftZ=-0.00267
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.008,-5.988,17.860,speed=18.837,
+c_l=0.04277308353625329, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.820,horizontal_angle=-0.00048,elevation_angle=-0.32846
+t=0.820,horizontal_angle=-0.02733,elevation_angle=-0.32846
+ax=0.030,sin(ha)=-0.00048,cos(ea)=0.94654,liftX=0.00470
+ay=-9.624,sin(ea)=-0.32258,cos(ea)=0.94654,liftY=-0.00796
+az=-0.683,cos(ha)=1.00000,cos(ea)=0.94654,liftZ=-0.00271
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.009,-6.084,17.853,speed=18.861,
+c_l=0.04271782091883517, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.830,horizontal_angle=-0.00049,elevation_angle=-0.33340
+t=0.830,horizontal_angle=-0.02832,elevation_angle=-0.33340
+ax=0.031,sin(ha)=-0.00049,cos(ea)=0.94494,liftX=0.00477
+ay=-9.620,sin(ea)=-0.32726,cos(ea)=0.94494,liftY=-0.00794
+az=-0.684,cos(ha)=1.00000,cos(ea)=0.94494,liftZ=-0.00275
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.009,-6.181,17.846,speed=18.886,
+c_l=0.04266170525882918, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.840,horizontal_angle=-0.00051,elevation_angle=-0.33832
+t=0.840,horizontal_angle=-0.02932,elevation_angle=-0.33832
+ax=0.031,sin(ha)=-0.00051,cos(ea)=0.94331,liftX=0.00484
+ay=-9.616,sin(ea)=-0.33191,cos(ea)=0.94331,liftY=-0.00793
+az=-0.685,cos(ha)=1.00000,cos(ea)=0.94331,liftZ=-0.00279
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.009,-6.277,17.840,speed=18.912,
+c_l=0.04260474947859259, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.850,horizontal_angle=-0.00053,elevation_angle=-0.34323
+t=0.850,horizontal_angle=-0.03034,elevation_angle=-0.34323
+ax=0.032,sin(ha)=-0.00053,cos(ea)=0.94167,liftX=0.00490
+ay=-9.612,sin(ea)=-0.33653,cos(ea)=0.94167,liftY=-0.00792
+az=-0.686,cos(ha)=1.00000,cos(ea)=0.94167,liftZ=-0.00283
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.009,-6.373,17.833,speed=18.937,
+c_l=0.04254696656183976, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.860,horizontal_angle=-0.00055,elevation_angle=-0.34813
+t=0.860,horizontal_angle=-0.03138,elevation_angle=-0.34813
+ax=0.032,sin(ha)=-0.00055,cos(ea)=0.94001,liftX=0.00497
+ay=-9.608,sin(ea)=-0.34114,cos(ea)=0.94001,liftY=-0.00790
+az=-0.687,cos(ha)=1.00000,cos(ea)=0.94001,liftZ=-0.00287
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.010,-6.469,17.826,speed=18.963,
+c_l=0.042488369547341205, c_d=0.5, spin_rate=180.0
+
+
+In flight:
+t=0.870,horizontal_angle=-0.00057,elevation_angle=-0.35301
+t=0.870,horizontal_angle=-0.03242,elevation_angle=-0.35301
+ax=0.033,sin(ha)=-0.00057,cos(ea)=0.93834,liftX=0.00504
+ay=-9.604,sin(ea)=-0.34572,cos(ea)=0.93834,liftY=-0.00789
+az=-0.688,cos(ha)=1.00000,cos(ea)=0.93834,liftZ=-0.00291
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540,spin_rate=180.0
+v=0.010,-6.565,17.819,speed=18.990,
+c_l=0.04242897152269332, c_d=0.5, spin_rate=180.0
+
+
+Bounce function.
+t=0.880,horizontal_angle=-0.00058,elevation_angle=-0.35787 radians
+t=0.880,horizontal_angle=-0.03349,elevation_angle=-20.50453 degrees
+t=0.880,horizontal_angle_new=-0.14128,elevation_angle_new=0.21960 radians
+t=0.880,horizontal_angle_new=-8.09485,elevation_angle_new=12.58206 degrees
+omega=88.63270,0.00000,153.51634,mag(omega)=177.26540
+omega_new=735.90396,-265.73914,44.27712,mag(omega_new)=783.66599
+omega_scaled=25.32363,0.00000,43.86181,mag(omega_scaled)=50.64726
+speed_vector=0.01041,-6.66126,17.81205

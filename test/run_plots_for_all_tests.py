@@ -81,12 +81,32 @@ print("All collation plots finished.")
 
 
 # Summary file for batch of test cases
+directory_names = [d for d in os.listdir(test_results_dir) if os.path.isdir(os.path.join(test_results_dir, d))]
+
+def find_and_write_exit_status(write_file):
+
+    exits = {}
+    for name in directory_names:
+        directory_test_case_results = f"test_results/{name}"
+        full_file_path = directory_test_case_results+"/plot3D_exit_status.txt"
+        if os.path.exists(full_file_path):  # catch collate_plot created directories
+            with open(full_file_path, "r") as f:
+                file_contents = f.readlines()
+                exit_status = file_contents[-1].strip()  # last line is exit status
+                if exit_status not in exits:
+                    exits[exit_status] = 1
+                else:
+                    exits[exit_status] += 1
+
+    with open(write_file, "a") as f:
+        f.write("\nExit status summary:\n\n")
+        for exit_status in exits.keys():
+            f.write(f"{exit_status}\n{exits[exit_status]}\n\n")
 
 def get_extrema():
     extrema_dict = {}
     #print(directory_names)
     print(directory_names_tuples)
-    directory_names = [d for d in os.listdir(test_results_dir) if os.path.isdir(os.path.join(test_results_dir, d))]
 
     for name in directory_names:
         directory_test_case_results = f"test_results/{name}"
@@ -103,7 +123,8 @@ def get_extrema():
 
                     # read first line of output file and forces file to get index of column to extract for each parameter
                     for idx, parameter in enumerate(header):
-                        extrema_dict[parameter] = [min(data_matrix[:,idx]), max(data_matrix[:,idx])]
+                        if len(data_matrix[:,idx]) > 0:  # catch empty files
+                            extrema_dict[parameter] = [min(data_matrix[:,idx]), max(data_matrix[:,idx])]
 
     return extrema_dict
 
@@ -120,8 +141,8 @@ def pad_string(s, desired_length, where="end"):
             alt *= -1
     return s
 
-def write_extrema(filename, extrema):
-    with open(filename, "a") as f:
+def write_extrema(write_file, extrema):
+    with open(write_file, "a") as f:
         f.write("\nParameter  |   Minimum  |  Maximum\n")
         f.write("-------------------------------------\n")
         for p in extrema.keys():
@@ -141,13 +162,13 @@ with open("test_results/"+summary_filename, "w") as f:
 
     # write default parameters for this batch = test case 1 (or 0) parameters
 
-    # find out which ones did of did not bounce
-
-    # which ones went too far to the side of the pitch
-
     # maximums and minimums for some parameters: x, y, z, vx, vy, vz, ax, ay, az, angles, etc
     extrema_dictionary = get_extrema()
     write_extrema("test_results/"+summary_filename, extrema_dictionary)
+
+    # find out which ones did of did not bounce
+    # which ones went too far to the side of the pitch
+    find_and_write_exit_status("test_results/"+summary_filename)
 
 print("Summary file created.")
 

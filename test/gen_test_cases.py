@@ -27,18 +27,59 @@ with open("test_cases.txt", "w") as f:
 default_off = TestCase(description="Default off spin")
 default_off.write_to_file()
 
-default_leg = TestCase(spin_axis_angle_side=math.radians(-60), description="Default leg spin")  #should be -45
+# Non-pro stats from https://researchers.mq.edu.au/en/publications/measuring-spin-characteristics-of-a-cricket-ball/
+# off spin
+state_squad_player = TestCase(initial_speed=19.8, spin_rate=2*math.pi*27.2, spin_axis_angle_up=math.radians(11.4), spin_axis_angle_side=math.radians(180-48.2), description="Off-spin Player 1")
+state_squad_player.write_to_file()
+first_grade_club_player1 = TestCase(initial_speed=19.5, spin_rate=2*math.pi*26.8, spin_axis_angle_up=math.radians(14.8), spin_axis_angle_side=math.radians(180-62), description="Off-spin Player 2.1")
+first_grade_club_player1.write_to_file()
+first_grade_club_player2 = TestCase(initial_speed=18.1, spin_rate=2*math.pi*28.3, spin_axis_angle_up=math.radians(2.6), spin_axis_angle_side=math.radians(180-60.4), description="Off-spin Player 2.2")
+first_grade_club_player2.write_to_file()
+third_grade_club_player1 = TestCase(initial_speed=16.9, spin_rate=2*math.pi*20.2, spin_axis_angle_up=math.radians(17.1), spin_axis_angle_side=math.radians(180-64.9), description="Off-spin Player 3")
+third_grade_club_player1.write_to_file()
+part_time_player = TestCase(initial_speed=17.2, spin_rate=2*math.pi*16.4, spin_axis_angle_up=math.radians(12.1), spin_axis_angle_side=math.radians(180-126.8), description="Off-spin Player 4")
+part_time_player.write_to_file()
+
+default_leg = TestCase(spin_axis_angle_side=math.radians(-45), description="Default leg spin")
 default_leg.write_to_file()
+
+# Non-pro stats from https://researchers.mq.edu.au/en/publications/measuring-spin-characteristics-of-a-cricket-ball/
+# leg spin
+first_grade_club_player = TestCase(initial_speed=17.5, spin_rate=2*math.pi*29.2, spin_axis_angle_up=math.radians(-8.2), spin_axis_angle_side=math.radians(180-50), description="Leg-spin Player 1")
+first_grade_club_player.write_to_file()
+third_grade_club_player1 = TestCase(initial_speed=18.2, spin_rate=2*math.pi*27.9, spin_axis_angle_up=math.radians(17.1), spin_axis_angle_side=math.radians(180-37.7), description="Leg-spin Player 2.1")
+third_grade_club_player1.write_to_file()
+third_grade_club_player2 = TestCase(initial_speed=20.1, spin_rate=2*math.pi*24.4, spin_axis_angle_up=math.radians(-16.3), spin_axis_angle_side=math.radians(180-27.2), description="Leg-spin Player 2.2")
+third_grade_club_player2.write_to_file()
+third_grade_club_player3 = TestCase(initial_speed=18.6, spin_rate=2*math.pi*24.9, spin_axis_angle_up=math.radians(9), spin_axis_angle_side=math.radians(180-43.7), description="Leg-spin Player 2.3")
+third_grade_club_player3.write_to_file()
+avg_initial_speed = (17.5+18.2+20.1+18.6)/4
+avg_spin = (29.2+27.9+24.4+24.9)/4
+avg_angle_up = (-8.2+17.1-16.3+9)/4
+avg_angle_side = (50+37.7+27.2+43.7)/4
+average_player = TestCase(initial_speed=17.2, spin_rate=2*math.pi*avg_spin, spin_axis_angle_up=math.radians(avg_angle_up), spin_axis_angle_side=math.radians(180-avg_angle_side), description="Leg-spin Player Average")
+average_player.write_to_file()
+
+top_spin = TestCase(spin_axis_angle_up=math.radians(90), spin_axis_angle_side=math.radians(0), description="Top spin")
+top_spin.write_to_file()
 
 no_spin = TestCase(spin_rate=0, description="No spin")
 no_spin.write_to_file()
 
-no_flight = TestCase(initial_speed=0, description="No flight")
-no_flight.write_to_file()
+no_flight_off = TestCase(initial_speed=0, description="No flight Off")
+no_flight_off.write_to_file()
+no_flight_leg = TestCase(initial_speed=0, spin_axis_angle_side=math.radians(-45), description="No flight Leg")
+no_flight_leg.write_to_file()
 
-no_drag = TestCase(k_d=0, description="No drag")
-no_drag.write_to_file() # also do big
-# do zero drag with each of the default, no spin, no flight
+no_drag_off = TestCase(k_d=0, description="No drag Off")
+no_drag_off.write_to_file()
+no_drag_leg = TestCase(k_d=0, spin_axis_angle_side=math.radians(-45), description="No drag Leg")
+no_drag_leg.write_to_file()
+
+large_drag_off = TestCase(k_d=0, description="Large drag Off")
+large_drag_off.write_to_file()
+large_drag_leg = TestCase(k_d=0, spin_axis_angle_side=math.radians(-45), description="Large drag Leg")
+large_drag_leg.write_to_file()
 
 no_elevation = TestCase(elevation_angle=0, description="No elevation angle")
 no_elevation.write_to_file()
@@ -94,19 +135,7 @@ ea = 30
 ea30 = TestCase(elevation_angle=math.radians(ea), description="Initial elevation angle (deg) "+str(ea))
 ea30.write_to_file()
 
-# Non-pro stats from https://researchers.mq.edu.au/en/publications/measuring-spin-characteristics-of-a-cricket-ball/
-# off spin
-# initial speed set to average speed!!!!!!!!!!!!!!!!!!!! ?????????????????????????????
-state_squad_player = TestCase(initial_speed=19.8, spin_rate=2*math.pi*27.2, elevation_angle=math.radians(11.4), horizontal_angle=math.radians(180-48.2), description="Off-spin Player 1")
-state_squad_player.write_to_file()
-first_grade_club_player1 = TestCase(initial_speed=19.5, spin_rate=2*math.pi*26.8, elevation_angle=math.radians(14.8), horizontal_angle=math.radians(180-62), description="Off-spin Player 2.1")
-first_grade_club_player1.write_to_file()
-first_grade_club_player2 = TestCase(initial_speed=18.1, spin_rate=2*math.pi*28.3, elevation_angle=math.radians(2.6), horizontal_angle=math.radians(180-60.4), description="Off-spin Player 2.2")
-first_grade_club_player2.write_to_file()
-third_grade_club_player1 = TestCase(initial_speed=16.9, spin_rate=2*math.pi*20.2, elevation_angle=math.radians(17.1), horizontal_angle=math.radians(180-64.9), description="Off-spin Player 3")
-third_grade_club_player1.write_to_file()
-part_time_player = TestCase(initial_speed=17.2, spin_rate=2*math.pi*16.4, elevation_angle=math.radians(12.1), horizontal_angle=math.radians(180-126.8), description="Off-spin Player 4")
-part_time_player.write_to_file()
+
 
 dt1 = TestCase(dt=1, description="Flight dt 1")
 dt1.write_to_file()
@@ -132,17 +161,17 @@ gMars.write_to_file()
 gMoon = TestCase(g=1.62, description="Gravity 1.62")
 gMoon.write_to_file()
 
-# horizontal angle with -ve x-axis
-angle60 = TestCase(horizontal_angle=math.radians(60), description="Horizontal angle (deg) 60")
-angle60.write_to_file()
-angle75 = TestCase(horizontal_angle=math.radians(75), description="Horizontal angle (deg) 75")
-angle75.write_to_file()
-straight = TestCase(horizontal_angle=math.radians(90), description="Horizontal angle (deg) 90")
+# horizontal angle from +z-axis to +x-axis
+angle12 = TestCase(horizontal_angle=math.radians(1.2), description="Horizontal angle (deg) 1.2")
+angle12.write_to_file()
+angle6 = TestCase(horizontal_angle=math.radians(0.6), description="Horizontal angle (deg) 0.6")
+angle6.write_to_file()
+straight = TestCase(horizontal_angle=math.radians(0), description="Horizontal angle (deg) 0")
 straight.write_to_file()
-angle120 = TestCase(horizontal_angle=math.radians(120), description="Horizontal angle (deg) 120")
-angle120.write_to_file()
-angle135 = TestCase(horizontal_angle=math.radians(135), description="Horizontal angle (deg) 135")
-angle135.write_to_file()
+angle_6 = TestCase(horizontal_angle=math.radians(-0.6), description="Horizontal angle (deg) -0.6")
+angle_6.write_to_file()
+angle_12 = TestCase(horizontal_angle=math.radians(-1.2), description="Horizontal angle (deg) -1.2")
+angle_12.write_to_file()
 
 # extras for fun
 high_back_spin = TestCase(spin_rate=-500, description="High back spin")

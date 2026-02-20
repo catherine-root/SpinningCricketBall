@@ -21,7 +21,7 @@ pitchstart_to_poppingcrease = pitchstart_to_bowlingcrease + bowlingcrease_to_pop
 height_of_stumps = 0.72
 diameter_of_stumps = 0.04
 bowler_stumps_distance = -pitch_length/2 + pitchstart_to_bowlingcrease
-batter_stumps_distance = pitch_length/2 + 5 - pitchstart_to_bowlingcrease
+batter_stumps_distance = pitch_length/2 - pitchstart_to_bowlingcrease
 
 # Bowler dimensions
 bowler_release_height = 2.1  # approximate ball release height based on bowler's heights, arm lengths, and arm angles

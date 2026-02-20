@@ -103,13 +103,13 @@ def display():
         gluLookAt(10, 8, 20, 0, 0, 0, 0, 1, 0) 
     elif viewpoint == "bowler":
         # Bowler view angle
-        gluLookAt(bowler_release_x, bowler_height, bowler_release_distance, 0, 0, 0, 0, 1, 0)
+        gluLookAt(bowler_release_x, bowler_release_height, bowler_release_distance, 0, 0, 0, 0, 1, 0)
     elif viewpoint == "top-down":
         # From-the-sky angle
         gluLookAt(0, 30, 0, 0, 0, 0, 0, 0, -1)
     else:  #viewpoint == "sideon"
         # Side-on angle
-        gluLookAt(20, 2, 0, 0, 0, 0, 0, 1, 0)
+        gluLookAt(17, 2, 0, 0, 0, 0, 0, 1, 0)
 
     # Ground
     glColor3f(0.0, 0.2, 0.0)  # select dark green colour for ground
@@ -122,8 +122,7 @@ def display():
     glEnd()
 
     # Pitch
-    # TODO: add gridlines
-    glColor3f(0.667, 0.831, 0.561)  # select dark green colour for ground
+    glColor3f(0.667, 0.831, 0.561) 
     glBegin(GL_QUADS)
     glNormal3f(0,1,0) # normal vector pointing up - indicates orientation of ground
     glVertex3f(-pitch_width/2, 0, -pitch_length/2)
@@ -185,9 +184,10 @@ def display():
     glPopMatrix()
 
     # Flight trail
-    for i, past_x in enumerate(past_x_values):
-        past_y = past_y_values[i]
-        past_z = past_z_values[i]
+    every = 2  # every third position
+    for i, past_x in enumerate(past_x_values[::every]):
+        past_y = past_y_values[i*every]
+        past_z = past_z_values[i*every]
         glPushMatrix()
         glTranslatef(past_x, past_y, past_z)
         glColor3f(0.969, 0.655, 0.792)
@@ -220,6 +220,7 @@ def timer(value):
         saved_gif = True
         imageio.mimsave(directory_test_case_results+"/sim_"+viewpoint+".gif", images, fps=20*int(len(images)/5))
         print("saved")
+        #glutLeaveMainLoop()  
         sys.exit()
     else:
         print("done")
@@ -253,6 +254,8 @@ if __name__ == "__main__":
     if case == 0:
         print("0 is an invalid case number. Running case 1 instead.")
         case = 1
+    if viewpoint not in ["sideon", "bowler", "diagonal", "top-down"]:
+        viewpoint = "sideon"
 
     global directory_test_case_results
     
@@ -261,7 +264,7 @@ if __name__ == "__main__":
         lines = test_cases_file.readlines()[case:case+1]  # Skip header line OR CHANGE TO ACCESS OTHER TEST CASES FOR NOW
         for line in lines:
             params = line.strip().split(';')
-            global t, dt, max_time
+            #global dt, max_time
             dt = float(params[0])
             g = float(params[1])
             rho = float(params[2])

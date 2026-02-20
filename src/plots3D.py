@@ -143,20 +143,23 @@ def main():
     with open(directory_test_case_results+"/plot3D_output.txt", "a") as f:
         f.write(f"{t:.3f},{x:.3f},{y:.3f},{z:.3f},{vx:.3f},{vy:.3f},{vz:.3f},{elevation_angle:.3f},{horizontal_angle:.3f}\n")
 
-    # TODO : bounce or not
-    # TODO : bounce equations
-    # TODO: how much does the ball squish? How close to ground before we apply the bounce equations?
     if z > batter_stumps_distance:
+        with open(directory_test_case_results+"/plot3D_exit_status.txt", "a") as f:
+            f.write("Ball is in line with the batter's stumps. Stopping simulation.\n")
         print("Ball is in line with the batter's stumps. Stopping simulation.")
         stop_simulation = True
         plot_main()
 
     elif y < 0 and completed_bounce:  # stop after one bounce when it hits ground again
+        with open(directory_test_case_results+"/plot3D_exit_status.txt", "a") as f:
+            f.write("Ball is hitting ground a second time. Stopping simulation.\n")
         print("Ball is hitting ground a second time. Stopping simulation.")
         stop_simulation = True
         plot_main() 
     
     elif t > 8 or abs(x) > pitch_width:
+        with open(directory_test_case_results+"/plot3D_exit_status.txt", "a") as f:
+            f.write("Ball has gone too wide or taken too long to complete motion. Stopping simulation.\n")
         print("Ball has gone too wide or taken too long to complete motion. Stopping simulation.")
         stop_simulation = True
         plot_main()
@@ -275,7 +278,7 @@ def plot_main():
     ax.set_xlabel("z (m)")
     ax.set_ylabel("x (m)")
     ax.set_title("2D Ball Trajectory (z vs x)")
-    ax.plot(z_values, x_values*0, color='black')
+    ax.plot(z_values, (x_values*0)+initial_x, color='black')
     ax.plot(z_values, x_values)
     ax.set_ylim(-pitch_width/2, pitch_width/2)
     ax.set_xlim(-pitch_length/2, pitch_length/2 + 5)  # z along pitch length
@@ -369,6 +372,10 @@ if __name__ == "__main__":
             os.makedirs(directory_test_case_results, exist_ok=True)
 
             # Set up output files
+            if os.path.exists(directory_test_case_results+"/plot3D_exit_status.txt"):
+                os.remove(directory_test_case_results+"/plot3D_exit_status.txt")
+            with open(directory_test_case_results+"/plot3D_exit_status.txt", "w") as f:
+                f.write(f"Started model execution.\n")
             if os.path.exists(directory_test_case_results+"/plot3D_output.txt"):
                 os.remove(directory_test_case_results+"/plot3D_output.txt")
             with open(directory_test_case_results+"/plot3D_output.txt", "w") as f:

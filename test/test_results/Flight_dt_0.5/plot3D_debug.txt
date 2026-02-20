@@ -1,0 +1,49 @@
+DEBUG STARTED
+Testing case: Flight dt 0.5
+Simulation Parameters:
+  Time step (dt): 0.5
+  Gravity (g): 9.8
+  Air density (rho): 1.225
+  Drag coefficient (k_d): 0.5
+  Initial speed: 18.5
+  Elevation angle: 0.10471975511965978
+  Horizontal angle: 0.0000000
+  Initial speed vector: [0.0, 1.9337765704515892, 18.398655064313054]
+  Initial angular velocity (spin rate): 175.92918860102841
+  Spin axis angle up: 0.17453292519943295
+  Spin axis angle side: 1.0471975511965976
+  Initial angular velocity (omega): [86.62821445771989, 0, 150.0444688097436]
+  Description: Flight dt 0.5
+
+
+In flight:
+t=0.000,horizontal_angle=0.00000,elevation_angle=0.10472
+t=0.000,horizontal_angle=0.00000,elevation_angle=0.10472
+ax=-0.009,sin(ha)=0.00000,cos(ea)=0.99452,liftX=-0.00146
+ay=-9.922,sin(ea)=0.10453,cos(ea)=0.99452,liftY=-0.00799
+az=-0.668,cos(ha)=1.00000,cos(ea)=0.99452,liftZ=0.00084
+omega=86.62821,0.00000,150.04447,mag(omega)=173.25643,spin_rate=175.92918860102841
+v=0.000,1.934,18.399,speed=18.500,
+c_l=0.04256756754455808, c_d=0.5, spin_rate=175.92918860102841
+
+
+In flight:
+t=0.500,horizontal_angle=0.00026,elevation_angle=-0.16603
+t=0.500,horizontal_angle=0.01479,elevation_angle=-0.16603
+ax=0.015,sin(ha)=0.00026,cos(ea)=0.98625,liftX=0.00230
+ay=-9.741,sin(ea)=-0.16527,cos(ea)=0.98625,liftY=-0.00793
+az=-0.663,cos(ha)=1.00000,cos(ea)=0.98625,liftZ=-0.00133
+omega=86.62821,0.00000,150.04447,mag(omega)=173.25643,spin_rate=175.92918860102841
+v=-0.005,-3.027,18.065,speed=18.317,
+c_l=0.04299345340539321, c_d=0.5, spin_rate=175.92918860102841
+
+
+Bounce function.
+t=1.000,horizontal_angle=-0.00015,elevation_angle=-0.41899 radians
+t=1.000,horizontal_angle=-0.00848,elevation_angle=-24.00635 degrees
+t=1.000,horizontal_angle_new=-0.13855,elevation_angle_new=0.26017 radians
+t=1.000,horizontal_angle_new=-7.93850,elevation_angle_new=14.90653 degrees
+omega=86.62821,0.00000,150.04447,mag(omega)=173.25643
+omega_new=732.19706,-315.06929,42.97460,mag(omega_new)=798.26563
+omega_scaled=24.75092,0.00000,42.86985,mag(omega_scaled)=49.50184
+speed_vector=0.00263,-7.89781,17.73348
