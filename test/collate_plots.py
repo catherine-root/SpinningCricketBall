@@ -9,6 +9,9 @@ name = str(sys.argv[1])
 values = sorted(np.array(sys.argv[2].strip().split(",")))[:5]
 print(f"Running collation for test case {name} with values {values}.")
 
+'''if "pin_rate" in name:
+    values = np.array(sorted(np.array(values, dtype=int)), dtype=str)'''
+
 # TODO : pull into data file possibly so these numbers stay consistent across all files
 ### Field and Pitch dimensions
 ground_size = 140  # diameter
@@ -42,7 +45,7 @@ ax.set_title("3D Ball Trajectory - Different " + name.replace("_", " ") )
 colours = plt.cm.viridis(np.linspace(0, 1, len(values)))
 max_y_value = 0
 
-for i, v in enumerate(values):
+for idx, v in enumerate(values):
     src = f"{name}_{str(v)}"
     directory_test_case_results = f"test_results/{src}" #f"test_results/{target}/{src}"
     with open(directory_test_case_results+"/plot3D_output.txt", "r") as f:
@@ -61,14 +64,14 @@ for i, v in enumerate(values):
     vy_values = data_matrix[:, 5]
     vz_values = data_matrix[:, 6]
 
-    ax.plot(x_values, z_values, y_values, label=f'{v}')  # y_values represent height
+    ax.plot(x_values, z_values, y_values, color=colours[idx],label=f'{v}')  # y_values represent height
 
 ax.legend(title='Values', bbox_to_anchor=(1.05, 1), loc='upper left') 
 ax.set_xlim(-pitch_width/2, pitch_width/2)
 ax.invert_xaxis()
 ax.set_zlim(0, max_y_value*1.1)
 ax.set_ylim(-pitch_length, pitch_length) # TODO: pitch length is double what it should be - see calculations
-plt.savefig(target+f"/plot3D_trajectory_line_{name}s_{''.join([str(v) for v in values])}.png")
+plt.savefig(target+f"/plot3D_trajectory_line_{name}s_{''.join([str(v) for v in values])}.png", bbox_inches="tight")
 
 ## 2D
 
@@ -77,10 +80,11 @@ fig = plt.figure(figsize=(12, 8))
 ax = fig.add_subplot(111)
 ax.set_xlabel("z (m)")
 ax.set_ylabel("y (m)")
-ax.set_title("2D Ball Trajectory - Different " + name.replace("_", " ") + " (z vs y)")
+ax.set_title("2D Ball Trajectory - Different " + name.replace("_", " "))
 
 colours = plt.cm.viridis(np.linspace(0, 1, len(values)))
 max_y_value = 0
+min_y_value = 0
 
 for idx, v in enumerate(sorted(values)):
     src = f"{name}_{str(v)}"
@@ -93,16 +97,20 @@ for idx, v in enumerate(sorted(values)):
 
     if max(y_values) > max_y_value:
         max_y_value = max(y_values)
+    if "dt" in name and min(y_values) < min_y_value:  # so can see whole line for each dt tested
+        min_y_value = min(y_values)
     y_values = data_matrix[:, 2]
     z_values = data_matrix[:, 3]
 
     ax.plot(z_values, y_values, color=colours[idx], label=f'{v}')
 
+if "dt" in name:
+    ax.plot([-pitch_length/2, pitch_length/2], [0, 0], color='black', linestyle="dashed", label="Ground, y=0")
 ax.legend(title='Values', bbox_to_anchor=(1.05, 1), loc='upper left')
-ax.set_ylim(0, max_y_value*1.1)
-ax.set_xlim(-pitch_length, pitch_length)  # z along pitch length
+ax.set_ylim(min_y_value, max_y_value*1.1)
+ax.set_xlim(-pitch_length/2, pitch_length/2)  # z along pitch length
 ax.set_aspect('equal', adjustable='box')
-plt.savefig(target + f"/plot2D_trajectory_line_{name}s_{''.join([str(v) for v in values])}_sideon.png")
+plt.savefig(target + f"/plot2D_trajectory_line_{name}s_{''.join([str(v) for v in values])}_sideon.png", bbox_inches="tight")
 plt.close()
 
 # Top down, i.e. bird's eye view
@@ -110,7 +118,7 @@ fig = plt.figure(figsize=(12, 8))
 ax = fig.add_subplot(111)
 ax.set_xlabel("z (m)")
 ax.set_ylabel("x (m)")
-ax.set_title("2D Ball Trajectory - Different " + name.replace("_", " ") + " (z vs x)")
+ax.set_title("2D Ball Trajectory - Different " + name.replace("_", " "))
 
 colours = plt.cm.viridis(np.linspace(0, 1, len(values)))
 
@@ -132,7 +140,7 @@ ax.legend(title='Values', bbox_to_anchor=(1.05, 1), loc='upper left')
 ax.set_ylim(-pitch_width/2, pitch_width/2)
 ax.set_xlim(-pitch_length, pitch_length)  # z along pitch length
 ax.set_aspect('equal', adjustable='box')
-plt.savefig(target + f"/plot2D_trajectory_line_{name}s_{''.join([str(v) for v in values])}_topdown.png")
+plt.savefig(target + f"/plot2D_trajectory_line_{name}s_{''.join([str(v) for v in values])}_topdown.png", bbox_inches="tight")
 plt.close()
 
 ### Create statistics
@@ -183,7 +191,6 @@ for v in sorted(values):
         min_z = min(z_values)
         min_z_value = v
 
-#out_path = os.path.join(target, "results.txt")
 with open(target+"/results.txt", "w") as fh:
     fh.write(f"Maximum statistics for {target}:\n")
     fh.write(f"Maximum x: {max_x:.2f}m at value {max_x_value}\n")
@@ -192,5 +199,3 @@ with open(target+"/results.txt", "w") as fh:
     fh.write(f"Minimum height (y): {min_y:.2f}m at value {min_y_value}\n")
     fh.write(f"Maximum z: {max_z:.2f}m at value {max_z_value}\n")
     fh.write(f"Minimum z: {min_z:.2f}m at value {min_z_value}\n")
-
-## ??

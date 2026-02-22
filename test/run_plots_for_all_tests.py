@@ -86,6 +86,7 @@ directory_names = [d for d in os.listdir(test_results_dir) if os.path.isdir(os.p
 def find_and_write_exit_status(write_file):
 
     exits = {}
+    count = 0
     for name in directory_names:
         directory_test_case_results = f"test_results/{name}"
         full_file_path = directory_test_case_results+"/plot3D_exit_status.txt"
@@ -97,9 +98,10 @@ def find_and_write_exit_status(write_file):
                     exits[exit_status] = 1
                 else:
                     exits[exit_status] += 1
+            count += 1
 
     with open(write_file, "a") as f:
-        f.write("\nExit status summary:\n\n")
+        f.write(f"\nExit status summary for {count} test cases:\n\n")
         for exit_status in exits.keys():
             f.write(f"{exit_status}\n{exits[exit_status]}\n\n")
 
@@ -143,6 +145,7 @@ def pad_string(s, desired_length, where="end"):
 
 def write_extrema(write_file, extrema):
     with open(write_file, "a") as f:
+        f.write("\nText which won't appear in the summary output file ------------------------- \n")
         f.write("\nParameter  |   Minimum  |  Maximum\n")
         f.write("-------------------------------------\n")
         for p in extrema.keys():

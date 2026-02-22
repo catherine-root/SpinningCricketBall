@@ -98,7 +98,7 @@ def bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle):
 
     # Coefficients
     k = 0.65  # Coefficient of restitution
-    e_number = 1  # perfectly_elastic
+    e_number = 1  # perfectly elastic
 
     # Bounce dt
     dh = 0.1  # TODO : some small distance tbd
@@ -164,7 +164,7 @@ def main():
         stop_simulation = True
         plot_main()
 
-    elif y < 0+radius_of_ball and not completed_bounce:  # stop at ground - scaled up ball will look as if it is in the ground a bit more
+    elif y <= 0+radius_of_ball and not completed_bounce:  # stop at ground - scaled up ball will look as if it is in the ground a bit more
 
         omega, vx, vy, vz, horizontal_angle, elevation_angle, bounce_dt = bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle)
         completed_bounce = True
@@ -221,12 +221,12 @@ def plot_main():
     fig = plt.figure(figsize=(12, 8))
     ax = fig.add_subplot(111, projection='3d')
     ax.plot(x_values, z_values, np.ones(len(y_values))*(0), color='grey')
-    ax.plot(x_values, np.ones(len(z_values))*(pitch_length/2), y_values, color='grey')  # TODO: pitch length is double what it should be - see calculations
+    ax.plot(x_values, np.ones(len(z_values))*(pitch_length/2), y_values, color='grey') 
     ax.plot(np.ones(len(x_values))*(-pitch_width/2), z_values, y_values, color='grey')
-    ax.plot(x_values, z_values, y_values, color='red')  # y_values represent height
+    ax.plot(x_values, z_values, y_values, color='red')
     ax.set_xlim(-pitch_width/2, pitch_width/2)
     ax.set_zlim(0, max(y_values)*1.1)
-    ax.set_ylim(-pitch_length/2, pitch_length/2) # TODO: pitch length is double what it should be - see calculations
+    ax.set_ylim(-pitch_length/2, pitch_length/2) 
     ax.set_xlabel("x (m)")
     ax.invert_xaxis()
     ax.set_ylabel("z (m)")
@@ -238,7 +238,7 @@ def plot_main():
     fig = plt.figure(figsize=(12, 8))
     ax = fig.add_subplot(111, projection='3d')
     ax.scatter(x_values, z_values, np.zeros(len(y_values)), color='grey', s=1)
-    ax.scatter(x_values, z_values, y_values, color='red', s=10)  # y_values represent height, bigger dots
+    ax.scatter(x_values, z_values, y_values, color='red', s=10)
     ax.set_xlabel("x (m)")
     ax.set_ylabel("z (m)")
     ax.set_zlabel("y (m)")
@@ -252,7 +252,7 @@ def plot_main():
     ax.set_xlim(-pitch_width/2, pitch_width/2)
     ax.invert_xaxis()
     ax.set_zlim(0, max(y_values)*1.1)
-    ax.set_ylim(-pitch_length/2, pitch_length/2 + 5) # TODO: pitch length is double what it should be - see calculations
+    ax.set_ylim(-pitch_length/2, pitch_length/2 + 5)
     plt.savefig(directory_test_case_results+"/plot3D_trajectory_dots.png")
     plt.close()
 
@@ -263,7 +263,7 @@ def plot_main():
     ax.scatter(x_values[::modulo_dots], z_values[::modulo_dots], y_values[::modulo_dots], color='red', s=10)  # y_values represent height, bigger dots
     ax.set_xlim(-pitch_width/2, pitch_width/2)
     ax.set_zlim(0, max(y_values)*1.1)
-    ax.set_ylim(-pitch_length/2, pitch_length/2 + 5) # TODO: pitch length is double what it should be - see calculations
+    ax.set_ylim(-pitch_length/2, pitch_length/2 + 5)
     ax.set_xlabel("x (m)")
     ax.invert_xaxis()
     ax.set_ylabel("z (m)")
@@ -277,19 +277,18 @@ def plot_main():
     ax = fig.add_subplot(111)
     ax.set_xlabel("z (m)")
     ax.set_ylabel("x (m)")
-    ax.set_title("2D Ball Trajectory (z vs x)")
-    ax.plot(z_values, (x_values*0)+initial_x, color='black')
-    ax.plot(z_values, x_values)
+    ax.set_title("2D Ball Trajectory")
+    ax.plot(z_values, (x_values*0)+initial_x, color='black', linestyle="dashed", label="Line x=initial_x")
+    ax.plot(z_values, x_values, label="Trajectory")
     ax.set_ylim(-pitch_width/2, pitch_width/2)
-    ax.set_xlim(-pitch_length/2, pitch_length/2 + 5)  # z along pitch length
+    ax.set_xlim(-pitch_length/2, pitch_length/2)  # z along pitch length
     ax.set_aspect('equal', adjustable='box')
-    plt.savefig(directory_test_case_results+"/plot2D_trajectory_line_topdown.png")
+    ax.legend()
+    plt.savefig(directory_test_case_results+"/plot2D_trajectory_line_topdown.png", bbox_inches="tight")
     plt.close()
 
     print("Plots saved.")
     return
-    # Fix plots and set boundaries - check with output numbers
-    #sys.exit()
     
 if __name__ == "__main__":
     global case

@@ -23,21 +23,21 @@ class TestCase:
 with open("test_cases.txt", "w") as f:
     f.write("dt;g;k_d;initial_speed;elevation_angle;horizontal_angle;spin_rate;spin_angle_up;spin_angle_side;description\n")
 
-# TODO: add leg spin cases - these are all off-spin only
+## DEFINE TEST CASES ##
 default_off = TestCase(description="Default off spin")
 default_off.write_to_file()
 
 # Non-pro stats from https://researchers.mq.edu.au/en/publications/measuring-spin-characteristics-of-a-cricket-ball/
 # off spin
-state_squad_player = TestCase(initial_speed=19.8, spin_rate=2*math.pi*27.2, spin_axis_angle_up=math.radians(11.4), spin_axis_angle_side=math.radians(180-48.2), description="Off-spin Player 1")
+state_squad_player = TestCase(initial_speed=19.8, spin_rate=2*math.pi*27.2, spin_axis_angle_up=math.radians(11.4), spin_axis_angle_side=math.radians(48.2), description="Off-spin Player 1")
 state_squad_player.write_to_file()
-first_grade_club_player1 = TestCase(initial_speed=19.5, spin_rate=2*math.pi*26.8, spin_axis_angle_up=math.radians(14.8), spin_axis_angle_side=math.radians(180-62), description="Off-spin Player 2.1")
+first_grade_club_player1 = TestCase(initial_speed=19.5, spin_rate=2*math.pi*26.8, spin_axis_angle_up=math.radians(14.8), spin_axis_angle_side=math.radians(62), description="Off-spin Player 2.1")
 first_grade_club_player1.write_to_file()
-first_grade_club_player2 = TestCase(initial_speed=18.1, spin_rate=2*math.pi*28.3, spin_axis_angle_up=math.radians(2.6), spin_axis_angle_side=math.radians(180-60.4), description="Off-spin Player 2.2")
+first_grade_club_player2 = TestCase(initial_speed=18.1, spin_rate=2*math.pi*28.3, spin_axis_angle_up=math.radians(2.6), spin_axis_angle_side=math.radians(60.4), description="Off-spin Player 2.2")
 first_grade_club_player2.write_to_file()
-third_grade_club_player1 = TestCase(initial_speed=16.9, spin_rate=2*math.pi*20.2, spin_axis_angle_up=math.radians(17.1), spin_axis_angle_side=math.radians(180-64.9), description="Off-spin Player 3")
+third_grade_club_player1 = TestCase(initial_speed=16.9, spin_rate=2*math.pi*20.2, spin_axis_angle_up=math.radians(17.1), spin_axis_angle_side=math.radians(64.9), description="Off-spin Player 3")
 third_grade_club_player1.write_to_file()
-part_time_player = TestCase(initial_speed=17.2, spin_rate=2*math.pi*16.4, spin_axis_angle_up=math.radians(12.1), spin_axis_angle_side=math.radians(180-126.8), description="Off-spin Player 4")
+part_time_player = TestCase(initial_speed=17.2, spin_rate=2*math.pi*16.4, spin_axis_angle_up=math.radians(12.1), spin_axis_angle_side=math.radians(126.8), description="Off-spin Player 4")
 part_time_player.write_to_file()
 
 default_leg = TestCase(spin_axis_angle_side=math.radians(-45), description="Default leg spin")
@@ -45,22 +45,22 @@ default_leg.write_to_file()
 
 # Non-pro stats from https://researchers.mq.edu.au/en/publications/measuring-spin-characteristics-of-a-cricket-ball/
 # leg spin
-first_grade_club_player = TestCase(initial_speed=17.5, spin_rate=2*math.pi*29.2, spin_axis_angle_up=math.radians(-8.2), spin_axis_angle_side=math.radians(180-50), description="Leg-spin Player 1")
+first_grade_club_player = TestCase(initial_speed=17.5, spin_rate=2*math.pi*29.2, spin_axis_angle_up=math.radians(-8.2), spin_axis_angle_side=math.radians(-50), description="Leg-spin Player 1")
 first_grade_club_player.write_to_file()
-third_grade_club_player1 = TestCase(initial_speed=18.2, spin_rate=2*math.pi*27.9, spin_axis_angle_up=math.radians(17.1), spin_axis_angle_side=math.radians(180-37.7), description="Leg-spin Player 2.1")
+third_grade_club_player1 = TestCase(initial_speed=18.2, spin_rate=2*math.pi*27.9, spin_axis_angle_up=math.radians(17.1), spin_axis_angle_side=math.radians(-37.7), description="Leg-spin Player 2.1")
 third_grade_club_player1.write_to_file()
-third_grade_club_player2 = TestCase(initial_speed=20.1, spin_rate=2*math.pi*24.4, spin_axis_angle_up=math.radians(-16.3), spin_axis_angle_side=math.radians(180-27.2), description="Leg-spin Player 2.2")
+third_grade_club_player2 = TestCase(initial_speed=20.1, spin_rate=2*math.pi*24.4, spin_axis_angle_up=math.radians(-16.3), spin_axis_angle_side=math.radians(-27.2), description="Leg-spin Player 2.2")
 third_grade_club_player2.write_to_file()
-third_grade_club_player3 = TestCase(initial_speed=18.6, spin_rate=2*math.pi*24.9, spin_axis_angle_up=math.radians(9), spin_axis_angle_side=math.radians(180-43.7), description="Leg-spin Player 2.3")
+third_grade_club_player3 = TestCase(initial_speed=18.6, spin_rate=2*math.pi*24.9, spin_axis_angle_up=math.radians(9), spin_axis_angle_side=math.radians(-43.7), description="Leg-spin Player 2.3")
 third_grade_club_player3.write_to_file()
 avg_initial_speed = (17.5+18.2+20.1+18.6)/4
 avg_spin = (29.2+27.9+24.4+24.9)/4
 avg_angle_up = (-8.2+17.1-16.3+9)/4
 avg_angle_side = (50+37.7+27.2+43.7)/4
-average_player = TestCase(initial_speed=17.2, spin_rate=2*math.pi*avg_spin, spin_axis_angle_up=math.radians(avg_angle_up), spin_axis_angle_side=math.radians(180-avg_angle_side), description="Leg-spin Player Average")
+average_player = TestCase(initial_speed=17.2, spin_rate=2*math.pi*avg_spin, spin_axis_angle_up=math.radians(avg_angle_up), spin_axis_angle_side=math.radians(180-avg_angle_side), description="Leg-spin Player 3")
 average_player.write_to_file()
 
-top_spin = TestCase(spin_axis_angle_up=math.radians(90), spin_axis_angle_side=math.radians(0), description="Top spin")
+top_spin = TestCase(spin_rate=60*math.pi, spin_axis_angle_up=math.radians(90), spin_axis_angle_side=math.radians(0), description="Top spin")
 top_spin.write_to_file()
 
 no_spin = TestCase(spin_rate=0, description="No spin")
@@ -88,18 +88,16 @@ no_elevation.write_to_file()
 # assume clockwise round x (top spin rate), clockwise round y (), clockwise round z ??????????
 # Non-pro stats from https://researchers.mq.edu.au/en/publications/measuring-spin-characteristics-of-a-cricket-ball/
 # for later comparison with each other
-spin_rate = 20
-spin_rate20 = TestCase(spin_rate=spin_rate, description="Spin rate 20")
+spin_rate20 = TestCase(spin_rate=20, description="Spin rate 20")
 spin_rate20.write_to_file()
-spin_rate150 = TestCase(spin_rate=150, description="Spin rate 150")
-spin_rate150.write_to_file()
-spin_rate160 = TestCase(spin_rate=160, description="Spin rate 160")
-spin_rate160.write_to_file()
-spin_rate170 = TestCase(spin_rate=170, description="Spin rate 170")
-spin_rate170.write_to_file()
+spin_rate60 = TestCase(spin_rate=60, description="Spin rate 60")
+spin_rate60.write_to_file()
+spin_rate100 = TestCase(spin_rate=100, description="Spin rate 100")
+spin_rate100.write_to_file()
+spin_rate140 = TestCase(spin_rate=140, description="Spin rate 140")
+spin_rate140.write_to_file()
 spin_rate180 = TestCase(spin_rate=180, description="Spin rate 180")
 spin_rate180.write_to_file()
-# find range - ensure realistic - overlay as 2D plot
 
 # Non-pro stats from https://researchers.mq.edu.au/en/publications/measuring-spin-characteristics-of-a-cricket-ball/
 speed = 14
@@ -149,7 +147,6 @@ dt0001 = TestCase(dt=0.001, description="Flight dt 0.001")
 dt0001.write_to_file()
 
 # gravity in m/s^2
-# TODO: add air densities too / frictions
 gEarth = TestCase(g=9.80, description="Gravity 9.80")
 gEarth.write_to_file()
 gNeptune = TestCase(g=11.15, description="Gravity 11.15")
@@ -174,7 +171,14 @@ angle_12 = TestCase(horizontal_angle=math.radians(-1.2), description="Horizontal
 angle_12.write_to_file()
 
 # extras for fun
-high_back_spin = TestCase(spin_rate=-500, description="High back spin")
+high_off_spin = TestCase(spin_rate=2*math.pi*100, description="High off spin")
+high_off_spin.write_to_file()
+high_leg_spin = TestCase(spin_axis_angle_side=math.radians(-45), spin_rate=2*math.pi*100, description="High leg spin")
+high_leg_spin.write_to_file()
+high_top_spin = TestCase(initial_speed=2, spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(90), spin_axis_angle_side=math.radians(0), description="High top spin and slow")
+high_top_spin.write_to_file()
+high_back_spin = TestCase(spin_rate=2*math.pi*-200, spin_axis_angle_up=math.radians(90), spin_axis_angle_side=math.radians(0), description="High back spin")
+high_back_spin.write_to_file()
 high_back_spin.write_to_file()
 
 print("Generated all test cases.")
