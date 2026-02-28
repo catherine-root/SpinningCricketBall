@@ -76,9 +76,9 @@ no_drag_off.write_to_file()
 no_drag_leg = TestCase(k_d=0, spin_axis_angle_side=math.radians(-45), description="No drag Leg")
 no_drag_leg.write_to_file()
 
-large_drag_off = TestCase(k_d=0, description="Large drag Off")
+large_drag_off = TestCase(k_d=10, description="Large drag Off")
 large_drag_off.write_to_file()
-large_drag_leg = TestCase(k_d=0, spin_axis_angle_side=math.radians(-45), description="Large drag Leg")
+large_drag_leg = TestCase(k_d=10, spin_axis_angle_side=math.radians(-45), description="Large drag Leg")
 large_drag_leg.write_to_file()
 
 no_elevation = TestCase(elevation_angle=0, description="No elevation angle")
@@ -177,7 +177,7 @@ high_leg_spin = TestCase(spin_axis_angle_side=math.radians(-45), spin_rate=2*mat
 high_leg_spin.write_to_file()
 high_top_spin = TestCase(initial_speed=2, spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(90), spin_axis_angle_side=math.radians(0), description="High top spin and slow")
 high_top_spin.write_to_file()
-high_back_spin = TestCase(spin_rate=2*math.pi*-200, spin_axis_angle_up=math.radians(90), spin_axis_angle_side=math.radians(0), description="High back spin")
+high_back_spin = TestCase(spin_rate=2*math.pi*-500, spin_axis_angle_up=math.radians(90), spin_axis_angle_side=math.radians(0), description="High back spin")
 high_back_spin.write_to_file()
 high_back_spin.write_to_file()
 

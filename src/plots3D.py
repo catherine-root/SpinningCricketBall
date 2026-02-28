@@ -101,9 +101,9 @@ def bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle):
     e_number = 1  # perfectly elastic
 
     # Bounce dt
-    dh = 0.1  # TODO : some small distance tbd
-    bounce_dt = 2*e_number*math.sqrt(2*dh/g)
-    
+    dh_max = 2*radius_of_ball*e_number
+    bounce_dt = 2*1.4716*dh_max/abs(vy)
+
     # Bounce equations / Physics updates
     vy_new = k * vy *-1
     vx_new = -1*(radius_of_ball*omega[2] + vx)
@@ -128,6 +128,7 @@ def bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle):
         f_debug.write(f"omega_scaled={om_scaled[0]:.5f},{om_scaled[1]:.5f},{om_scaled[2]:.5f},mag(omega_scaled)={np.linalg.norm(om_scaled):.5f}\n")
         speed_vector = np.array([vx, vy, vz])
         f_debug.write(f"speed_vector={speed_vector[0]:.5f},{speed_vector[1]:.5f},{speed_vector[2]:.5f}\n")
+        f_debug.write(f"bounce_dt={bounce_dt:.5f}\n")
 
     # TODO: is there a change in spin axis angle upon bounce? - yes compute from mag of components
 

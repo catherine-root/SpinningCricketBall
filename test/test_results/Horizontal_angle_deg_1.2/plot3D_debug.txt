@@ -993,11 +993,12 @@ omega=86.62821,0.00000,150.04447,mag(omega)=173.25643
 omega_new=735.18636,-265.59076,59.12677,mag(omega_new)=783.92182
 omega_scaled=24.75092,0.00000,42.86985,mag(omega_scaled)=49.50184
 speed_vector=0.40751,-6.65754,17.80842
+bounce_dt=0.01583
 
 
 In flight:
-t=1.166,horizontal_angle=-0.15848,elevation_angle=0.21991
-t=1.166,horizontal_angle=-9.08026,elevation_angle=0.21991
+t=0.896,horizontal_angle=-0.15848,elevation_angle=0.21991
+t=0.896,horizontal_angle=-9.08026,elevation_angle=0.21991
 ax=-0.037,sin(ha)=-0.15782,cos(ea)=0.97592,liftX=-0.02494
 ay=-10.401,sin(ea)=0.21815,cos(ea)=0.97592,liftY=-0.06662
 az=-0.698,cos(ha)=0.98747,cos(ea)=0.97592,liftZ=0.01090
@@ -1007,8 +1008,8 @@ c_l=0.039223822400464514, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.176,horizontal_angle=0.15856,elevation_angle=0.21487
-t=1.176,horizontal_angle=9.08455,elevation_angle=0.21487
+t=0.906,horizontal_angle=0.15856,elevation_angle=0.21487
+t=0.906,horizontal_angle=9.08455,elevation_angle=0.21487
 ax=-0.282,sin(ha)=0.15789,cos(ea)=0.97700,liftX=-0.02494
 ay=-10.397,sin(ea)=0.21322,cos(ea)=0.97700,liftY=-0.06669
 az=-0.699,cos(ha)=0.98746,cos(ea)=0.97700,liftZ=0.01057
@@ -1018,8 +1019,8 @@ c_l=0.03928025237210927, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.186,horizontal_angle=0.15875,elevation_angle=0.20981
-t=1.186,horizontal_angle=9.09594,elevation_angle=0.20981
+t=0.916,horizontal_angle=0.15875,elevation_angle=0.20981
+t=0.916,horizontal_angle=9.09594,elevation_angle=0.20981
 ax=-0.282,sin(ha)=0.15809,cos(ea)=0.97807,liftX=-0.02494
 ay=-10.393,sin(ea)=0.20827,cos(ea)=0.97807,liftY=-0.06676
 az=-0.700,cos(ha)=0.98743,cos(ea)=0.97807,liftZ=0.01022
@@ -1029,8 +1030,8 @@ c_l=0.039335114024125886, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.196,horizontal_angle=0.15895,elevation_angle=0.20473
-t=1.196,horizontal_angle=9.10733,elevation_angle=0.20473
+t=0.926,horizontal_angle=0.15895,elevation_angle=0.20473
+t=0.926,horizontal_angle=9.10733,elevation_angle=0.20473
 ax=-0.282,sin(ha)=0.15828,cos(ea)=0.97912,liftX=-0.02494
 ay=-10.389,sin(ea)=0.20331,cos(ea)=0.97912,liftY=-0.06683
 az=-0.701,cos(ha)=0.98739,cos(ea)=0.97912,liftZ=0.00988
@@ -1040,8 +1041,8 @@ c_l=0.03938913654765111, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.206,horizontal_angle=0.15915,elevation_angle=0.19965
-t=1.206,horizontal_angle=9.11873,elevation_angle=0.19965
+t=0.936,horizontal_angle=0.15915,elevation_angle=0.19965
+t=0.936,horizontal_angle=9.11873,elevation_angle=0.19965
 ax=-0.282,sin(ha)=0.15848,cos(ea)=0.98014,liftX=-0.02493
 ay=-10.385,sin(ea)=0.19832,cos(ea)=0.98014,liftY=-0.06690
 az=-0.702,cos(ha)=0.98736,cos(ea)=0.98014,liftZ=0.00953
@@ -1051,8 +1052,8 @@ c_l=0.039442310016135754, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.216,horizontal_angle=0.15935,elevation_angle=0.19455
-t=1.216,horizontal_angle=9.13015,elevation_angle=0.19455
+t=0.946,horizontal_angle=0.15935,elevation_angle=0.19455
+t=0.946,horizontal_angle=9.13015,elevation_angle=0.19455
 ax=-0.282,sin(ha)=0.15868,cos(ea)=0.98113,liftX=-0.02493
 ay=-10.381,sin(ea)=0.19333,cos(ea)=0.98113,liftY=-0.06696
 az=-0.703,cos(ha)=0.98733,cos(ea)=0.98113,liftZ=0.00919
@@ -1062,8 +1063,8 @@ c_l=0.0394946246199848, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.226,horizontal_angle=0.15955,elevation_angle=0.18944
-t=1.226,horizontal_angle=9.14157,elevation_angle=0.18944
+t=0.956,horizontal_angle=0.15955,elevation_angle=0.18944
+t=0.956,horizontal_angle=9.14157,elevation_angle=0.18944
 ax=-0.282,sin(ha)=0.15887,cos(ea)=0.98211,liftX=-0.02492
 ay=-10.377,sin(ea)=0.18831,cos(ea)=0.98211,liftY=-0.06703
 az=-0.704,cos(ha)=0.98730,cos(ea)=0.98211,liftZ=0.00884
@@ -1073,8 +1074,8 @@ c_l=0.03954607067183177, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.236,horizontal_angle=0.15975,elevation_angle=0.18432
-t=1.236,horizontal_angle=9.15300,elevation_angle=0.18432
+t=0.966,horizontal_angle=0.15975,elevation_angle=0.18432
+t=0.966,horizontal_angle=9.15300,elevation_angle=0.18432
 ax=-0.282,sin(ha)=0.15907,cos(ea)=0.98306,liftX=-0.02492
 ay=-10.373,sin(ea)=0.18328,cos(ea)=0.98306,liftY=-0.06709
 az=-0.705,cos(ha)=0.98727,cos(ea)=0.98306,liftZ=0.00849
@@ -1084,8 +1085,8 @@ c_l=0.039596638611799496, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.246,horizontal_angle=0.15995,elevation_angle=0.17919
-t=1.246,horizontal_angle=9.16445,elevation_angle=0.17919
+t=0.976,horizontal_angle=0.15995,elevation_angle=0.17919
+t=0.976,horizontal_angle=9.16445,elevation_angle=0.17919
 ax=-0.282,sin(ha)=0.15927,cos(ea)=0.98399,liftX=-0.02491
 ay=-10.369,sin(ea)=0.17823,cos(ea)=0.98399,liftY=-0.06715
 az=-0.706,cos(ha)=0.98724,cos(ea)=0.98399,liftZ=0.00814
@@ -1095,8 +1096,8 @@ c_l=0.03964631901274206, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.256,horizontal_angle=0.16015,elevation_angle=0.17404
-t=1.256,horizontal_angle=9.17590,elevation_angle=0.17404
+t=0.986,horizontal_angle=0.16015,elevation_angle=0.17404
+t=0.986,horizontal_angle=9.17590,elevation_angle=0.17404
 ax=-0.282,sin(ha)=0.15947,cos(ea)=0.98489,liftX=-0.02491
 ay=-10.366,sin(ea)=0.17317,cos(ea)=0.98489,liftY=-0.06721
 az=-0.707,cos(ha)=0.98720,cos(ea)=0.98489,liftZ=0.00779
@@ -1106,8 +1107,8 @@ c_l=0.03969510258546298, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.266,horizontal_angle=0.16035,elevation_angle=0.16889
-t=1.266,horizontal_angle=9.18736,elevation_angle=0.16889
+t=0.996,horizontal_angle=0.16035,elevation_angle=0.16889
+t=0.996,horizontal_angle=9.18736,elevation_angle=0.16889
 ax=-0.282,sin(ha)=0.15966,cos(ea)=0.98577,liftX=-0.02490
 ay=-10.362,sin(ea)=0.16809,cos(ea)=0.98577,liftY=-0.06726
 az=-0.708,cos(ha)=0.98717,cos(ea)=0.98577,liftZ=0.00744
@@ -1117,8 +1118,8 @@ c_l=0.039742980183904125, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.276,horizontal_angle=0.16055,elevation_angle=0.16372
-t=1.276,horizontal_angle=9.19884,elevation_angle=0.16372
+t=1.006,horizontal_angle=0.16055,elevation_angle=0.16372
+t=1.006,horizontal_angle=9.19884,elevation_angle=0.16372
 ax=-0.282,sin(ha)=0.15986,cos(ea)=0.98663,liftX=-0.02489
 ay=-10.358,sin(ea)=0.16299,cos(ea)=0.98663,liftY=-0.06732
 az=-0.709,cos(ha)=0.98714,cos(ea)=0.98663,liftZ=0.00709
@@ -1128,8 +1129,8 @@ c_l=0.039789942810300266, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.286,horizontal_angle=0.16075,elevation_angle=0.15855
-t=1.286,horizontal_angle=9.21032,elevation_angle=0.15855
+t=1.016,horizontal_angle=0.16075,elevation_angle=0.15855
+t=1.016,horizontal_angle=9.21032,elevation_angle=0.15855
 ax=-0.282,sin(ha)=0.16006,cos(ea)=0.98746,liftX=-0.02488
 ay=-10.354,sin(ea)=0.15788,cos(ea)=0.98746,liftY=-0.06738
 az=-0.710,cos(ha)=0.98711,cos(ea)=0.98746,liftZ=0.00674
@@ -1139,8 +1140,8 @@ c_l=0.03983598162029374, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.296,horizontal_angle=0.16095,elevation_angle=0.15336
-t=1.296,horizontal_angle=9.22182,elevation_angle=0.15336
+t=1.026,horizontal_angle=0.16095,elevation_angle=0.15336
+t=1.026,horizontal_angle=9.22182,elevation_angle=0.15336
 ax=-0.282,sin(ha)=0.16026,cos(ea)=0.98826,liftX=-0.02487
 ay=-10.350,sin(ea)=0.15276,cos(ea)=0.98826,liftY=-0.06743
 az=-0.711,cos(ha)=0.98708,cos(ea)=0.98826,liftZ=0.00638
@@ -1150,8 +1151,8 @@ c_l=0.03988108792800411, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.306,horizontal_angle=0.16115,elevation_angle=0.14816
-t=1.306,horizontal_angle=9.23332,elevation_angle=0.14816
+t=1.036,horizontal_angle=0.16115,elevation_angle=0.14816
+t=1.036,horizontal_angle=9.23332,elevation_angle=0.14816
 ax=-0.281,sin(ha)=0.16046,cos(ea)=0.98904,liftX=-0.02486
 ay=-10.346,sin(ea)=0.14762,cos(ea)=0.98904,liftY=-0.06748
 az=-0.712,cos(ha)=0.98704,cos(ea)=0.98904,liftZ=0.00603
@@ -1161,8 +1162,8 @@ c_l=0.03992525321104715, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.316,horizontal_angle=0.16135,elevation_angle=0.14296
-t=1.316,horizontal_angle=9.24484,elevation_angle=0.14296
+t=1.046,horizontal_angle=0.16135,elevation_angle=0.14296
+t=1.046,horizontal_angle=9.24484,elevation_angle=0.14296
 ax=-0.281,sin(ha)=0.16065,cos(ea)=0.98980,liftX=-0.02485
 ay=-10.342,sin(ea)=0.14247,cos(ea)=0.98980,liftY=-0.06753
 az=-0.713,cos(ha)=0.98701,cos(ea)=0.98980,liftZ=0.00567

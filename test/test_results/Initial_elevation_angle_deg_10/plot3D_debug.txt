@@ -1180,11 +1180,12 @@ omega=86.62821,0.00000,150.04447,mag(omega)=173.25643
 omega_new=724.34785,-281.55631,43.25801,mag(omega_new)=778.34763
 omega_scaled=24.75092,0.00000,42.86985,mag(omega_scaled)=49.50184
 speed_vector=0.00973,-7.05774,17.53673
+bounce_dt=0.01493
 
 
 In flight:
-t=1.336,horizontal_angle=-0.14033,elevation_angle=0.23587
-t=1.336,horizontal_angle=-8.04018,elevation_angle=0.23587
+t=1.065,horizontal_angle=-0.14033,elevation_angle=0.23587
+t=1.065,horizontal_angle=-8.04018,elevation_angle=0.23587
 ax=-0.062,sin(ha)=-0.13987,cos(ea)=0.97231,liftX=-0.02609
 ay=-10.400,sin(ea)=0.23368,cos(ea)=0.97231,liftY=-0.06528
 az=-0.670,cos(ha)=0.99017,cos(ea)=0.97231,liftZ=0.01200
@@ -1194,8 +1195,8 @@ c_l=0.03974134157631361, c_d=0.5, spin_rate=175.92918860102841
 
 
 In flight:
-t=1.346,horizontal_angle=0.14041,elevation_angle=0.23079
-t=1.346,horizontal_angle=8.04478,elevation_angle=0.23079
+t=1.075,horizontal_angle=0.14041,elevation_angle=0.23079
+t=1.075,horizontal_angle=8.04478,elevation_angle=0.23079
 ax=-0.273,sin(ha)=0.13995,cos(ea)=0.97349,liftX=-0.02610
 ay=-10.396,sin(ea)=0.22874,cos(ea)=0.97349,liftY=-0.06536
 az=-0.671,cos(ha)=0.99016,cos(ea)=0.97349,liftZ=0.01167
