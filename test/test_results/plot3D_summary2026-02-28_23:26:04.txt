@@ -1,4 +1,4 @@
-Summary of batch of test results from: 2026-02-28_21:08:36
+Summary of batch of test results from: 2026-02-28_23:26:04
 
 ----------------- 
 
@@ -25,10 +25,13 @@ Flz              | -0.00262 |  0.01094
 
 
 
-Exit status summary for 55 test cases:
+Exit status summary for 59 test cases:
 
 Ball is in line with the batter's stumps. Stopping simulation.
-47
+48
+
+Ball has gone too wide or taken too long to complete motion. Stopping simulation.
+3
 
 Ball is hitting ground a second time. Stopping simulation.
 8

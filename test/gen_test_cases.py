@@ -171,13 +171,21 @@ angle_12 = TestCase(horizontal_angle=math.radians(-1.2), description="Horizontal
 angle_12.write_to_file()
 
 # extras for fun
+pure_side_spin_clockwise_slow = TestCase(initial_speed=3, spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(180), description="Pure side spin clockwise slow")
+pure_side_spin_clockwise_slow.write_to_file()
+pure_side_spin_clockwise = TestCase(spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(180), description="Pure side spin clockwise")
+pure_side_spin_clockwise.write_to_file()
+pure_side_spin_anticlockwise = TestCase(spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(0), description="Pure side spin anticlockwise")
+pure_side_spin_anticlockwise.write_to_file()
 high_off_spin = TestCase(spin_rate=2*math.pi*100, description="High off spin")
 high_off_spin.write_to_file()
 high_leg_spin = TestCase(spin_axis_angle_side=math.radians(-45), spin_rate=2*math.pi*100, description="High leg spin")
 high_leg_spin.write_to_file()
-high_top_spin = TestCase(initial_speed=2, spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(90), spin_axis_angle_side=math.radians(0), description="High top spin and slow")
+high_top_spin = TestCase(spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(90), description="High top spin and slow")
 high_top_spin.write_to_file()
-high_back_spin = TestCase(spin_rate=2*math.pi*-500, spin_axis_angle_up=math.radians(90), spin_axis_angle_side=math.radians(0), description="High back spin")
+high_back_spin = TestCase(spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(180), spin_axis_angle_side=math.radians(90), description="High back spin (vector flip)")
+high_back_spin.write_to_file()
+high_back_spin = TestCase(spin_rate=2*math.pi*-200, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(90), description="High back spin (sign of rate flip)")
 high_back_spin.write_to_file()
 high_back_spin.write_to_file()
 

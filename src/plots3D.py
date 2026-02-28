@@ -107,6 +107,7 @@ def bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle):
     # Bounce equations / Physics updates
     vy_new = k * vy *-1
     vx_new = -1*(radius_of_ball*omega[2] + vx)
+    #vx_new = (radius_of_ball*omega[2] + vx)
     vz_new = radius_of_ball*omega[0] + vz
 
     omega_new = np.array(omega)*(2/7)+np.array([vz, vy, vx])*(5/(7*radius_of_ball))  #assuming ball is solid sphere
@@ -333,6 +334,7 @@ if __name__ == "__main__":
             initial_speed_vector = [initial_speed_vector[0], initial_speed_vector[1], initial_speed_vector[2]]  # v_x, v_y, v_z
             spin_axis_angle = [spin_axis_angle_up, spin_axis_angle_side]
             initial_omega = [spin_rate*math.cos(spin_axis_angle_up)*math.cos(spin_axis_angle[1]), 0, spin_rate*math.cos(spin_axis_angle_up)*math.sin(spin_axis_angle[1])] # w_x, w_y, w_z            
+            #initial_omega = [spin_rate*math.cos(spin_axis_angle_up)*math.sin(spin_axis_angle[1]), 0, spin_rate*math.cos(spin_axis_angle_up)*math.cos(spin_axis_angle[1])] # w_x, w_y, w_z            
             # using spherical coordinates to get 3 components of spin from the 2 angles and magnitude
             omega = initial_omega
 
