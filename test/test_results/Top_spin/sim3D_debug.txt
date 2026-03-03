@@ -1,0 +1,16 @@
+DEBUG STARTED
+Testing case: Top spin
+Simulation Parameters:
+  Time step (dt): 0.01
+  Gravity (g): 9.8
+  Air density (rho): 1.225
+  Drag coefficient (k_d): 0.5
+  Initial speed: 18.5
+  Elevation angle: 0.10471975511965978
+  Horizontal angle: 0.0
+  Initial speed vector: [0.0, 1.933776570451589, 18.398655064313054]
+  Initial angular velocity (spin rate): 188.49555921538757
+  Spin axis angle up: 1.5707963267948966
+  Spin axis angle side: 0.0
+  Initial angular velocity (omega): [0.0, 188.49555921538757, 0.0]
+  Description: Top spin

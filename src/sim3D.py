@@ -100,13 +100,13 @@ def display():
     glLoadIdentity()
     if viewpoint == "diagonal":
         # Diagonal angle
-        gluLookAt(10, 8, 20, 0, 0, 0, 0, 1, 0) 
+        gluLookAt(8, 6, 20, 0, 0, 0, 0, 1, 0) 
     elif viewpoint == "bowler":
         # Bowler view angle
         gluLookAt(bowler_release_x, bowler_release_height, bowler_release_distance, 0, 0, 0, 0, 1, 0)
     elif viewpoint == "top-down":
         # From-the-sky angle
-        gluLookAt(0, 30, 0, 0, 0, 0, 0, 0, -1)
+        gluLookAt(0, 22, 0, 0, 0, 0, 0, 0, -1)
     else:  #viewpoint == "sideon"
         # Side-on angle
         gluLookAt(17, 2, 0, 0, 0, 0, 0, 1, 0)

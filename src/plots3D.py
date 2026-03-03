@@ -107,7 +107,6 @@ def bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle):
     # Bounce equations / Physics updates
     vy_new = k * vy *-1
     vx_new = -1*(radius_of_ball*omega[2] + vx)
-    #vx_new = (radius_of_ball*omega[2] + vx)
     vz_new = radius_of_ball*omega[0] + vz
 
     omega_new = np.array(omega)*(2/7)+np.array([vz, vy, vx])*(5/(7*radius_of_ball))  #assuming ball is solid sphere
@@ -131,8 +130,6 @@ def bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle):
         f_debug.write(f"speed_vector={speed_vector[0]:.5f},{speed_vector[1]:.5f},{speed_vector[2]:.5f}\n")
         f_debug.write(f"bounce_dt={bounce_dt:.5f}\n")
 
-    # TODO: is there a change in spin axis angle upon bounce? - yes compute from mag of components
-
     return omega_new, vx_new, vy_new, vz_new, horizontal_angle_new, elevation_angle_new, bounce_dt
 
 def main():
@@ -140,7 +137,6 @@ def main():
     global completed_bounce
     global radius_of_ball
 
-    #print("In plots3D.py in main()")
     # --- Store position and time for plots ---
     with open(directory_test_case_results+"/plot3D_output.txt", "a") as f:
         f.write(f"{t:.3f},{x:.3f},{y:.3f},{z:.3f},{vx:.3f},{vy:.3f},{vz:.3f},{elevation_angle:.3f},{horizontal_angle:.3f}\n")
@@ -171,7 +167,6 @@ def main():
         omega, vx, vy, vz, horizontal_angle, elevation_angle, bounce_dt = bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle)
         completed_bounce = True
         
-        # TODO: x,y,z remain the same? Roll?
         x += vx * dt
         y += vy * dt
         z += vz * dt
@@ -193,13 +188,10 @@ def main():
 def plot_main():
     import matplotlib.pyplot as plt
 
-    #print("In plots3D.py in plot_main()")
-
     with open(directory_test_case_results+"/plot3D_output.txt", "r") as f:
         lines = f.readlines()[1:]  # Skip header
         data_matrix = np.zeros((len(lines), 9))  # t, x, y, z, vx, vy, vz, horizontal_angle, elevation_angle
         for i, line in enumerate(lines):
-            #print(line.strip().split(','))
             data_matrix[i] = np.array(line.strip().split(','), dtype=float)
 
     time_values = data_matrix[:, 0]
@@ -303,8 +295,6 @@ if __name__ == "__main__":
         print("0 is an invalid case number. Running case 1 instead.")
         case = 1
 
-    #print("In plots3D.py running case", case)
-
     global viewpoint
     viewpoint = "sideon"  # other options: "bowler", "diagonal", "top-down"
 
@@ -334,7 +324,6 @@ if __name__ == "__main__":
             initial_speed_vector = [initial_speed_vector[0], initial_speed_vector[1], initial_speed_vector[2]]  # v_x, v_y, v_z
             spin_axis_angle = [spin_axis_angle_up, spin_axis_angle_side]
             initial_omega = [spin_rate*math.cos(spin_axis_angle_up)*math.cos(spin_axis_angle[1]), 0, spin_rate*math.cos(spin_axis_angle_up)*math.sin(spin_axis_angle[1])] # w_x, w_y, w_z            
-            #initial_omega = [spin_rate*math.cos(spin_axis_angle_up)*math.sin(spin_axis_angle[1]), 0, spin_rate*math.cos(spin_axis_angle_up)*math.cos(spin_axis_angle[1])] # w_x, w_y, w_z            
             # using spherical coordinates to get 3 components of spin from the 2 angles and magnitude
             omega = initial_omega
 

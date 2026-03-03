@@ -1,0 +1,16 @@
+DEBUG STARTED
+Testing case: Off-spin Player 1
+Simulation Parameters:
+  Time step (dt): 0.01
+  Gravity (g): 9.8
+  Air density (rho): 1.225
+  Drag coefficient (k_d): 0.5
+  Initial speed: 19.8
+  Elevation angle: 0.10471975511965978
+  Horizontal angle: 0.0
+  Initial speed vector: [0.0, 2.0696635726995387, 19.691533528291814]
+  Initial angular velocity (spin rate): 170.90264035528475
+  Spin axis angle up: 0.19896753472735357
+  Spin axis angle side: 0.8412486994612669
+  Initial angular velocity (omega): [124.89028901574132, 33.78016135639592, 111.66480595383787]
+  Description: Off-spin Player 1

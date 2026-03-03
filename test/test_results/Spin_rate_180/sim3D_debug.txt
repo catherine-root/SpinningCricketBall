@@ -1,0 +1,16 @@
+DEBUG STARTED
+Testing case: Spin rate 180
+Simulation Parameters:
+  Time step (dt): 0.01
+  Gravity (g): 9.8
+  Air density (rho): 1.225
+  Drag coefficient (k_d): 0.5
+  Initial speed: 18.5
+  Elevation angle: 0.10471975511965978
+  Horizontal angle: 0.0
+  Initial speed vector: [0.0, 1.933776570451589, 18.398655064313054]
+  Initial angular velocity (spin rate): 180.0
+  Spin axis angle up: 0.17453292519943295
+  Spin axis angle side: 1.0471975511965976
+  Initial angular velocity (omega): [153.51633575143975, 31.256671980047475, 88.63269777109873]
+  Description: Spin rate 180
