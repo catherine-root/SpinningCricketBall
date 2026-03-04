@@ -1,7 +1,7 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
-#from OpenGL.GLUT import glutLeaveMainLoop  # export DYLD_LIBRARY_PATH=/opt/homebrew/lib:$DYLD_LIBRARY_PATH
+#from OpenGL.GLUT import glutLeaveMainLoop  # not working in Python on macOS
 import sys, math
 from PIL import Image
 import numpy as np
@@ -75,8 +75,6 @@ def display():
     global images
     global data, data_line_index
 
-    #with open(directory_test_case_results+"/plot3D_output.txt", "r") as f:
-    #directory_test_case_results = f"../test/test_results/Default_leg_spin"
     with open(directory_test_case_results+"/plot3D_output.txt", "r") as f:
         data = f.readlines()
 
@@ -135,14 +133,12 @@ def display():
     for x_offset in [-0.05, 0, 0.05]:
         for z_position in [bowler_stumps_distance, batter_stumps_distance]:
             glPushMatrix()
-            #glBegin(GL_CYLINDER)
             glColor3f(1,1,1)
             glTranslatef(x_offset, 0, z_position)
             glRotatef(-90, 1, 0, 0)
             quadric = gluNewQuadric()
             gluCylinder(quadric, diameter_of_stumps / 2, diameter_of_stumps / 2, height_of_stumps, 32, 1)
             gluDeleteQuadric(quadric)
-            #glEnd()
             glPopMatrix()
 
     # Ball
@@ -151,22 +147,9 @@ def display():
     glTranslatef(display_x, y, z)
     glColor3f(0.6, 0.1, 0.1)
     glutSolidSphere(scaled_radius_of_ball, 30, 30)
-
-    '''# Draw two thin lines around the circumference of the ball
-    glColor3f(1.0, 0.0, 0.0)  # Red lines
-    glLineWidth(0.7)
-    for z_offset in [-0.05, 0.05]:  # Two lines, slightly above and below center
-        glBegin(GL_LINE_LOOP)
-        for i in range(100):
-            theta = 2 * math.pi * i / 100
-            x_circ = 0.5 * math.cos(theta)
-            y_circ = 0.5 * math.sin(theta)
-            glVertex3f(x_circ, y_circ, z_offset)
-        glEnd()
-    '''
     glPopMatrix()
 
-    # Ball shadow on ground - assuming sun directly overhead
+    # Ball shadow on ground - assuming sun directly overhead at (0,infty,0) 
     glPushMatrix()
     glTranslatef(display_x, 0.015, z)  # slightly above ground to display over Ground and Pitch
     glColor3f(0.251, 0.322, 0.243)   # darker color for shadow
@@ -196,6 +179,7 @@ def display():
 
     glutSwapBuffers()
 
+    # Store past positions for flight trail
     past_x_values.append(display_x)
     past_y_values.append(y)
     past_z_values.append(z)
@@ -207,8 +191,6 @@ def display():
     image = Image.frombytes("RGB", (width, height), data)  # image
     image = image.transpose(Image.FLIP_TOP_BOTTOM)  # flip vertically
     images.append(np.array(image))
-    #print("Appended image to array.")
-
 
 def timer(value):
     global data, data_line_index, viewpoint, saved_gif
@@ -236,14 +218,6 @@ def main():
     glutTimerFunc(0, timer, 0)
     glutMainLoop()
 
-'''if __name__ == "__main__":
-    global viewpoint, data_line_index, data, saved_gif
-    data_line_index = 1
-    viewpoint = "diagonal"
-
-    saved_gif = False
-    main()'''
-
 if __name__ == "__main__":
     global viewpoint, data_line_index, data, saved_gif
     data_line_index = 1
@@ -261,10 +235,9 @@ if __name__ == "__main__":
     
     # Iterate over all test cases
     with open("../test/test_cases.txt", "r") as test_cases_file:
-        lines = test_cases_file.readlines()[case:case+1]  # Skip header line OR CHANGE TO ACCESS OTHER TEST CASES FOR NOW
+        lines = test_cases_file.readlines()[case:case+1]  # Skip header line and do one case at a time in this script
         for line in lines:
             params = line.strip().split(';')
-            #global dt, max_time
             dt = float(params[0])
             g = float(params[1])
             rho = float(params[2])
@@ -291,9 +264,8 @@ if __name__ == "__main__":
             sys.setrecursionlimit(n) # maybe don't need
 
             # Time
-            t = 0.0
-            max_time = 5  # seconds
-
+            t = t  # from constants file
+            max_time = max_time  # from constants file
 
             directory_name_for_test_case = description.replace(" ", "_").replace(",", "").replace("(", "").replace(")", "")
             directory_test_case_results = "../test/test_results/" + directory_name_for_test_case

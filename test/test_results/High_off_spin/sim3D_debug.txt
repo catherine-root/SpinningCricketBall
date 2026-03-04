@@ -1,0 +1,16 @@
+DEBUG STARTED
+Testing case: High off spin
+Simulation Parameters:
+  Time step (dt): 0.01
+  Gravity (g): 9.8
+  Air density (rho): 1.225
+  Drag coefficient (k_d): 0.5
+  Initial speed: 18.5
+  Elevation angle: 0.10471975511965978
+  Horizontal angle: 0.0
+  Initial speed vector: [0.0, 1.933776570451589, 18.398655064313054]
+  Initial angular velocity (spin rate): 628.3185307179587
+  Spin axis angle up: 0.17453292519943295
+  Spin axis angle side: 1.0471975511965976
+  Initial angular velocity (omega): [535.8731028919415, 109.10636785353675, 309.3864802061425]
+  Description: High off spin

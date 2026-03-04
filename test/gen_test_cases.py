@@ -66,6 +66,9 @@ top_spin.write_to_file()
 no_spin = TestCase(spin_rate=0, description="No spin")
 no_spin.write_to_file()
 
+no_spin_no_speed = TestCase(spin_rate=0, initial_speed=0, description="No spin No speed")
+no_spin_no_speed.write_to_file()
+
 no_flight_off = TestCase(initial_speed=0, description="No flight Off")
 no_flight_off.write_to_file()
 no_flight_leg = TestCase(initial_speed=0, spin_axis_angle_side=math.radians(-45), description="No flight Leg")
@@ -83,6 +86,11 @@ large_drag_leg.write_to_file()
 
 no_elevation = TestCase(elevation_angle=0, description="No elevation angle")
 no_elevation.write_to_file()
+
+max_elevation_off = TestCase(elevation_angle=math.radians(90), description="Max elevation angle Off")
+max_elevation_off.write_to_file()
+max_elevation_leg = TestCase(elevation_angle=math.radians(90), spin_axis_angle_side=math.radians(-45), description="Max elevation angle Leg")
+max_elevation_leg.write_to_file()
 
 # Spin vector (backspin = spin around x-axis, pointing left-right)
 # assume clockwise round x (top spin rate), clockwise round y (), clockwise round z ??????????

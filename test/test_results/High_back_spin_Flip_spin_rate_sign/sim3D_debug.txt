@@ -1,0 +1,16 @@
+DEBUG STARTED
+Testing case: High back spin Flip spin rate sign
+Simulation Parameters:
+  Time step (dt): 0.01
+  Gravity (g): 9.8
+  Air density (rho): 1.225
+  Drag coefficient (k_d): 0.5
+  Initial speed: 18.5
+  Elevation angle: 0.10471975511965978
+  Horizontal angle: 0.0
+  Initial speed vector: [0.0, 1.933776570451589, 18.398655064313054]
+  Initial angular velocity (spin rate): -1256.6370614359173
+  Spin axis angle up: 0.0
+  Spin axis angle side: 0.0
+  Initial angular velocity (omega): [-0.0, -7.69468277488716e-14, -1256.6370614359173]
+  Description: High back spin Flip spin rate sign
