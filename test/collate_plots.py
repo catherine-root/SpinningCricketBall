@@ -7,25 +7,47 @@ import shutil
 ### Get folder/testcase name and values tested in range
 name = str(sys.argv[1])
 values = sorted(np.array(sys.argv[2].strip().split(",")))[:5]
-print(f"Running collation for test case {name} with values {values}.")
+#print(f"Running collation for test case {name} with values {values}.")
 
-'''if "pin_rate" in name:
-    values = np.array(sorted(np.array(values, dtype=int)), dtype=str)'''
+### START Retrieve constants from file (repeated in plots3D.py and sim3D.py) ###
+constants = {}
+with open("../src/constants.txt", "r") as f:
+    for line in f:
+        key, value = line.strip().split("=")
+        constants[key] = float(value)
 
-# TODO : pull into data file possibly so these numbers stay consistent across all files
-### Field and Pitch dimensions
-ground_size = 140  # diameter
-pitch_width = 3.05
-pitch_length = 22.56  # TODO: pitch length is double what is should be - see calculations = -pitch_length instead of -pitch_length/2
-pitchstart_to_bowlingcrease = 1.22
-bowlingcrease_to_poppingcrease = 1.22
-poppingcrease_to_otherpoppingcrease = 17.68
-pitchstart_to_poppingcrease = pitchstart_to_bowlingcrease + bowlingcrease_to_poppingcrease
-height_of_stumps = 0.72
-diameter_of_stumps = 0.04
-bowler_stumps_distance = -pitch_length + pitchstart_to_bowlingcrease
-batter_stumps_distance = pitch_length - pitchstart_to_bowlingcrease
+k_l = constants['k_l']
+m = constants['m']
+circumference_of_ball = constants['circumference_of_ball']
+diameter_of_ball = constants['diameter_of_ball']
+radius_of_ball = constants['radius_of_ball']
+A = constants['A']
+ground_size = constants['ground_size']
+pitch_width = constants['pitch_width']
+pitch_length = constants['pitch_length']
+pitchstart_to_bowlingcrease = constants['pitchstart_to_bowlingcrease']
+bowlingcrease_to_poppingcrease = constants['bowlingcrease_to_poppingcrease']
+poppingcrease_to_otherpoppingcrease = constants['poppingcrease_to_otherpoppingcrease']
+pitchstart_to_poppingcrease = constants['pitchstart_to_poppingcrease']
+height_of_stumps = constants['height_of_stumps']
+diameter_of_stumps = constants['diameter_of_stumps']
+bowler_stumps_distance = constants['bowler_stumps_distance']
+batter_stumps_distance = constants['batter_stumps_distance']
+bowler_release_height = constants['bowler_release_height']
+half_bowler_stride = constants['half_bowler_stride']
+bowler_release_distance = constants['bowler_release_distance']
+bowler_preferred_distance_from_centerline = constants['bowler_preferred_distance_from_centerline']
+bowler_release_x = constants['bowler_release_x']
 
+g = constants['g']
+dt = constants['dt']
+t = constants['initial_t']
+max_time = constants['max_time']
+initial_x = constants['initial_x']
+x = constants['x']
+y = constants['y']
+z = constants['z']
+### END Retrieve constants from file (repeated in plots3D.py and sim3D.py) ###
 
 ### Move folders into shared folder
 target = f"test_results/{name}_{''.join([str(v) for v in values])}"

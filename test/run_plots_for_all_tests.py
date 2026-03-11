@@ -11,17 +11,18 @@ import shutil
 ### Run scripts
 def run_gen_data_script(case_no):
     script_name = f"../src/plots3D.py"
-    print(f"Starting {script_name}...")
+    #print(f"Starting {script_name}...")
     subprocess.run(["python3", script_name, str(case_no), str(0)])  # zero indicates no debug
-    print(f"Finished {script_name} {case_no}")
+    #print(f"Finished {script_name} {case_no}")
 
 with open("../test/test_cases.txt", "r") as test_cases_file:
     lines = test_cases_file.readlines()[1:]  # Skip header line
     number_of_test_cases = len(lines)
 
     threads = []
-    for case_no, line in enumerate(lines):
-        print(f"Running simulation for test case {case_no} of {number_of_test_cases}: {line.split(';')[-1].strip()}")
+    for idx, line in enumerate(lines):
+        case_no = idx + 1  # case numbers start from 1
+        #print(f"Running simulation for test case {case_no} of {number_of_test_cases}: {line.split(';')[-1].strip()}")
         t = threading.Thread(target=run_gen_data_script, args=(case_no,))
         t.start()
         threads.append(t)
@@ -35,11 +36,11 @@ print("All data generator scripts finished.")
 ### Do collation plots for comparisons in range
 def run_collate_plots_script(name, values):
     script_name = "collate_plots.py"
-    print(f"Starting {script_name} for {name}...")
+    #print(f"Starting {script_name} for {name}...")
     # join values into a single string argument (e.g. "val1,val2,...")
     values_str = ",".join(values)
     subprocess.run(["python3", script_name, str(name), values_str])
-    print(f"Finished {script_name} {name}")
+    #print(f"Finished {script_name} {name}")
 
 test_results_dir = "../test/test_results"
 global directory_names
@@ -108,7 +109,7 @@ def find_and_write_exit_status(write_file):
 def get_extrema():
     extrema_dict = {}
     #print(directory_names)
-    print(directory_names_tuples)
+    #print(directory_names_tuples)
 
     for name in directory_names:
         directory_test_case_results = f"test_results/{name}"

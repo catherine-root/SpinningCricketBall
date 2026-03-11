@@ -4,18 +4,19 @@ import subprocess
 
 def run_script(case_no, viewpoint):
     script_name = f"../src/sim3D.py"
-    print(f"Starting {script_name}...")
+    #print(f"Starting {script_name}...")
     subprocess.run(["python3", script_name, str(case_no), viewpoint])
-    print(f"Finished {script_name}")
+    #print(f"Finished {script_name}")
 
 with open("../test/test_cases.txt", "r") as test_cases_file:
     lines = test_cases_file.readlines()[1:]  # Skip header line
     number_of_test_cases = len(lines)
 
     threads = []
-    for case_no, line in enumerate(lines):  # TODO: WARNING SPOT TEMPORARY LIMITATION HERE
-        for viewpoint in ["sideon", "bowler", "diagonal", "top-down"]:
-            print(f"Running simulation for test case {case_no} of {number_of_test_cases} from {viewpoint}: {line.split(';')[-1].strip()}")
+    #for viewpoint in ["diagonal", "sideon", "bowler", "top-down", "umpire", "batter", "wicket-keeper"]:  # produce one sim for each test case
+    for viewpoint in ["umpire", "batter", "wicket-keeper"]:  # produce one sim for each test case
+        for case_no, line in enumerate(lines):
+            #print(f"Running simulation for test case {case_no} of {number_of_test_cases} from {viewpoint}: {line.split(';')[-1].strip()}")
             t = threading.Thread(target=run_script, args=(case_no,viewpoint,))
             t.start()
             threads.append(t)
@@ -27,30 +28,6 @@ for t in threads:
 print("All scripts finished.")
 
 sys.exit(0)
-
-'''
-import sys
-from multiprocessing import Pool
-import subprocess
-import numpy as np
-
-def run_script(case_no):
-    script_path = "../src/trial.py"
-    print(f"Starting {script_path} {case_no}...")
-    subprocess.run(["python3", script_path, str(case_no)])
-    print(f"Finished {script_path} {case_no}")
-
-if __name__ == "__main__":
-    with open("../test/test_cases.txt", "r") as test_cases_file:
-        lines = test_cases_file.readlines()[1:]  # Skip header line
-    number_of_test_cases = len(lines)
-    case_numbers = np.arange(0, number_of_test_cases)
-    with Pool() as pool:
-        pool.map(run_script, case_numbers)
-
-
-sys.exit(0)
-'''
 
 
 

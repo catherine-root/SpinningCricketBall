@@ -9,7 +9,7 @@ import imageio.v2 as imageio
 from mpl_toolkits.mplot3d import Axes3D
 import os
 
-### START Retrieve constants from file (repeated in sim3D.py) ###
+### START Retrieve constants from file (repeated in plots3D.py and collation_plots.py) ###
 constants = {}
 with open("../src/constants.txt", "r") as f:
     for line in f:
@@ -47,7 +47,7 @@ initial_x = constants['initial_x']
 x = constants['x']
 y = constants['y']
 z = constants['z']
-### END Retrieve constants from file ### (repeated in sim3D.py)
+### END Retrieve constants from file (repeated in plots3D.py and collation_plots.py) ###
 
 # Storing positions for flight trail of ball
 past_x_values = []
@@ -102,6 +102,22 @@ def display():
     elif viewpoint == "bowler":
         # Bowler view angle
         gluLookAt(bowler_release_x, bowler_release_height, bowler_release_distance, 0, 0, 0, 0, 1, 0)
+    elif viewpoint == "batter":
+        # Batter (on strike) view angle
+        player_height = 1.787
+        dist_tophead_to_eyes = 0.15
+        batter_eye_level = player_height-dist_tophead_to_eyes
+        gluLookAt(0, batter_eye_level, batter_stumps_distance-bowlingcrease_to_poppingcrease, 0, 0, 0, 0, 1, 0)
+    elif viewpoint == "wicket-keeper":
+        # Wicket-keeper view angle
+        player_height = 1.787
+        dist_squat = 1  # wicket-keepers often squat down while waiting to catch/stop the bowled ball
+        keeper_eye_level = player_height-dist_squat
+        dist_stumps_to_keeper = 0.3
+        gluLookAt(0, keeper_eye_level, batter_stumps_distance+dist_stumps_to_keeper, 0, 0, 0, 0, 1, 0)
+    elif viewpoint == "umpire":
+        # Umpire (standing) view angle
+        gluLookAt(0, bowler_release_height, bowler_release_distance-5, 0, 0, 0, 0, 1, 0)
     elif viewpoint == "top-down":
         # From-the-sky angle
         gluLookAt(0, 22, 0, 0, 0, 0, 0, 0, -1)
@@ -228,7 +244,7 @@ if __name__ == "__main__":
     if case == 0:
         print("0 is an invalid case number. Running case 1 instead.")
         case = 1
-    if viewpoint not in ["sideon", "bowler", "diagonal", "top-down"]:
+    if viewpoint not in ["sideon", "bowler", "diagonal", "top-down", "batter", "umpire", "wicket-keeper"]:
         viewpoint = "sideon"
 
     global directory_test_case_results
@@ -281,7 +297,9 @@ if __name__ == "__main__":
                 os.remove(directory_test_case_results+"/sim3D_debug.txt")
             with open(directory_test_case_results+"/sim3D_debug.txt", "w") as f:
                 f.write(f"DEBUG STARTED\n")
-                f.write(f"Testing case: {description}\n")
+                f.write(f"Case number: {case}\n")
+                f.write(f"Viewpoint: {viewpoint}\n")
+                f.write(f"\nTesting case: {description}\n")
                 f.write("Simulation Parameters:\n")
                 f.write(f"  Time step (dt): {dt}\n")
                 f.write(f"  Gravity (g): {g}\n")

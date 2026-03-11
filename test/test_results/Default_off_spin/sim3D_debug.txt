@@ -1,14 +1,17 @@
 DEBUG STARTED
+Case number: 1
+Viewpoint: wicket-keeper
+
 Testing case: Default off spin
 Simulation Parameters:
   Time step (dt): 0.01
   Gravity (g): 9.8
-  Air density (rho): 1.225
+  Air density (rho): 1.293
   Drag coefficient (k_d): 0.5
-  Initial speed: 18.5
-  Elevation angle: 0.10471975511965978
+  Initial speed: 21.0
+  Elevation angle: 0.12217304763960307
   Horizontal angle: 0.0
-  Initial speed vector: [0.0, 1.933776570451589, 18.398655064313054]
+  Initial speed vector: [0.0, 2.5592562115080972, 20.84346918446776]
   Initial angular velocity (spin rate): 175.92918860102841
   Spin axis angle up: 0.17453292519943295
   Spin axis angle side: 1.0471975511965976

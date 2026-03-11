@@ -1,7 +1,7 @@
 import math
 
 class TestCase:
-    def __init__(self, dt=0.01, g=9.80, rho=1.225, k_d=0.5, initial_speed=18.5, elevation_angle=math.radians(6), horizontal_angle=math.radians(0), spin_rate=56*math.pi, spin_axis_angle_up=math.radians(10), spin_axis_angle_side=math.radians(60), description=""):  # default spin_axis_angle_side should be 60
+    def __init__(self, dt=0.01, g=9.80, rho=1.293, k_d=0.5, initial_speed=21, elevation_angle=math.radians(7), horizontal_angle=math.radians(0), spin_rate=56*math.pi, spin_axis_angle_up=math.radians(10), spin_axis_angle_side=math.radians(60), description=""):  # default spin_axis_angle_side should be 60
         self.dt = dt
         self.g = g
         self.rho = rho
@@ -56,11 +56,13 @@ third_grade_club_player3.write_to_file()
 avg_initial_speed = (17.5+18.2+20.1+18.6)/4
 avg_spin = (29.2+27.9+24.4+24.9)/4
 avg_angle_up = (-8.2+17.1-16.3+9)/4
-avg_angle_side = (50+37.7+27.2+43.7)/4
-average_player = TestCase(initial_speed=17.2, spin_rate=2*math.pi*avg_spin, spin_axis_angle_up=math.radians(avg_angle_up), spin_axis_angle_side=math.radians(180-avg_angle_side), description="Leg-spin Player 3")
+avg_angle_side = -(50+37.7+27.2+43.7)/4
+average_player = TestCase(initial_speed=17.2, spin_rate=2*math.pi*avg_spin, spin_axis_angle_up=math.radians(avg_angle_up), spin_axis_angle_side=math.radians(avg_angle_side), description="Leg-spin Player 3")
 average_player.write_to_file()
 
-top_spin = TestCase(spin_rate=60*math.pi, spin_axis_angle_up=math.radians(90), spin_axis_angle_side=math.radians(0), description="Top spin")
+back_spin = TestCase(spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(180), description="Back spin")
+back_spin.write_to_file()
+top_spin = TestCase(spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(0), description="Top spin")
 top_spin.write_to_file()
 
 no_spin = TestCase(spin_rate=0, description="No spin")
@@ -108,9 +110,6 @@ spin_rate180 = TestCase(spin_rate=180, description="Spin rate 180")
 spin_rate180.write_to_file()
 
 # Non-pro stats from https://researchers.mq.edu.au/en/publications/measuring-spin-characteristics-of-a-cricket-ball/
-speed = 14
-speed14 = TestCase(initial_speed=speed, description="Initial speed "+str(speed))
-speed14.write_to_file()
 speed = 16
 speed16 = TestCase(initial_speed=speed, description="Initial speed "+str(speed))
 speed16.write_to_file()
@@ -123,23 +122,25 @@ speed20.write_to_file()
 speed = 22
 speed22 = TestCase(initial_speed=speed, description="Initial speed "+str(speed))
 speed22.write_to_file()
+speed = 24
+speed24 = TestCase(initial_speed=speed, description="Initial speed "+str(speed))
+speed24.write_to_file()
 
-# Non-pro stats from https://researchers.mq.edu.au/en/publications/measuring-spin-characteristics-of-a-cricket-ball/
-ea = -10
-ea_10 = TestCase(elevation_angle=math.radians(ea), description="Initial elevation angle (deg) "+str(ea))
-ea_10.write_to_file()
+ea = -3
+ea_3 = TestCase(elevation_angle=math.radians(ea), description="Initial elevation angle (deg) "+str(ea))
+ea_3.write_to_file()
 ea = 0
 ea0 = TestCase(elevation_angle=math.radians(ea), description="Initial elevation angle (deg) "+str(ea))
 ea0.write_to_file()
-ea = 10
-ea10 = TestCase(elevation_angle=math.radians(ea), description="Initial elevation angle (deg) "+str(ea))
-ea10.write_to_file()
-ea = 20
-ea20 = TestCase(elevation_angle=math.radians(ea), description="Initial elevation angle (deg) "+str(ea))
-ea20.write_to_file()
-ea = 30
-ea30 = TestCase(elevation_angle=math.radians(ea), description="Initial elevation angle (deg) "+str(ea))
-ea30.write_to_file()
+ea = 3
+ea3 = TestCase(elevation_angle=math.radians(ea), description="Initial elevation angle (deg) "+str(ea))
+ea3.write_to_file()
+ea = 6
+ea6 = TestCase(elevation_angle=math.radians(ea), description="Initial elevation angle (deg) "+str(ea))
+ea6.write_to_file()
+ea = 9
+ea9 = TestCase(elevation_angle=math.radians(ea), description="Initial elevation angle (deg) "+str(ea))
+ea9.write_to_file()
 
 
 
@@ -179,22 +180,28 @@ angle_12 = TestCase(horizontal_angle=math.radians(-1.2), description="Horizontal
 angle_12.write_to_file()
 
 # extras for fun
-high_back_spin_slow = TestCase(initial_speed=8, spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(180), description="High back spin slow")
+mult_factor_spin_rate = 3
+high_back_spin_slow = TestCase(initial_speed=9, spin_rate=56*math.pi*mult_factor_spin_rate, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(180), description="High back spin slow")
 high_back_spin_slow.write_to_file()
-high_back_spin = TestCase(spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(180), description="High back spin")
+high_back_spin_slow_flipped = TestCase(initial_speed=9, spin_rate=-56*math.pi*mult_factor_spin_rate, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(0), description="High back spin slow Flip spin rate sign")
+high_back_spin_slow_flipped.write_to_file()
+high_back_spin = TestCase(spin_rate=56*math.pi*mult_factor_spin_rate, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(180), description="High back spin")
 high_back_spin.write_to_file()
-high_back_spin_flipped = TestCase(spin_rate=-2*math.pi*200, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(0), description="High back spin Flip spin rate sign")
+high_back_spin_flipped = TestCase(spin_rate=-56*math.pi*mult_factor_spin_rate, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(0), description="High back spin Flip spin rate sign")
 high_back_spin_flipped.write_to_file()
-high_top_spin = TestCase(spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(0), description="High top spin")
+high_top_spin = TestCase(spin_rate=56*math.pi*mult_factor_spin_rate, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(0), description="High top spin")
 high_top_spin.write_to_file()
-high_off_spin = TestCase(spin_rate=2*math.pi*100, description="High off spin")
+high_off_spin = TestCase(spin_rate=56*math.pi*mult_factor_spin_rate, description="High off spin")
 high_off_spin.write_to_file()
-high_leg_spin = TestCase(spin_axis_angle_side=math.radians(-45), spin_rate=2*math.pi*100, description="High leg spin")
+low_off_spin = TestCase(spin_rate=56*math.pi*(1.5/mult_factor_spin_rate), description="Low off spin")
+low_off_spin.write_to_file()
+high_leg_spin = TestCase(spin_axis_angle_side=math.radians(-45), spin_rate=56*math.pi*mult_factor_spin_rate, description="High leg spin")
 high_leg_spin.write_to_file()
-pure_off_spin = TestCase(spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(90), description="High off spin Pure side spin")
+low_leg_spin = TestCase(spin_axis_angle_side=math.radians(-45), spin_rate=56*math.pi*(1.5/mult_factor_spin_rate), description="Low leg spin")
+low_leg_spin.write_to_file()
+pure_off_spin = TestCase(spin_rate=56*math.pi*mult_factor_spin_rate, spin_axis_angle_up=math.radians(0), spin_axis_angle_side=math.radians(90), description="High off spin Pure side spin")
 pure_off_spin.write_to_file()
-pure_leg_spin = TestCase(spin_rate=2*math.pi*200, spin_axis_angle_up=math.radians(180), spin_axis_angle_side=math.radians(90), description="High leg spin Pure side spin")
-pure_leg_spin.write_to_file()
+pure_leg_spin = TestCase(spin_rate=56*math.pi*mult_factor_spin_rate, spin_axis_angle_up=math.radians(180), spin_axis_angle_side=math.radians(90), description="High leg spin Pure side spin")
 pure_leg_spin.write_to_file()
 
 print("Generated all test cases.")

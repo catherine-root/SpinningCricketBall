@@ -1,13 +1,13 @@
 import math
 
 # Constants which will never be varied between test cases
-k_l = 0.25   # Magnus coefficient
+k_l = 0.25/3   # Lift force scaling factor
 m = 0.156    # mass of ball (kg)
 #The ball, when new, shall weigh not less than 5.5 ounces/155.9 g, nor more than 5.75 ounces/163 g, 
 #and shall measure not less than 8.81 in/22.4 cm, nor more than 9 in/22.9 cm in circumference.
-circumference_of_ball = 0.225  # meters
-diameter_of_ball = circumference_of_ball / (2*math.pi)  # meters OR diameter_of_ball = circumference_of_ball / (2*math.pi)  # meters
-radius_of_ball = diameter_of_ball / 2
+circumference_of_ball = 0.2265  # meters
+radius_of_ball = circumference_of_ball / (2*math.pi)  # meters
+diameter_of_ball = radius_of_ball * 2
 A = math.pi * radius_of_ball**2  # cross-sectional area of ball (m^2)
 
 # Field and Pitch dimensions
@@ -37,13 +37,12 @@ initial_t = 0.0
 max_time = 5  # seconds
 
 # Initial position
-initial_x = bowler_release_x # TODO: future possible offset in display: initial_x = bowler_release_x 
+initial_x = bowler_release_x
 x, y, z = initial_x, bowler_release_height, bowler_release_distance  # start above ground, back from origin at popping crease
 # x = along pitch, y = height, z = across pitch
 
 
-# TODO: write all of these as a dictionary then write names and values to a file. Can then read in to other files as data['varname'] = value.
-# then also need to update other files to say data['varname'] instead of just varname.
+# data dictionary
 data = {}
 data['k_l'] = k_l
 data['m'] = m
@@ -81,3 +80,5 @@ data['z'] = z
 with open("constants.txt", "w") as f:
     for key, value in data.items():
         f.write(f"{key}={value}\n")
+
+print("Generated all constants.")

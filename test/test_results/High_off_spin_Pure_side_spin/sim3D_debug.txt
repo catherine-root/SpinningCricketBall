@@ -1,16 +1,19 @@
 DEBUG STARTED
+Case number: 65
+Viewpoint: wicket-keeper
+
 Testing case: High off spin Pure side spin
 Simulation Parameters:
   Time step (dt): 0.01
   Gravity (g): 9.8
-  Air density (rho): 1.225
+  Air density (rho): 1.293
   Drag coefficient (k_d): 0.5
-  Initial speed: 18.5
-  Elevation angle: 0.10471975511965978
+  Initial speed: 21.0
+  Elevation angle: 0.12217304763960307
   Horizontal angle: 0.0
-  Initial speed vector: [0.0, 1.933776570451589, 18.398655064313054]
-  Initial angular velocity (spin rate): 1256.6370614359173
+  Initial speed vector: [0.0, 2.5592562115080972, 20.84346918446776]
+  Initial angular velocity (spin rate): 527.7875658030853
   Spin axis angle up: 0.0
   Spin axis angle side: 1.5707963267948966
-  Initial angular velocity (omega): [1256.6370614359173, 7.69468277488716e-14, 7.69468277488716e-14]
+  Initial angular velocity (omega): [527.7875658030853, 3.231766765452607e-14, 3.231766765452607e-14]
   Description: High off spin Pure side spin

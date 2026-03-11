@@ -1,14 +1,17 @@
 DEBUG STARTED
+Case number: 9
+Viewpoint: batter
+
 Testing case: Leg-spin Player 2.1
 Simulation Parameters:
   Time step (dt): 0.01
   Gravity (g): 9.8
-  Air density (rho): 1.225
+  Air density (rho): 1.293
   Drag coefficient (k_d): 0.5
   Initial speed: 18.2
-  Elevation angle: 0.10471975511965978
+  Elevation angle: 0.12217304763960307
   Horizontal angle: 0.0
-  Initial speed vector: [0.0, 1.9024180314712928, 18.100298495702575]
+  Initial speed vector: [0.0, 2.2180220499736842, 18.064339959872058]
   Initial angular velocity (spin rate): 175.30087007031045
   Spin axis angle up: 0.2984513020910304
   Spin axis angle side: -0.6579891280018623

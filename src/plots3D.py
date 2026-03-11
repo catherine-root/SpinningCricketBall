@@ -3,7 +3,7 @@ import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 import os
 
-### START Retrieve constants from file (repeated in sim3D.py) ###
+### START Retrieve constants from file (repeated in sim3D.py and collation_plots.py) ###
 constants = {}
 with open("../src/constants.txt", "r") as f:
     for line in f:
@@ -41,7 +41,7 @@ initial_x = constants['initial_x']
 x = constants['x']
 y = constants['y']
 z = constants['z']
-### END Retrieve constants from file ### (repeated in sim3D.py)
+### END Retrieve constants from file (repeated in sim3D.py and collation_plots.py) ###
 
 
 def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
@@ -49,16 +49,12 @@ def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
     # Velocity vector and speed
     v = [vx, vy, vz]
     speed = math.sqrt(vx**2 + vy**2 + vz**2)
-    
-    # Coefficients
-    c_l = k_l * radius_of_ball * spin_rate / (speed + 1e-8)  # to avoid division by zero - this scaling is important
-    c_d = k_d  # constant depending on ball properties
 
     # Drag
-    Fd = 0.5 * rho * speed**2 * A * c_d  # in Paper 2 & 3
+    Fd = 0.5 * rho * speed**2 * A * k_d  # in Paper 2 & 3
 
     # Lift
-    Fl = (4/3) * 4 * math.pi * radius_of_ball**3 * rho * c_l * np.cross(omega, v)  # vector form of lift force
+    Fl = (4/3) * 4 * math.pi**2 * radius_of_ball**3 * rho * k_l * np.cross(omega, v)  # vector form of lift force
     Fl_magnitude = np.linalg.norm(Fl)
 
     # Accelerations
@@ -76,7 +72,7 @@ def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
         f_debug.write(f"az={az:.3f},cos(ha)={math.cos(horizontal_angle):.5f},cos(ea)={math.cos(elevation_angle):.5f},liftZ={Fl[2]:.5f}\n")
         f_debug.write(f"omega={omega[0]:.5f},{omega[1]:.5f},{omega[2]:.5f},mag(omega)={np.linalg.norm(omega):.5f},spin_rate={spin_rate}\n")
         f_debug.write(f"v={vx:.3f},{vy:.3f},{vz:.3f},speed={speed:.3f},\n")
-        f_debug.write(f"c_l={c_l}, c_d={c_d}, spin_rate={spin_rate}\n")
+        f_debug.write(f"k_l={k_l}, k_d={k_d}, spin_rate={spin_rate}\n")
 
 
     # Write accelerations and forces to a new file
@@ -89,7 +85,7 @@ def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
     vz += az * dt
 
     # Update horizontal_angle
-    horizontal_angle = -math.atan2(vx, vz) 
+    horizontal_angle = math.atan2(vx, vz) 
     elevation_angle = math.atan2(vy, vz)
 
     return omega, vx, vy, vz, horizontal_angle, elevation_angle
@@ -97,15 +93,15 @@ def flight(omega, vx, vy, vz, horizontal_angle, elevation_angle):
 def bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle):
 
     # Coefficients
-    k = 0.65  # Coefficient of restitution
-    e_number = 1  # perfectly elastic
+    k_r = 0.65  # Coefficient of restitution
+    k_e = 1  # perfectly elastic
 
     # Bounce dt
-    dh_max = 2*radius_of_ball*e_number
+    dh_max = 2*radius_of_ball*k_e
     bounce_dt = 2*1.4716*dh_max/abs(vy)
 
     # Bounce equations / Physics updates
-    vy_new = k * vy *-1
+    vy_new = k_r * vy *-1
     vx_new = -1*(radius_of_ball*omega[2] + vx)
     vz_new = radius_of_ball*omega[0] + vz
 
@@ -114,21 +110,21 @@ def bounce(omega, vx, vy, vz, horizontal_angle, elevation_angle):
     horizontal_angle_new = math.atan2(vx_new, vz_new)
     elevation_angle_new = math.atan2(vy_new, vz_new)
 
-
     # Debug
-    with open(directory_test_case_results+"/plot3D_debug.txt", "a") as f_debug:
-        f_debug.write("\n\nBounce function.\n")
-        f_debug.write(f"t={t:.3f},horizontal_angle={horizontal_angle:.5f},elevation_angle={elevation_angle:.5f} radians\n")
-        f_debug.write(f"t={t:.3f},horizontal_angle={math.degrees(horizontal_angle):.5f},elevation_angle={math.degrees(elevation_angle):.5f} degrees\n")
-        f_debug.write(f"t={t:.3f},horizontal_angle_new={horizontal_angle_new:.5f},elevation_angle_new={elevation_angle_new:.5f} radians\n")
-        f_debug.write(f"t={t:.3f},horizontal_angle_new={math.degrees(horizontal_angle_new):.5f},elevation_angle_new={math.degrees(elevation_angle_new):.5f} degrees\n")
-        f_debug.write(f"omega={omega[0]:.5f},{omega[1]:.5f},{omega[2]:.5f},mag(omega)={np.linalg.norm(omega):.5f}\n")
-        f_debug.write(f"omega_new={omega_new[0]:.5f},{omega_new[1]:.5f},{omega_new[2]:.5f},mag(omega_new)={np.linalg.norm(omega_new):.5f}\n")
-        om_scaled = np.array(omega)*(2/7)
-        f_debug.write(f"omega_scaled={om_scaled[0]:.5f},{om_scaled[1]:.5f},{om_scaled[2]:.5f},mag(omega_scaled)={np.linalg.norm(om_scaled):.5f}\n")
-        speed_vector = np.array([vx, vy, vz])
-        f_debug.write(f"speed_vector={speed_vector[0]:.5f},{speed_vector[1]:.5f},{speed_vector[2]:.5f}\n")
-        f_debug.write(f"bounce_dt={bounce_dt:.5f}\n")
+    if debug_mode == 1:
+        with open(directory_test_case_results+"/plot3D_debug.txt", "a") as f_debug:
+            f_debug.write("\n\nBounce function.\n")
+            f_debug.write(f"t={t:.3f},horizontal_angle={horizontal_angle:.5f},elevation_angle={elevation_angle:.5f} radians\n")
+            f_debug.write(f"t={t:.3f},horizontal_angle={math.degrees(horizontal_angle):.5f},elevation_angle={math.degrees(elevation_angle):.5f} degrees\n")
+            f_debug.write(f"t={t:.3f},horizontal_angle_new={horizontal_angle_new:.5f},elevation_angle_new={elevation_angle_new:.5f} radians\n")
+            f_debug.write(f"t={t:.3f},horizontal_angle_new={math.degrees(horizontal_angle_new):.5f},elevation_angle_new={math.degrees(elevation_angle_new):.5f} degrees\n")
+            f_debug.write(f"omega={omega[0]:.5f},{omega[1]:.5f},{omega[2]:.5f},mag(omega)={np.linalg.norm(omega):.5f}\n")
+            f_debug.write(f"omega_new={omega_new[0]:.5f},{omega_new[1]:.5f},{omega_new[2]:.5f},mag(omega_new)={np.linalg.norm(omega_new):.5f}\n")
+            om_scaled = np.array(omega)*(2/7)
+            f_debug.write(f"omega_scaled={om_scaled[0]:.5f},{om_scaled[1]:.5f},{om_scaled[2]:.5f},mag(omega_scaled)={np.linalg.norm(om_scaled):.5f}\n")
+            speed_vector = np.array([vx, vy, vz])
+            f_debug.write(f"speed_vector={speed_vector[0]:.5f},{speed_vector[1]:.5f},{speed_vector[2]:.5f}\n")
+            f_debug.write(f"bounce_dt={bounce_dt:.5f}\n")
 
     return omega_new, vx_new, vy_new, vz_new, horizontal_angle_new, elevation_angle_new, bounce_dt
 
@@ -143,22 +139,25 @@ def main():
 
     if z > batter_stumps_distance:
         with open(directory_test_case_results+"/plot3D_exit_status.txt", "a") as f:
-            f.write("Ball is in line with the batter's stumps. Stopping simulation.\n")
-        print("Ball is in line with the batter's stumps. Stopping simulation.")
+            if (abs(x)+radius_of_ball < diameter_of_stumps/2 or abs(x)-radius_of_ball < diameter_of_stumps/2) and (y-radius_of_ball < height_of_stumps and y > 0):
+                f.write("Ball is in line with the batter's stumps. Hitting stumps. Stopping simulation.\n")
+            else:
+                f.write("Ball is in line with the batter's stumps. Not hitting stumps. Stopping simulation.\n")
+        #print("Ball is in line with the batter's stumps. Stopping simulation.")
         stop_simulation = True
         plot_main()
 
     elif y < 0 and completed_bounce:  # stop after one bounce when it hits ground again
         with open(directory_test_case_results+"/plot3D_exit_status.txt", "a") as f:
             f.write("Ball is hitting ground a second time. Stopping simulation.\n")
-        print("Ball is hitting ground a second time. Stopping simulation.")
+        #print("Ball is hitting ground a second time. Stopping simulation.")
         stop_simulation = True
         plot_main() 
     
     elif t > 8 or abs(x) > pitch_width:
         with open(directory_test_case_results+"/plot3D_exit_status.txt", "a") as f:
             f.write("Ball has gone too wide or taken too long to complete motion. Stopping simulation.\n")
-        print("Ball has gone too wide or taken too long to complete motion. Stopping simulation.")
+        #print("Ball has gone too wide or taken too long to complete motion. Stopping simulation.")
         stop_simulation = True
         plot_main()
 
@@ -281,7 +280,7 @@ def plot_main():
     plt.savefig(directory_test_case_results+"/plot2D_trajectory_line_topdown.png", bbox_inches="tight")
     plt.close()
 
-    print("Plots saved.")
+    #print("Plots saved.")
     return
     
 if __name__ == "__main__":
@@ -328,7 +327,7 @@ if __name__ == "__main__":
             omega = initial_omega
 
             description = params[10]
-            print("Testing case:", description)
+            #print("Testing case:", description)
             if int(sys.argv[2]) == 1:
                 print("Simulation Parameters:")
                 print(f"  Time step (dt): {dt}")
@@ -375,25 +374,32 @@ if __name__ == "__main__":
                 os.remove(directory_test_case_results+"/plot3D_forces.txt")
             with open(directory_test_case_results+"/plot3D_forces.txt", "w") as f:
                 f.write(f"t,ax,ay,az,Fd,Fl_mag,Flx,Fly,Flz\n")
-            if os.path.exists(directory_test_case_results+"/plot3D_debug.txt"):
-                os.remove(directory_test_case_results+"/plot3D_debug.txt")
-            with open(directory_test_case_results+"/plot3D_debug.txt", "w") as f:
-                f.write(f"DEBUG STARTED\n")
-                f.write(f"Testing case: {description}\n")
-                f.write("Simulation Parameters:\n")
-                f.write(f"  Time step (dt): {dt}\n")
-                f.write(f"  Gravity (g): {g}\n")
-                f.write(f"  Air density (rho): {rho}\n")
-                f.write(f"  Drag coefficient (k_d): {k_d}\n")
-                f.write(f"  Initial speed: {initial_speed}\n")
-                f.write(f"  Elevation angle: {elevation_angle}\n")
-                f.write(f"  Horizontal angle: {horizontal_angle:.7f}\n")
-                f.write(f"  Initial speed vector: {initial_speed_vector}\n")
-                f.write(f"  Initial angular velocity (spin rate): {spin_rate}\n")
-                f.write(f"  Spin axis angle up: {spin_axis_angle_up}\n")
-                f.write(f"  Spin axis angle side: {spin_axis_angle_side}\n")
-                f.write(f"  Initial angular velocity (omega): {omega}\n")
-                f.write(f"  Description: {description}\n")
+            if os.path.exists(directory_test_case_results+"/case_no.txt"):
+                os.remove(directory_test_case_results+"/case_no.txt")
+            with open(directory_test_case_results+"/case_no.txt", "w") as f:
+                f.write(f"Case number: {case}\n")
+            if debug_mode == 1:
+                if os.path.exists(directory_test_case_results+"/plot3D_debug.txt"):
+                    os.remove(directory_test_case_results+"/plot3D_debug.txt")
+                with open(directory_test_case_results+"/plot3D_debug.txt", "w") as f:
+                    f.write(f"DEBUG STARTED\n")
+                    f.write(f"Case number: {case}\n")
+                    f.write(f"Debug mode: {debug_mode}\n")
+                    f.write(f"\nTesting case: {description}\n")
+                    f.write("Simulation Parameters:\n")
+                    f.write(f"  Time step (dt): {dt}\n")
+                    f.write(f"  Gravity (g): {g}\n")
+                    f.write(f"  Air density (rho): {rho}\n")
+                    f.write(f"  Drag coefficient (k_d): {k_d}\n")
+                    f.write(f"  Initial speed: {initial_speed}\n")
+                    f.write(f"  Elevation angle: {elevation_angle}\n")
+                    f.write(f"  Horizontal angle: {horizontal_angle:.7f}\n")
+                    f.write(f"  Initial speed vector: {initial_speed_vector}\n")
+                    f.write(f"  Initial angular velocity (spin rate): {spin_rate}\n")
+                    f.write(f"  Spin axis angle up: {spin_axis_angle_up}\n")
+                    f.write(f"  Spin axis angle side: {spin_axis_angle_side}\n")
+                    f.write(f"  Initial angular velocity (omega): {omega}\n")
+                    f.write(f"  Description: {description}\n")
 
             main() # Run the simulation - stop at pitch boundaries not time
             plot_main()

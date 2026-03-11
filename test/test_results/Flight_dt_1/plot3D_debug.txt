@@ -1,39 +1,11 @@
-DEBUG STARTED
-Testing case: Flight dt 1
-Simulation Parameters:
-  Time step (dt): 1.0
-  Gravity (g): 9.8
-  Air density (rho): 1.225
-  Drag coefficient (k_d): 0.5
-  Initial speed: 18.5
-  Elevation angle: 0.10471975511965978
-  Horizontal angle: 0.0000000
-  Initial speed vector: [0.0, 1.9337765704515892, 18.398655064313054]
-  Initial angular velocity (spin rate): 175.92918860102841
-  Spin axis angle up: 0.17453292519943295
-  Spin axis angle side: 1.0471975511965976
-  Initial angular velocity (omega): [86.62821445771989, 0, 150.0444688097436]
-  Description: Flight dt 1
 
 
 In flight:
-t=0.000,horizontal_angle=0.00000,elevation_angle=0.10472
-t=0.000,horizontal_angle=0.00000,elevation_angle=0.10472
-ax=-0.009,sin(ha)=0.00000,cos(ea)=0.99452,liftX=-0.00146
-ay=-9.922,sin(ea)=0.10453,cos(ea)=0.99452,liftY=-0.00799
-az=-0.668,cos(ha)=1.00000,cos(ea)=0.99452,liftZ=0.00084
+t=0.000,horizontal_angle=0.00000,elevation_angle=0.12217
+t=0.000,horizontal_angle=0.00000,elevation_angle=0.12217
+ax=-0.654,sin(ha)=0.00000,cos(ea)=0.99255,liftX=-0.10203
+ay=-13.330,sin(ea)=0.12187,cos(ea)=0.99255,liftY=-0.47974
+az=-3.325,cos(ha)=1.00000,cos(ea)=0.99255,liftZ=0.05891
 omega=86.62821,0.00000,150.04447,mag(omega)=173.25643,spin_rate=175.92918860102841
-v=0.000,1.934,18.399,speed=18.500,
-c_l=0.04256756754455808, c_d=0.5, spin_rate=175.92918860102841
-
-
-Bounce function.
-t=1.000,horizontal_angle=0.00053,elevation_angle=-0.42329 radians
-t=1.000,horizontal_angle=0.03014,elevation_angle=-24.25252 degrees
-t=1.000,horizontal_angle_new=-0.13796,elevation_angle_new=0.26304 radians
-t=1.000,horizontal_angle_new=-7.90464,elevation_angle_new=15.07122 degrees
-omega=86.62821,0.00000,150.04447,mag(omega)=173.25643
-omega_new=732.10023,-318.67502,42.49773,mag(omega_new)=799.58150
-omega_scaled=24.75092,0.00000,42.86985,mag(omega_scaled)=49.50184
-speed_vector=-0.00933,-7.98820,17.73106
-bounce_dt=0.01319
+v=0.000,2.559,20.843,speed=21.000,
+k_l=0.08333333333333333, k_d=0.5, spin_rate=175.92918860102841
