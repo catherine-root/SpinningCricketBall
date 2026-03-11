@@ -13,9 +13,9 @@ with open("../test/test_cases.txt", "r") as test_cases_file:
     number_of_test_cases = len(lines)
 
     threads = []
-    #for viewpoint in ["diagonal", "sideon", "bowler", "top-down", "umpire", "batter", "wicket-keeper"]:  # produce one sim for each test case
-    for viewpoint in ["umpire", "batter", "wicket-keeper"]:  # produce one sim for each test case
-        for case_no, line in enumerate(lines):
+    for viewpoint in ["diagonal", "sideon", "bowler", "top-down", "umpire", "batter", "wicket-keeper"]:  # produce one sim for each test case
+        for idx, line in enumerate(lines):
+            case_no = idx + 1  # case numbers start from 1
             #print(f"Running simulation for test case {case_no} of {number_of_test_cases} from {viewpoint}: {line.split(';')[-1].strip()}")
             t = threading.Thread(target=run_script, args=(case_no,viewpoint,))
             t.start()

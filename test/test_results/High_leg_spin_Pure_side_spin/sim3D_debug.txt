@@ -1,8 +1,8 @@
 DEBUG STARTED
-Case number: 63
+Case number: 66
 Viewpoint: wicket-keeper
 
-Testing case: High leg spin
+Testing case: High leg spin Pure side spin
 Simulation Parameters:
   Time step (dt): 0.01
   Gravity (g): 9.8
@@ -13,7 +13,7 @@ Simulation Parameters:
   Horizontal angle: 0.0
   Initial speed vector: [0.0, 2.5592562115080972, 20.84346918446776]
   Initial angular velocity (spin rate): 527.7875658030853
-  Spin axis angle up: 0.17453292519943295
-  Spin axis angle side: -0.7853981633974483
-  Initial angular velocity (omega): [-367.5323873108174, 91.64934899697087, 367.53238731081746]
-  Description: High leg spin
+  Spin axis angle up: 3.141592653589793
+  Spin axis angle side: 1.5707963267948966
+  Initial angular velocity (omega): [-527.7875658030853, 3.231766765452607e-14, -3.231766765452607e-14]
+  Description: High leg spin Pure side spin
