@@ -1,6 +1,6 @@
 # Modelling the Motion of a Spinning Cricket Ball
 
-This codebase was created as part of my Mathematics MMath dissertation.
+This codebase was created as part of my Mathematics MMath dissertation. In this project, I produced a full model of the trajectory of a spinning cricket ball using research papers, websites and my own work. The full model comprises a model of the flight part of motion and a model of the (single) bounce part of motion along with the method to piece these two parts together. A link to the full report may be made available if it is made public by The University of Edinburgh.
 
 ## Non-Technical Information
 
