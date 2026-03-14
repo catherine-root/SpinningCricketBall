@@ -2,7 +2,7 @@
 
 This codebase was created as part of my Mathematics MMath dissertation.
 
-## Non-technical Information
+## Non-Technical Information
 
 Go to the 'test' folder, then go to the 'test_results' folder. Go to any test case foler - e.g. 'Default_leg_spin' - where you can find '.txt. files with numerical data, '.png' files each with a 2D and 3D visualisation of the ball's trajectory, and '.gif' files each with a video simulation from different viewpoints from the field.
 
