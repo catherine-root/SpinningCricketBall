@@ -39,3 +39,5 @@ Files 'src/constants.txt' and 'test/test_cases.txt' must exist and be populated 
 File '<test case name>/plot3D_output.txt' must exist and be populated for simulation generation (i.e. to run 'sim3D.py').
 
 Scripts 'run_plots_for_all_tests.py' and 'run_sim_for_all_tests.py' execute the smaller scripts 'plots3D.py', 'sim3D.py', 'collate_plots.py' so inspection of the code in the former two scripts can help with running the latter three scripts successfully.
+
+Note that everything in the simulation is to scale except the size of the ball (which is drawn bigger so that it is easier to see from all viewpoints). 1 unit in the simulation represents 1 metre in real life.
