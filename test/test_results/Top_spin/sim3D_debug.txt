@@ -1,0 +1,19 @@
+DEBUG STARTED
+Case number: 14
+Viewpoint: wicket-keeper
+
+Testing case: Top spin
+Simulation Parameters:
+  Time step (dt): 0.01
+  Gravity (g): 9.8
+  Air density (rho): 1.293
+  Drag coefficient (k_d): 0.5
+  Initial speed: 21.0
+  Elevation angle: 0.12217304763960307
+  Horizontal angle: 0.0
+  Initial speed vector: [0.0, 2.5592562115080972, 20.84346918446776]
+  Initial angular velocity (spin rate): 175.92918860102841
+  Spin axis angle up: 0.0
+  Spin axis angle side: 0.0
+  Initial angular velocity (omega): [0.0, 1.0772555884842024e-14, 175.92918860102841]
+  Description: Top spin

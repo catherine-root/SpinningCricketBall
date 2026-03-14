@@ -79,9 +79,11 @@ def display():
         data = f.readlines()
 
     # Read data from file
-
-    t, x, y, z, vx, vy, vz, horizontal_angle, elevation_angle = data[data_line_index].split(",")
-    data_line_index += 1
+    if 0 <= data_line_index < len(data):
+        t, x, y, z, vx, vy, vz, horizontal_angle, elevation_angle = data[data_line_index].split(",")
+        data_line_index += 1
+    else:
+        return
 
     x = float(x)
     display_x = x

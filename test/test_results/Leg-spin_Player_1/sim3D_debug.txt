@@ -1,0 +1,19 @@
+DEBUG STARTED
+Case number: 8
+Viewpoint: wicket-keeper
+
+Testing case: Leg-spin Player 1
+Simulation Parameters:
+  Time step (dt): 0.01
+  Gravity (g): 9.8
+  Air density (rho): 1.293
+  Drag coefficient (k_d): 0.5
+  Initial speed: 17.5
+  Elevation angle: 0.12217304763960307
+  Horizontal angle: 0.0
+  Initial speed vector: [0.0, 2.132713509590081, 17.369557653723135]
+  Initial angular velocity (spin rate): 183.4690109696439
+  Spin axis angle up: -0.143116998663535
+  Spin axis angle side: -0.8726646259971648
+  Initial angular velocity (omega): [-139.1085124542239, -26.167989402605116, 116.72590149395934]
+  Description: Leg-spin Player 1
