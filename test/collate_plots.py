@@ -92,7 +92,7 @@ ax.legend(title='Values', bbox_to_anchor=(1.05, 1), loc='upper left')
 ax.set_xlim(-pitch_width/2, pitch_width/2)
 ax.invert_xaxis()
 ax.set_zlim(0, max_y_value*1.1)
-ax.set_ylim(-pitch_length, pitch_length) # TODO: pitch length is double what it should be - see calculations
+ax.set_ylim(-pitch_length, pitch_length)
 plt.savefig(target+f"/plot3D_trajectory_line_{name}s_{''.join([str(v) for v in values])}.png", bbox_inches="tight")
 
 ## 2D
@@ -160,7 +160,7 @@ for idx, v in enumerate(sorted(values)):
 
 ax.legend(title='Values', bbox_to_anchor=(1.05, 1), loc='upper left')
 ax.set_ylim(-pitch_width/2, pitch_width/2)
-ax.set_xlim(-pitch_length, pitch_length)  # z along pitch length
+ax.set_xlim(-pitch_length/2, pitch_length/2)  # z along pitch length
 ax.set_aspect('equal', adjustable='box')
 plt.savefig(target + f"/plot2D_trajectory_line_{name}s_{''.join([str(v) for v in values])}_topdown.png", bbox_inches="tight")
 plt.close()

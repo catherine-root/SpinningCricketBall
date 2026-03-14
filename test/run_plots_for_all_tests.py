@@ -111,23 +111,49 @@ def get_extrema():
     #print(directory_names)
     #print(directory_names_tuples)
 
+    first_pass = True
+
     for name in directory_names:
         directory_test_case_results = f"test_results/{name}"
-        for filename in ["plot3D_output.txt", "plot3D_forces.txt"]:
-            full_file_path = directory_test_case_results+"/"+filename
-            if os.path.exists(full_file_path):  # catch collate_plot created directories
-                with open(full_file_path, "r") as f:
-                    file_contents = f.readlines()
-                    header = file_contents[0].strip().split(',') 
-                    lines = file_contents[1:]  # Skip header
-                    data_matrix = np.zeros((len(lines), 9))  # t,x,y,z,vx,vy,vz,horizontal_angle,elevation_angle
-                    for i, line in enumerate(lines):
-                        data_matrix[i] = np.array(line.strip().split(','), dtype=float)
 
-                    # read first line of output file and forces file to get index of column to extract for each parameter
-                    for idx, parameter in enumerate(header):
-                        if len(data_matrix[:,idx]) > 0:  # catch empty files
-                            extrema_dict[parameter] = [min(data_matrix[:,idx]), max(data_matrix[:,idx])]
+        if first_pass:  # populate extrema
+            for filename in ["plot3D_output.txt", "plot3D_forces.txt"]:
+                full_file_path = directory_test_case_results+"/"+filename
+                if os.path.exists(full_file_path):  # catch collate_plot created directories
+                    with open(full_file_path, "r") as f:
+                        file_contents = f.readlines()
+                        header = file_contents[0].strip().split(',') 
+                        lines = file_contents[1:]  # Skip header
+                        data_matrix = np.zeros((len(lines), 9))  # t,x,y,z,vx,vy,vz,horizontal_angle,elevation_angle
+                        for i, line in enumerate(lines):
+                            data_matrix[i] = np.array(line.strip().split(','), dtype=float)
+                    
+                        # read first line of output file and forces file to get index of column to extract for each parameter
+                        for idx, parameter in enumerate(header):
+                            if len(data_matrix[:,idx]) > 0:  # catch empty files
+                                extrema_dict[parameter] = [min(data_matrix[:,idx]), max(data_matrix[:,idx])]
+                        first_pass = False
+
+
+        else:  # update extrema as required
+            for filename in ["plot3D_output.txt", "plot3D_forces.txt"]:
+                full_file_path = directory_test_case_results+"/"+filename
+                if os.path.exists(full_file_path):  # catch collate_plot created directories
+                    with open(full_file_path, "r") as f:
+                        file_contents = f.readlines()
+                        header = file_contents[0].strip().split(',') 
+                        lines = file_contents[1:]  # Skip header
+                        data_matrix = np.zeros((len(lines), 9))  # t,x,y,z,vx,vy,vz,horizontal_angle,elevation_angle
+                        for i, line in enumerate(lines):
+                            data_matrix[i] = np.array(line.strip().split(','), dtype=float)
+
+                        # read first line of output file and forces file to get index of column to extract for each parameter
+                        for idx, parameter in enumerate(header):
+                            if len(data_matrix[:,idx]) > 0:  # catch empty files
+                                if min(data_matrix[:,idx]) < extrema_dict[parameter][0]:
+                                    extrema_dict[parameter] = [min(data_matrix[:,idx]), extrema_dict[parameter][1]]
+                                if max(data_matrix[:,idx]) > extrema_dict[parameter][1]:
+                                    extrema_dict[parameter] = [extrema_dict[parameter][0], max(data_matrix[:,idx])]
 
     return extrema_dict
 

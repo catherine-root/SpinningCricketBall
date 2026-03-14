@@ -1,0 +1,41 @@
+Summary of batch of test results from: 2026-03-14_11:14:57
+
+----------------- 
+
+Parameter  |   Minimum  |  Maximum
+-------------------------------------
+t                |    0.0   |   2.484  
+x                |  -5.109  |   3.145  
+y                |  -8.671  |  18.857  
+z                |  -9.186  |  29.067  
+vx               |  -20.789 |  20.783  
+vy               |  -10.771 |   21.0   
+vz               |  -9.871  |  36.416  
+horizontal_angle |  -3.132  |   3.141  
+elevation_angle  |  -3.142  |   3.142  
+ax               | -13.2429 |  7.92935 
+ay               | -42.6718 |  8.48172 
+az               | -73.67832|  5.2199  
+Fd               |    0.0   | 11.63948 
+Fl_mag           |    0.0   |  5.27895 
+Flx              | -2.02016 |  1.01064 
+Fly              | -4.79307 |  2.92287 
+Flz              | -1.44429 |  1.45399 
+
+
+
+
+Exit status summary for 66 test cases:
+
+Ball is in line with the batter's stumps. Not hitting stumps. Stopping simulation.
+53
+
+Ball is hitting ground a second time. Stopping simulation.
+6
+
+Ball has gone too wide or taken too long to complete motion. Stopping simulation.
+6
+
+Ball is in line with the batter's stumps. Hitting stumps. Stopping simulation.
+1
+
