@@ -218,7 +218,7 @@ def timer(value):
         data_line_index += 1
     elif not saved_gif:
         saved_gif = True
-        imageio.mimsave(directory_test_case_results+"/sim_"+viewpoint+".gif", images, fps=20*int(len(images)/5))
+        imageio.mimsave(directory_test_case_results+"/sim_"+viewpoint+".gif", images, fps=1/dt)
         print("saved")
         #glutLeaveMainLoop()  
         sys.exit()
